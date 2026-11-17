@@ -7,7 +7,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
+  <!-- fonts load without blocking the page -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" /></noscript>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -293,6 +295,15 @@
       color: var(--accent);
     }
 
+    /* "Email me" button in the footer */
+    .foot .reach {
+      display: inline-flex; align-items: center; height: 48px; gap: 10px;
+      margin-top: 28px; padding: 0 30px; border-radius: 999px;
+      background: #0f0f0f; color: #fff; font-size: 16px; font-weight: 400;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .foot .reach:hover { opacity: 0.85; }
+
     .foot-cta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     .foot-cta .reach { margin-top: 0; }
 
@@ -486,7 +497,7 @@
     <div class="foot-in">
       <div class="foot-top reveal">
         <h2 class="foot-title">Have a product in mind? <em>Let's build it well.</em></h2>
-       <div class="foot-cta">
+        <div class="foot-cta">
           <!-- PLACEHOLDER: put your real email in the link -->
           <a class="reach" id="emailLink" href="mailto:olujolaayomide16@gmail.com"><span aria-hidden="true">Email me</span>↗</a>
           <button class="copy" id="copyEmail" type="button" aria-label="Copy email address" title="Copy email">

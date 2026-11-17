@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Olujola Samuel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- fonts load without blocking the page -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" /></noscript>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --page: #ffffff;
+      --ink: #161616;
+      --muted: #55575b;
+      --line: #e4e4e2;
+      --accent: #ff6a2b;   /* flower orange: underline + full stop on the name */
+      --head: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;   /* headers */
+      --body: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;         /* subtext + everything else */
+      --sans: var(--body);
+      --mono: var(--body);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    html, body {
+      background: var(--page);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* =====================================================
+       TOP BAR  (identity · pill nav · clock + actions)
+       ===================================================== */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      height: 66px;
+      padding: 0 7.8vw;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .who { display: block; justify-self: start; text-decoration: none; }
+
+    /* same drawing as the loader, so the name can land on it exactly */
+    .who-sig {
+      display: block;
+      width: 200px;
+      height: 80px;
+      margin: -13px 0 -1px -44px;
+      overflow: visible;
+      opacity: 0;
+    }
+
+    body.landed .who-sig { opacity: 1; }
+
+    .who-line {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 6;
+      stroke-linecap: round;
+    }
+
+    .who-sig text {
+      font-family: "Mrs Saint Delafield", cursive;
+      font-size: 220px;
+      fill: var(--ink);
+      stroke: var(--ink);
+      stroke-width: 3px;
+      stroke-linejoin: round;
+    }
+
+    .seg {
+      display: flex; gap: 2px;
+      padding: 4px;
+      background: #f8f8f7;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+    }
+
+    .seg a {
+      padding: 8px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #6a6a6a;
+      text-decoration: none;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .seg a:hover { color: var(--ink); }
+    .seg a.on { background: #fff; color: var(--ink); border-color: var(--line); box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+
+    .tools { display: flex; align-items: center; gap: 10px; justify-self: end; }
+
+    .pill {
+      height: 36px;
+      padding: 0 16px;
+      display: inline-flex; align-items: center; gap: 6px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-size: 14px; font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .pill span { font-size: 12px; color: #3a5bd0; }
+    .pill.dark { background: #0f0f0f; border-color: #0f0f0f; color: #fff; font-weight: 600; }
+    .pill:hover { opacity: 0.85; }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+    .foot { background: #efefea; color: #141414; padding: 110px 7.8vw 44px; }
+    .foot-in { max-width: 1240px; margin: 0 auto; }
+
+    .foot-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
+
+    .foot-title {
+      font-family: var(--head);
+      font-weight: 400;
+      font-size: clamp(2.4rem, 5.4vw, 4.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .foot-title em {
+      display: block;
+      font: inherit;              /* same font, size and weight as "Have a product in mind?" */
+      letter-spacing: inherit;
+      color: var(--accent);
+    }
+
+    /* "Email me" button in the footer */
+    .foot .reach {
+      display: inline-flex; align-items: center; height: 48px; gap: 10px;
+      margin-top: 28px; padding: 0 30px; border-radius: 999px;
+      background: #0f0f0f; color: #fff; font-size: 16px; font-weight: 400;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .foot .reach:hover { opacity: 0.85; }
+
+    .foot-cta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .foot-cta .reach { margin-top: 0; }
+
+    /* copy-email button */
+    .copy {
+      position: relative;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 1px solid #141414;
+      background: transparent;
+      color: #141414;
+      display: grid; place-items: center;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .copy:hover { background: #141414; color: #fff; }
+    .copy svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .copy .ok { display: none; }
+    .copy.done .cp { display: none; }
+    .copy.done .ok { display: block; }
+
+    .copy::after {
+      content: "Copied!";
+      position: absolute; bottom: calc(100% + 10px); left: 50%;
+      padding: 5px 10px; border-radius: 6px;
+      background: #141414; color: #fff; font-size: 12px; white-space: nowrap;
+      opacity: 0; transform: translate(-50%, 4px); pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .copy.done::after { opacity: 1; transform: translate(-50%, 0); }
+
+    .foot-bottom {
+      margin-top: 90px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+      display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;
+      font-size: 14px; color: #77776f;
+    }
+
+    .foot-social { display: flex; gap: 28px; }
+    .foot-social a { color: #141414; text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid transparent; transition: color 0.25s, border-color 0.25s; }
+    .foot-social a:hover { color: var(--accent); border-color: var(--accent); }
+
+    @media (max-width: 900px) {
+      .foot { padding: 80px 5vw 36px; }
+      .foot-bottom { margin-top: 56px; }
+    }
+
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
+    @media (max-width: 960px) {
+      .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 680px 6vw 40vw;
+        display: flex;
+        flex-direction: column;
+      }
+      .hero-copy { position: relative; left: auto; top: auto; }
+      .hero h1 { font-size: clamp(2.2rem, 9vw, 3.6rem); }
+    }
+
+    @media (max-width: 900px) {
+      .topbar { padding: 0 5vw; }
+    }
+
+    /* =====================================================
+       MOBILE MENU (hamburger)
+       ===================================================== */
+    .burger { display: none; }
+    .menu { display: none; }
+
+    @media (max-width: 760px) {
+      .topbar { grid-template-columns: 1fr auto; }
+      .topbar > .seg, .topbar > .tools { display: none; }
+
+      .burger {
+        display: inline-flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+        width: 42px; height: 42px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        background: #fff;
+        cursor: pointer;
+        justify-self: end;
+      }
+
+      .burger span {
+        display: block; width: 18px; height: 1.5px; background: var(--ink); border-radius: 2px;
+        transition: transform 0.3s ease, opacity 0.2s ease;
+      }
+
+      .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+      .burger.open span:nth-child(2) { opacity: 0; }
+      .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+      .menu {
+        display: flex; flex-direction: column; gap: 6px;
+        position: fixed; top: 66px; left: 0; right: 0;
+        z-index: 49;
+        padding: 14px 5vw 24px;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 24px 40px -24px rgba(0, 0, 0, 0.25);
+        opacity: 0; visibility: hidden; transform: translateY(-10px);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      }
+
+      .menu.open { opacity: 1; visibility: visible; transform: none; }
+
+      .menu a.lnk {
+        padding: 14px 4px;
+        font-family: var(--head);
+        font-size: 22px; font-weight: 500; letter-spacing: -0.03em;
+        color: var(--ink); text-decoration: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .menu a.lnk.on { color: var(--accent); }
+
+      .menu a.pill { margin-top: 14px; height: 48px; justify-content: center; font-size: 16px; }
+    }
+
+    @media (max-width: 600px) {
+      .who-sig { width: 150px; height: 60px; margin: -10px 0 0 -20px; }
+      .seg a { padding: 8px 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card { transition-duration: 0.01s; }
+    }
+
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- About page ---------- */
+    :root { --tint: #efefea; --soft: #8a8a84; --gut: 7.8vw; }
+    .wrap { max-width: 1240px; margin: 0 auto; }
+    section.blk { padding-left: var(--gut); padding-right: var(--gut); }
+
+    .kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--muted); }
+    .kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+    h2.sec {
+      font-family: var(--head); font-weight: 400;
+      font-size: clamp(1.9rem, 3.1vw, 2.7rem);
+      line-height: 1.08; letter-spacing: -0.045em; color: #141414;
+    }
+
+    /* intro */
+    .intro { padding-top: 130px; padding-bottom: 90px; }
+    .intro-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 80px; align-items: center; }
+    .intro h1 {
+      margin-top: 20px;
+      font-family: var(--head); font-weight: 400;
+      font-size: clamp(1.9rem, 3.6vw, 3.1rem);
+      line-height: 1.06; letter-spacing: -0.05em; color: #141414;
+    }
+    .intro h1 em { font-style: normal; color: #858585; }
+    .portrait { max-width: 340px; justify-self: end; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 5; background: linear-gradient(180deg, #c9cdd6, #9aa1ad); }
+    .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; display: block; }
+
+    /* stats */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stats div { padding: 34px 28px 34px 0; }
+    .stats div + div { padding-left: 28px; border-left: 1px solid var(--line); }
+    .stats strong { display: block; font-family: var(--head); font-weight: 400; font-size: clamp(2.8rem, 5vw, 4.4rem); letter-spacing: -0.06em; line-height: 1; }
+    .stats span { display: block; margin-top: 12px; font-size: 14px; color: #6b6b66; }
+
+    /* bio */
+    .bio { padding-top: 110px; padding-bottom: 110px; }
+    .bio-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 70px; }
+    .bio p { font-size: 17px; line-height: 1.75; color: #55575b; }
+    .bio p + p { margin-top: 20px; }
+    .bio p.big { font-size: 22px; line-height: 1.5; letter-spacing: -0.015em; color: #2a2a28; }
+
+    /* essential stack */
+    .stack-sec { background: var(--tint); padding-top: 110px; padding-bottom: 110px; }
+    .tools-grid { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .tool { display: flex; align-items: center; gap: 16px; padding: 22px; border-radius: 16px; background: #fff; border: 1px solid var(--line); }
+    .tool i { flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--c, #141414); color: var(--f, #fff); font-style: normal; font-family: var(--head); font-weight: 600; font-size: 18px; }
+    .tool b { display: block; font-family: var(--head); font-weight: 500; font-size: 17px; letter-spacing: -0.02em; }
+    .tool span { display: block; margin-top: 3px; font-size: 13.5px; color: #77776f; }
+
+    /* random reels: one row that slides from right to left */
+    .reels { padding-top: 110px; padding-bottom: 110px; }
+    .reels-view { margin: 44px calc(var(--gut) * -1) 0; overflow: hidden; }
+    .reels-track { display: flex; width: max-content; }
+    .reels-track.run { animation: reels-slide 35s linear infinite; }
+    .reels-view:hover .reels-track.run { animation-play-state: paused; }
+    @keyframes reels-slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .reel { flex: none; width: 250px; height: 350px; margin-right: 4px; border-radius: 0; overflow: hidden; }
+    .reel img, .reel .ph { border-radius: 0; }   /* square corners on the photo and on the placeholder */
+    .reel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @media (prefers-reduced-motion: reduce) {
+      .reels-view { overflow-x: auto; }
+      .reels-track.run { animation: none; }
+    }
+    .ph {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+      background: repeating-linear-gradient(135deg, rgba(0,0,0,0.035) 0 12px, transparent 12px 24px), var(--tint);
+      border: 1.5px dashed #cfcfc8; border-radius: 14px;
+      color: #77776f; font-size: 13px;
+    }
+    .ph b { font-family: var(--head); font-size: 15px; font-weight: 600; color: #3b3b37; margin-bottom: 4px; }
+
+    /* design process: heading stays put while the steps scroll past */
+    .process { padding-top: 110px; padding-bottom: 120px; }
+    .process-grid { display: grid; grid-template-columns: 1fr 1.7fr; gap: 70px; align-items: start; }
+    .process-head { position: sticky; top: 110px; }
+    .process-head p { margin-top: 20px; max-width: 360px; font-size: 16px; line-height: 1.7; color: #6b6b66; }
+    .steps { border-top: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 70px 1fr; gap: 20px; padding: 34px 0 36px; border-bottom: 1px solid var(--line); }
+    .step .n { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: 34px; line-height: 1; color: var(--accent); }
+    .step h3 { font-family: var(--head); font-weight: 500; font-size: 24px; letter-spacing: -0.04em; line-height: 1.15; }
+    .step p { margin-top: 10px; max-width: 520px; font-size: 15.5px; line-height: 1.7; color: #6b6b66; }
+    .step ul { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+    .step li { padding: 6px 13px; border-radius: 999px; border: 1px solid #d3d3cc; font-size: 12.5px; font-weight: 500; color: #55554f; }
+
+
+    /* game: a dark break before the footer */
+    .play { background: #0e0e0f; color: #f2f2ee; padding-top: 110px; padding-bottom: 110px; }
+    .play h2.sec { color: #f2f2ee; }
+    .play-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+    .play-head p { max-width: 380px; font-size: 15px; line-height: 1.6; color: #9a9a96; }
+    .play-box { position: relative; margin-top: 40px; }
+    .play canvas { display: block; width: 100%; border-radius: 18px; background: #161617; border: 1px solid rgba(255,255,255,0.12); outline: none; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+    .play canvas:focus-visible { border-color: var(--accent); }
+    .play-hint { margin-top: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: #8d8d88; }
+    .play-hint kbd { font-family: var(--body); font-size: 12px; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.25); color: #f2f2ee; }
+
+    @media (max-width: 960px) {
+      .intro-grid, .bio-grid, .process-grid { grid-template-columns: 1fr; gap: 34px; }
+      .portrait { max-width: 420px; }
+      .process-head { position: static; }
+      .tools-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 760px) {
+      :root { --gut: 5vw; }
+      .intro { padding-top: 104px; padding-bottom: 60px; }
+      .bio, .stack-sec, .reels, .process, .play { padding-top: 80px; padding-bottom: 80px; }
+      .stats { grid-template-columns: 1fr; }
+      .stats div, .stats div + div { padding: 24px 0; border-left: 0; }
+      .stats div + div { border-top: 1px solid var(--line); }
+      .tools-grid { grid-template-columns: 1fr; }
+      .reel { width: 160px; height: 224px; margin-right: 4px; }
+      .step { grid-template-columns: 44px 1fr; }
+    }
+  </style>
+</head>
+<body class="landed">
+
+  <div class="topbar">
+    <a class="who" href="index.html" aria-label="Samuel">
+      <svg class="who-sig" id="whoSig" viewBox="0 0 800 320" aria-hidden="true">
+        <path class="who-line" d="M150 265 C 300 285, 500 250, 650 268" />
+        <text x="400" y="230" text-anchor="middle">Samuel<tspan class="dot">.</tspan></text>
+      </svg>
+    </a>
+
+    <nav class="seg" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <!-- these two pages are not built yet; change the links when they are -->
+      <a href="work.html">Work</a>
+      <a class="on" href="about.html">About</a>
+    </nav>
+
+    <div class="tools">
+      <a class="pill dark" href="#resume">Resume</a>
+    </div>
+
+    <!-- mobile only -->
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="menu" id="menu" aria-label="Mobile">
+    <a class="lnk" href="index.html">Home</a>
+    <a class="lnk" href="work.html">Work</a>
+    <a class="lnk on" href="about.html">About</a>
+    <a class="pill dark" href="#resume">Resume</a>
+  </nav>
+
+  <!-- ============ INTRO ============ -->
+  <section class="blk intro">
+    <div class="wrap intro-grid">
+      <div class="reveal">
+        <span class="kicker">About me</span>
+        <h1>I'm Olujola Samuel, a Product Designer <em>with 2+ years of experience crafting clean, user-focused digital experiences.</em></h1>
+      </div>
+      <div class="portrait reveal"><img src="IMGs/DP.jpg" alt="Olujola Samuel" /></div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="wrap">
+      <!-- EDIT: these numbers are from your old portfolio, keep only the ones that are still true -->
+      <div class="stats reveal">
+        <div><strong>20+</strong><span>Successful projects</span></div>
+        <div><strong>02</strong><span>Years of experience</span></div>
+        <div><strong>98%</strong><span>Client satisfaction</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BIO ============ -->
+  <section class="blk bio">
+    <div class="wrap bio-grid">
+      <h2 class="sec reveal">A bit about me</h2>
+      <div class="reveal">
+        <p class="big">With a background in product design, I thrive on crafting digital experiences that seamlessly blend aesthetics, functionality, and user-centered design principles.</p>
+        <p>My journey in the world of design has equipped me with a keen eye for detail, a deep understanding of user behavior, and the ability to transform complex concepts into intuitive, visually appealing products.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ESSENTIAL STACK ============ -->
+  <section class="blk stack-sec">
+    <div class="wrap">
+      <h2 class="sec reveal">Essential stack</h2>
+      <div class="tools-grid reveal">
+        <div class="tool"><i style="--c:#141414;--f:#fff;">F</i><div><b>Figma</b><span>product design</span></div></div>
+        <div class="tool"><i style="--c:#0055ff;--f:#fff;">F</i><div><b>Framer</b><span>web design</span></div></div>
+        <div class="tool"><i style="--c:#d97757;--f:#fff;">C</i><div><b>Claude</b><span>product strategy</span></div></div>
+        <div class="tool"><i style="--c:#7a5cf0;--f:#fff;">J</i><div><b>Jitter</b><span>animations</span></div></div>
+        <div class="tool"><i style="--c:#ffffff;--f:#141414;border:1px solid #e4e4e2;">N</i><div><b>Notion</b><span>productivity</span></div></div>
+        <div class="tool"><i style="--c:#2eb67d;--f:#fff;">S</i><div><b>Slack</b><span>collaboration</span></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ MY DESIGN PROCESS ============ -->
+  <section class="blk process" id="process">
+    <div class="wrap process-grid">
+      <div class="process-head reveal">
+        <h2 class="sec">My design process</h2>
+        <p>The steps I follow on most projects. I adjust them to fit the size of the problem, but the thinking stays the same.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><span class="n">01</span><div><h3>Discover</h3><p>I start with the people and the problem: talking to users and stakeholders, reviewing what already exists, and agreeing what success looks like.</p><ul><li>Interviews</li><li>Competitor review</li><li>Problem statement</li></ul></div></div>
+        <div class="step reveal"><span class="n">02</span><div><h3>Define</h3><p>I turn what I learn into a clear direction: who it is for, what they need, and what the product has to do first.</p><ul><li>User flows</li><li>Priorities</li><li>Scope</li></ul></div></div>
+        <div class="step reveal"><span class="n">03</span><div><h3>Ideate</h3><p>I sketch several routes quickly before committing to one, so the best idea wins, not the first one.</p><ul><li>Sketches</li><li>Wireframes</li><li>Concepts</li></ul></div></div>
+        <div class="step reveal"><span class="n">04</span><div><h3>Design</h3><p>I build the interface in Figma with one consistent system of type, colour and components, so the product feels like a single thing.</p><ul><li>UI screens</li><li>Design system</li><li>Prototypes</li></ul></div></div>
+        <div class="step reveal"><span class="n">05</span><div><h3>Test & refine</h3><p>I put prototypes in front of real people, watch where they hesitate, and improve the design from what I see.</p><ul><li>Usability tests</li><li>Feedback rounds</li><li>Iterations</li></ul></div></div>
+        <div class="step reveal"><span class="n">06</span><div><h3>Build & hand off</h3><p>As a design engineer I can build the front end myself, or give developers clear specs and assets, so what ships matches what I designed.</p><ul><li>Front-end code</li><li>Specs</li><li>Design QA</li></ul></div></div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ============ RANDOM REELS ============ -->
+  <section class="blk reels">
+    <div class="wrap">
+      <h2 class="sec reveal">Random reels</h2>
+      <!-- EDIT: replace each <div class="ph">…</div> with <img src="IMGs/your-photo.jpg" alt="" />  (cards are 250 × 350) -->
+      <div class="reels-view reveal">
+        <div class="reels-track" id="reelsTrack">
+          <div class="reel"><div class="ph"><b>Photo 1</b>250 × 350</div></div>
+          <div class="reel"><div class="ph"><b>Photo 2</b>250 × 350</div></div>
+          <div class="reel"><div class="ph"><b>Photo 3</b>250 × 350</div></div>
+          <div class="reel"><div class="ph"><b>Photo 4</b>250 × 350</div></div>
+          <div class="reel"><div class="ph"><b>Photo 5</b>250 × 350</div></div>
+          <div class="reel"><div class="ph"><b>Photo 6</b>250 × 350</div></div>
+          <div class="reel"><div class="ph"><b>Photo 7</b>250 × 350</div></div>
+          <div class="reel"><div class="ph"><b>Photo 8</b>250 × 350</div></div>
+          <div class="reel"><div class="ph"><b>Photo 9</b>250 × 350</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GAME ============ -->
+  <section class="blk play" id="play">
+    <div class="wrap">
+      <div class="play-head reveal">
+        <h2 class="sec">Need a break? Play a round of Snake.</h2>
+        <p>Collect the approvals, stay inside the artboard, and don't run into your own layers. How long can you get?</p>
+      </div>
+
+      <div class="play-box reveal">
+        <canvas id="game" tabindex="0" aria-label="Snake game. Use the arrow keys or swipe to steer."></canvas>
+        <div class="play-hint">
+          <span>Click the game to start. Steer with <kbd>←</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd> or <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd>, or swipe on your phone.</span>
+          <span id="gameBest">Best: 0</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot" id="contact">
+    <div class="foot-in">
+      <div class="foot-top reveal">
+        <h2 class="foot-title">Have a product in mind? <em>Let's build it well.</em></h2>
+        <div class="foot-cta">
+          <!-- PLACEHOLDER: put your real email in the link -->
+          <a class="reach" id="emailLink" href="mailto:olujolaayomide16@gmail.com"><span aria-hidden="true">Email me</span>↗</a>
+          <button class="copy" id="copyEmail" type="button" aria-label="Copy email address" title="Copy email">
+            <svg class="cp" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg>
+            <svg class="ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="foot-bottom">
+        <span>© 2026 Olujola Samuel. All rights reserved.</span>
+        <!-- PLACEHOLDER: swap in your real profile links -->
+        <nav class="foot-social" aria-label="Social links">
+          <a href="https://www.linkedin.com/in/olujolasamuel" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://x.com/lexicon_uiux" target="_blank" rel="noopener">Twitter</a>
+          <a href="https://www.behance.net/samdexign9" target="_blank" rel="noopener">Behance</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* hamburger menu (mobile) */
+    (function mobileMenu() {
+      const burger = document.getElementById("burger"), menu = document.getElementById("menu");
+      const set = (open) => {
+        burger.classList.toggle("open", open);
+        menu.classList.toggle("open", open);
+        burger.setAttribute("aria-expanded", open);
+        burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      };
+      burger.addEventListener("click", () => set(!menu.classList.contains("open")));
+      menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => set(false)));
+      window.addEventListener("resize", () => { if (window.innerWidth > 760) set(false); });
+    })();
+
+    /* copy email button (reads the address from the Email me link) */
+    (function copyEmail() {
+      const btn = document.getElementById("copyEmail");
+      const email = document.getElementById("emailLink").getAttribute("href").replace("mailto:", "");
+      btn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(email);
+        } catch (err) {
+          const t = document.createElement("textarea");
+          t.value = email; t.style.position = "fixed"; t.style.opacity = "0";
+          document.body.appendChild(t); t.select();
+          try { document.execCommand("copy"); } catch (e) {}
+          t.remove();
+        }
+        btn.classList.add("done");
+        clearTimeout(copyEmail.t);
+        copyEmail.t = setTimeout(() => btn.classList.remove("done"), 1800);
+      });
+    })();
+
+    /* random reels: copy the cards once so the slide loops without a gap */
+    (function reels() {
+      const track = document.getElementById("reelsTrack");
+      if (!track) return;
+      [...track.children].forEach((c) => {
+        const copy = c.cloneNode(true);
+        copy.setAttribute("aria-hidden", "true");
+        track.appendChild(copy);
+      });
+      track.classList.add("run");
+    })();
+
+    /* =====================================================
+       GAME: Snake, design edition
+       eat the approvals, stay inside the artboard,
+       and don't run into your own layers
+       ===================================================== */
+    (function snake() {
+      const cv = document.getElementById("game");
+      if (!cv) return;
+      const ctx = cv.getContext("2d");
+      const bestEl = document.getElementById("gameBest");
+      const CELL = 30, ROWS = 14, H = CELL * ROWS;
+      let W = 960, COLS = 32, scale = 1;
+
+      const PRAISE = ["Pixel perfect!", "Ship it!", "Approved", "Nice kerning", "Clean handoff", "Great contrast", "Auto layout!", "Looks good to me"];
+
+      let state = "idle";                        // idle | run | over
+      let best = 0;
+      try { best = parseInt(localStorage.getItem("snakeBest") || "0", 10) || 0; } catch (e) {}
+      bestEl.textContent = "Best: " + best;
+
+      let snake = [], old = [], dir = { x: 1, y: 0 }, queue = [], food = { x: 0, y: 0 };
+      let score = 0, every = 0.12, acc = 0, tick = 0, shake = 0, overAt = 0, deathMsg = "";
+      let parts = [], pops = [];
+      let lastT = 0, visible = false;
+
+      function placeFood() {
+        let c, tries = 0;
+        do { c = { x: (Math.random() * COLS) | 0, y: (Math.random() * ROWS) | 0 }; tries++; }
+        while (snake.some((s) => s.x === c.x && s.y === c.y) && tries < 400);
+        food = c;
+      }
+
+      function reset() {
+        const cy = (ROWS / 2) | 0;
+        snake = [{ x: 7, y: cy }, { x: 6, y: cy }, { x: 5, y: cy }, { x: 4, y: cy }];
+        old = snake.map((s) => ({ ...s }));
+        dir = { x: 1, y: 0 }; queue = [];
+        score = 0; every = 0.12; acc = 0; shake = 0; parts = []; pops = [];
+        placeFood();
+      }
+      reset();
+
+      function resize() {
+        const cssW = cv.parentElement.clientWidth;
+        const newW = cssW < 640 ? 600 : 960;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        if (newW !== W) { W = newW; COLS = W / CELL; if (state === "run") state = "idle"; reset(); }
+        else { W = newW; COLS = W / CELL; }
+        scale = cssW / W;
+        cv.style.height = (H * scale) + "px";
+        cv.width = Math.round(cssW * dpr);
+        cv.height = Math.round(H * scale * dpr);
+        ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
+        draw();
+      }
+
+      function burst(x, y, color, n, power) {
+        for (let i = 0; i < n; i++) {
+          const a = Math.random() * Math.PI * 2, v = (0.3 + Math.random()) * power;
+          parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - power * 0.2, life: 0.45 + Math.random() * 0.4, c: color });
+        }
+      }
+
+      function start() {
+        if (state === "over" && performance.now() - overAt < 350) return false;
+        if (state !== "run") { reset(); state = "run"; cv.style.touchAction = "none"; }
+        return true;
+      }
+
+      function queueDir(x, y) {
+        const last = queue.length ? queue[queue.length - 1] : dir;
+        if ((last.x === x && last.y === y) || (last.x === -x && last.y === -y)) return;
+        if (queue.length < 2) queue.push({ x, y });
+      }
+
+      function die(msg) {
+        state = "over"; overAt = performance.now(); shake = 0.35; deathMsg = msg;
+        cv.style.touchAction = "manipulation";
+        const h = snake[0];
+        burst((h.x + 0.5) * CELL, (h.y + 0.5) * CELL, "#ff6a2b", 24, 340);
+        if (score > best) {
+          best = score;
+          try { localStorage.setItem("snakeBest", String(best)); } catch (e) {}
+          bestEl.textContent = "Best: " + best + "  (new!)";
+        }
+      }
+
+      function step() {
+        if (queue.length) dir = queue.shift();
+        const h = snake[0], n = { x: h.x + dir.x, y: h.y + dir.y };
+        if (n.x < 0 || n.y < 0 || n.x >= COLS || n.y >= ROWS) { die("Out of the artboard!"); return; }
+        const eating = n.x === food.x && n.y === food.y;
+        const body = eating ? snake : snake.slice(0, -1);
+        if (body.some((s) => s.x === n.x && s.y === n.y)) { die("Overlapping layers!"); return; }
+        old = snake.map((s) => ({ ...s }));
+        snake.unshift(n);
+        if (eating) {
+          score++;
+          every = Math.max(0.065, 0.12 - score * 0.0025);
+          burst((food.x + 0.5) * CELL, (food.y + 0.5) * CELL, "#d8ff5a", 14, 240);
+          pops.push({ x: (food.x + 0.5) * CELL, y: food.y * CELL, text: PRAISE[(Math.random() * PRAISE.length) | 0], life: 1 });
+          placeFood();
+        } else snake.pop();
+        acc -= every;
+      }
+
+      function rr(x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+      }
+
+      const lerp = (a, b, t) => a + (b - a) * t;
+      function mix(c1, c2, t) {
+        const p = (c) => [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16));
+        const a = p(c1), b = p(c2);
+        return "rgb(" + a.map((v, i) => Math.round(lerp(v, b[i], t))).join(",") + ")";
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        ctx.save();
+        if (shake > 0) ctx.translate((Math.random() - 0.5) * shake * 20, (Math.random() - 0.5) * shake * 20);
+
+        // artboard dots
+        ctx.fillStyle = "rgba(255,255,255,0.10)";
+        for (let x = 0; x < COLS; x++) for (let y = 0; y < ROWS; y++) ctx.fillRect(x * CELL + CELL / 2 - 1, y * CELL + CELL / 2 - 1, 2, 2);
+
+        // approval (food)
+        const fx = (food.x + 0.5) * CELL, fy = (food.y + 0.5) * CELL, pulse = 1 + Math.sin(tick * 6) * 0.08;
+        ctx.fillStyle = "#d8ff5a"; ctx.beginPath(); ctx.arc(fx, fy, 11 * pulse, 0, 7); ctx.fill();
+        ctx.strokeStyle = "#0e0e0f"; ctx.lineWidth = 2.5; ctx.lineCap = "round"; ctx.lineJoin = "round";
+        ctx.beginPath(); ctx.moveTo(fx - 5, fy); ctx.lineTo(fx - 1.5, fy + 4); ctx.lineTo(fx + 5.5, fy - 4); ctx.stroke();
+
+        // snake (smoothly slides between grid steps)
+        const t = state === "run" ? Math.min(1, acc / every) : 1;
+        const pos = snake.map((s, i) => {
+          const f = old[i] || old[old.length - 1] || s;
+          return { x: lerp(f.x, s.x, t), y: lerp(f.y, s.y, t) };
+        });
+        for (let i = pos.length - 1; i >= 0; i--) {
+          const p = pos[i], size = i === 0 ? 27 : 25 - Math.min(i, 8) * 0.25;
+          ctx.fillStyle = state === "over" ? mix("#7a3a1c", "#4a3a30", i / pos.length) : mix("#ff6a2b", "#ffb36b", i / Math.max(1, pos.length - 1));
+          rr((p.x + 0.5) * CELL - size / 2, (p.y + 0.5) * CELL - size / 2, size, size, 8);
+          ctx.fill();
+        }
+        // eyes
+        const hp = pos[0], cx = (hp.x + 0.5) * CELL, cy = (hp.y + 0.5) * CELL, px = -dir.y, py = dir.x;
+        [-1, 1].forEach((k) => {
+          const ex = cx + dir.x * 5 + px * 6 * k, ey = cy + dir.y * 5 + py * 6 * k;
+          ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(ex, ey, 4.6, 0, 7); ctx.fill();
+          ctx.fillStyle = "#161616"; ctx.beginPath(); ctx.arc(ex + dir.x * 1.4, ey + dir.y * 1.4, 2.3, 0, 7); ctx.fill();
+        });
+
+        // particles + praise
+        parts.forEach((p) => { ctx.globalAlpha = Math.max(0, Math.min(1, p.life * 2)); ctx.fillStyle = p.c; ctx.fillRect(p.x, p.y, 4, 4); });
+        ctx.globalAlpha = 1;
+        ctx.textAlign = "center"; ctx.font = "600 13px Inter, system-ui, sans-serif";
+        pops.forEach((p) => { ctx.globalAlpha = Math.max(0, p.life); ctx.fillStyle = "#d8ff5a"; ctx.fillText(p.text, Math.min(W - 60, Math.max(60, p.x)), p.y - (1 - p.life) * 26 - 6); });
+        ctx.globalAlpha = 1;
+        ctx.restore();
+
+        // score
+        ctx.textAlign = "right"; ctx.fillStyle = "rgba(242,242,238,0.9)"; ctx.font = "600 18px Inter, system-ui, sans-serif";
+        ctx.fillText(String(score).padStart(2, "0"), W - 18, 30);
+        ctx.fillStyle = "rgba(242,242,238,0.45)"; ctx.font = "500 11px Inter, system-ui, sans-serif";
+        ctx.fillText("APPROVED", W - 18, 46);
+
+        ctx.textAlign = "center";
+        if (state === "idle") {
+          ctx.fillStyle = "rgba(14,14,15,0.45)"; ctx.fillRect(0, 0, W, H);
+          ctx.fillStyle = "#f2f2ee"; ctx.font = "500 28px Inter, system-ui, sans-serif"; ctx.fillText("Click or tap to start", W / 2, H / 2 - 6);
+          ctx.fillStyle = "rgba(242,242,238,0.6)"; ctx.font = "400 14px Inter, system-ui, sans-serif"; ctx.fillText("Eat the approvals. Stay on the artboard.", W / 2, H / 2 + 22);
+        } else if (state === "over") {
+          ctx.fillStyle = "rgba(14,14,15,0.62)"; ctx.fillRect(0, 0, W, H);
+          ctx.fillStyle = "#f2f2ee"; ctx.font = "500 30px Inter, system-ui, sans-serif"; ctx.fillText(deathMsg, W / 2, H / 2 - 26);
+          ctx.fillStyle = "rgba(242,242,238,0.7)"; ctx.font = "400 15px Inter, system-ui, sans-serif";
+          ctx.fillText("Approved " + score + (score >= best && score > 0 ? "  ·  new best!" : "  ·  best " + best), W / 2, H / 2 + 6);
+          ctx.fillStyle = "#ff6a2b"; ctx.font = "500 15px Inter, system-ui, sans-serif"; ctx.fillText("Click, tap or press Space to play again", W / 2, H / 2 + 40);
+        }
+      }
+
+      function loop(now) {
+        const dt = Math.min((now - lastT) / 1000, 0.05); lastT = now;
+        if (visible && !document.hidden) {
+          tick += dt;
+          if (state === "run") { acc += dt; while (acc >= every && state === "run") step(); }
+          if (shake > 0) shake = Math.max(0, shake - dt);
+          parts.forEach((p) => { p.life -= dt; p.vy += 800 * dt; p.x += p.vx * dt; p.y += p.vy * dt; });
+          parts = parts.filter((p) => p.life > 0);
+          pops.forEach((p) => (p.life -= dt * 0.9));
+          pops = pops.filter((p) => p.life > 0);
+          draw();
+        }
+        cv.dataset.state = state; cv.dataset.score = score;
+        cv.dataset.hx = snake[0].x; cv.dataset.hy = snake[0].y; cv.dataset.fx = food.x; cv.dataset.fy = food.y;
+        requestAnimationFrame(loop);
+      }
+
+      // keyboard (only while the game has focus, so the page still scrolls normally)
+      const KEYS = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0], KeyW: [0, -1], KeyS: [0, 1], KeyA: [-1, 0], KeyD: [1, 0] };
+      cv.addEventListener("keydown", (e) => {
+        if (e.code === "Space" || e.code === "Enter") { e.preventDefault(); if (state !== "run") start(); return; }
+        const k = KEYS[e.code]; if (!k) return;
+        e.preventDefault();
+        if (state !== "run") { if (!start()) return; if (k[0] === -1) return; }
+        queueDir(k[0], k[1]);
+      });
+
+      // mouse tap starts, finger swipe steers
+      let sx = 0, sy = 0, swiping = false;
+      cv.addEventListener("pointerdown", (e) => {
+        e.preventDefault(); cv.focus({ preventScroll: true });
+        sx = e.clientX; sy = e.clientY; swiping = true;
+        if (state !== "run") start();
+      });
+      cv.addEventListener("pointermove", (e) => {
+        if (!swiping || state !== "run") return;
+        const dx = e.clientX - sx, dy = e.clientY - sy;
+        if (Math.max(Math.abs(dx), Math.abs(dy)) < 22) return;
+        if (Math.abs(dx) > Math.abs(dy)) queueDir(dx > 0 ? 1 : -1, 0); else queueDir(0, dy > 0 ? 1 : -1);
+        sx = e.clientX; sy = e.clientY;
+      });
+      const endSwipe = () => { swiping = false; };
+      cv.addEventListener("pointerup", endSwipe);
+      cv.addEventListener("pointercancel", endSwipe);
+
+      new IntersectionObserver((en) => { visible = en[0].isIntersecting; }, { threshold: 0.2 }).observe(cv);
+      window.addEventListener("resize", resize);
+      resize();
+      requestAnimationFrame((t) => { lastT = t; loop(t); });
+    })();
+
+    (function scrollFx() {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    })();
+  </script>
+</body>
+</html>
