@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyHub | Olujola Samuel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- fonts load without blocking the page -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" /></noscript>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --page: #ffffff;
+      --ink: #161616;
+      --muted: #55575b;
+      --soft: #8a8a84;
+      --line: #e4e4e2;
+      --tint: #efefea;
+      --accent: #ff6a2b;
+      --brand: #2f6cf0;                 /* Cino blue: change to the project's real brand colour */
+      --head: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --body: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--page); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+
+    /* ---------- top bar ---------- */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      height: 66px; padding: 0 7.8vw;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .topbar.scrolled { border-color: var(--line); }
+
+    .logo { font-family: "Mrs Saint Delafield", cursive; font-size: 40px; line-height: 1; color: var(--ink); text-decoration: none; }
+    .logo i { font-style: normal; color: var(--accent); }
+
+    .back {
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 36px; padding: 0 16px; border-radius: 999px;
+      border: 1px solid var(--line); background: #fff;
+      color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+    }
+    .back:hover { background: var(--ink); color: #fff; }
+
+    /* ---------- image placeholders ----------
+       To use a real image: replace the whole <div class="ph">…</div> with
+       <img src="images/cino/your-file.png" alt="describe it" />  */
+    .media { margin: 0; }
+    .media img, .ph {
+      display: block; width: 100%;
+      border-radius: 14px;
+      aspect-ratio: var(--r, 16 / 10);
+      object-fit: cover;
+    }
+    .ph {
+      position: relative;
+      display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+      padding: 20px;
+      background:
+        repeating-linear-gradient(135deg, rgba(0,0,0,0.035) 0 12px, transparent 12px 24px),
+        var(--tint);
+      border: 1.5px dashed #cfcfc8;
+      color: #77776f;
+      font-size: 13px; line-height: 1.5;
+    }
+    .ph b { display: block; font-family: var(--head); font-size: 15px; font-weight: 600; color: #3b3b37; margin-bottom: 4px; letter-spacing: -0.01em; }
+    .ph.dark { background: repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0 12px, transparent 12px 24px), #1b1b1d; border-color: #3a3a3e; color: #9a9aa0; }
+    .ph.dark b { color: #e8e8ea; }
+    .media figcaption { margin-top: 10px; font-size: 13px; color: var(--soft); }
+
+    /* ---------- hero ---------- */
+    .hero {
+      padding: 130px 7.8vw 0;
+      max-width: calc(1240px + 15.6vw);
+      margin: 0 auto;
+    }
+    .kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--muted); }
+    .kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+    .hero h1 {
+      margin-top: 18px;
+      font-family: var(--head); font-weight: 400;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 1.02; letter-spacing: -0.05em;
+    }
+    .hero h1 em { font-style: normal; color: #858585; }
+
+    /* store buttons */
+    .stores { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .store {
+      display: inline-flex; align-items: center; gap: 12px;
+      height: 54px; padding: 0 22px 0 18px;
+      border-radius: 12px; background: var(--ink); color: #fff;
+      text-decoration: none;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .store:hover { transform: translateY(-2px); opacity: 0.9; }
+    .store svg { width: 24px; height: 24px; flex: none; fill: currentColor; }
+    .store span { display: flex; flex-direction: column; line-height: 1.15; }
+    .store small { font-size: 11px; color: rgba(255,255,255,0.75); }
+    .store b { font-family: var(--head); font-size: 17px; font-weight: 500; letter-spacing: -0.02em; }
+
+    .facts {
+      margin-top: 44px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .facts div { padding: 18px 20px 18px 0; }
+    .facts div + div { padding-left: 20px; border-left: 1px solid var(--line); }
+    .facts dt { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); }
+    .facts dd { margin-top: 6px; font-size: 15px; font-weight: 500; }
+
+    .hero .media { margin-top: 40px; --r: 21 / 9; }
+
+    /* ---------- page grid: sticky side nav + story ---------- */
+    .layout {
+      display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 70px;
+      max-width: calc(1240px + 15.6vw);
+      margin: 0 auto;
+      padding: 90px 7.8vw 40px;
+    }
+
+    .toc { position: sticky; top: 110px; align-self: start; }
+    .toc p { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin-bottom: 16px; padding-left: 22px; }
+    .toc ul { list-style: none; }
+    .toc a {
+      position: relative; display: block;
+      padding: 9px 0 9px 22px;
+      font-size: 15px; color: #6b6b66; text-decoration: none;
+      transition: color 0.25s;
+    }
+    .toc a::before {
+      content: ""; position: absolute; left: 4px; top: 50%;
+      width: 5px; height: 5px; margin-top: -2.5px; border-radius: 50%;
+      background: #c7c7c1;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .toc a:hover { color: var(--ink); }
+    .toc a.on { color: var(--ink); font-weight: 600; }
+    .toc a.on::before { background: var(--accent); transform: scale(1.5); }
+
+    /* progress rail under the menu */
+    .toc .bar { margin: 22px 0 0 22px; height: 2px; width: 120px; background: var(--line); border-radius: 2px; overflow: hidden; }
+    .toc .bar span { display: block; height: 100%; width: 0; background: var(--accent); }
+
+    .story { min-width: 0; }
+
+    section.part { padding-bottom: 110px; scroll-margin-top: 96px; }
+    section.part:last-child { padding-bottom: 40px; }
+
+    .num { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: 20px; color: var(--accent); }
+
+    .part h2 {
+      margin-top: 6px;
+      font-family: var(--head); font-weight: 400;
+      font-size: clamp(1.9rem, 3.1vw, 2.7rem);
+      line-height: 1.08; letter-spacing: -0.045em;
+    }
+
+    .part h3 { font-family: var(--head); font-size: 20px; font-weight: 500; letter-spacing: -0.03em; line-height: 1.2; }
+
+    .lead { margin-top: 22px; max-width: 680px; font-size: 18px; line-height: 1.65; color: #2a2a28; }
+    .part p.t { margin-top: 18px; max-width: 680px; font-size: 16px; line-height: 1.7; color: #55575b; }
+
+    .part .media { margin-top: 40px; }
+
+    /* ---------- reusable blocks ---------- */
+    .cards { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card {
+      padding: 22px 22px 24px;
+      border: 1px solid var(--line); border-radius: 14px; background: #fff;
+    }
+    .card .n { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--tint); font-size: 13px; font-weight: 600; margin-bottom: 18px; }
+    .card h3 { font-size: 17px; }
+    .card p { margin-top: 8px; font-size: 14.5px; line-height: 1.6; color: #6b6b66; }
+
+    .pull {
+      margin-top: 36px; padding: 30px 32px;
+      border-radius: 16px; background: var(--ink); color: #f4f4f0;
+    }
+    .pull q { display: block; quotes: none; font-family: var(--head); font-size: clamp(1.3rem, 2.3vw, 1.8rem); line-height: 1.3; letter-spacing: -0.035em; }
+    .pull small { display: block; margin-top: 16px; font-size: 13px; color: #9a9aa0; }
+
+    .grid2 { margin-top: 36px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .grid3 { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .grid2 .media, .grid3 .media { margin-top: 0; }
+
+    .chips { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips span { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 13.5px; color: #3b3b37; }
+
+    /* constraints: a simple ruled list */
+    .rules { margin-top: 34px; border-top: 1px solid var(--line); }
+    .rules li {
+      list-style: none; display: grid; grid-template-columns: 190px 1fr; gap: 24px;
+      padding: 22px 0; border-bottom: 1px solid var(--line);
+    }
+    .rules b { font-family: var(--head); font-weight: 500; font-size: 16px; letter-spacing: -0.02em; }
+    .rules span { font-size: 15px; line-height: 1.6; color: #6b6b66; }
+
+    /* decisions: each one is a mini story */
+    .decision { margin-top: 56px; padding-top: 34px; border-top: 1px solid var(--line); }
+    .decision:first-of-type { margin-top: 40px; }
+    .decision .tag { display: inline-block; margin-bottom: 12px; padding: 4px 10px; border-radius: 999px; background: var(--tint); font-size: 12px; font-weight: 500; color: #55554f; }
+    .decision .media { margin-top: 26px; }
+    .ba { margin-top: 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .ba .media { margin-top: 0; }
+    .ba figcaption b { color: var(--ink); font-weight: 600; }
+
+    /* solution: screens on a tinted stage */
+    .stage { margin-top: 40px; padding: 40px; border-radius: 18px; background: linear-gradient(160deg, #4d8dff, var(--brand)); }
+    .stage .grid3 { margin-top: 0; }
+    .stage .ph { background: repeating-linear-gradient(135deg, rgba(255,255,255,0.12) 0 12px, transparent 12px 24px), rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.5); color: #fff; }
+    .stage .ph b { color: #fff; }
+
+    /* ---- BaseConnect sections (same design system) ---- */
+    .live { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 28px; border-radius: 999px; background: var(--ink); color: #fff; text-decoration: none; font-size: 16px; transition: transform 0.25s, opacity 0.25s; }
+    .live:hover { transform: translateY(-2px); opacity: 0.9; }
+
+    .sides { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .side { padding: 28px 26px 30px; }
+    .side + .side { border-left: 1px solid var(--line); background: #fafaf7; }
+    .side .who { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); }
+    .side h3 { margin-top: 12px; font-size: 22px; letter-spacing: -0.04em; }
+    .side ul { margin-top: 16px; display: grid; gap: 11px; }
+    .side li { list-style: none; position: relative; padding-left: 22px; font-size: 15px; line-height: 1.55; color: #6b6b66; }
+    .side li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+    .side .ph { margin-top: 22px; --r: 4 / 3; }
+
+    .zig { margin-top: 40px; display: grid; gap: 50px; }
+    .zrow { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+    .zrow:nth-child(even) .zt { order: 2; }
+    .zt .n { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: 22px; color: var(--accent); }
+    .zt h3 { margin-top: 6px; font-size: 22px; letter-spacing: -0.04em; }
+    .zt p { margin-top: 10px; font-size: 15px; line-height: 1.65; color: #6b6b66; }
+    .zrow .media { margin-top: 0 !important; }
+    .zrow .ph { --r: 4 / 3; }
+
+    .lanes { margin-top: 40px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .lane { display: grid; grid-template-columns: 96px repeat(4, 1fr); }
+    .lane + .lane { border-top: 1px solid var(--line); }
+    .lane > div { padding: 18px 14px; font-size: 14px; line-height: 1.5; color: #6b6b66; }
+    .lane > div + div { border-left: 1px solid var(--line); }
+    .lane .name { display: flex; align-items: center; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: var(--tint); }
+    .lane.talent .name { background: var(--ink); color: #fff; }
+    .lane.head > div { padding: 11px 14px; background: #fafaf7; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); }
+    .lane b { display: block; color: var(--ink); font-family: var(--head); font-weight: 500; font-size: 15px; margin-bottom: 4px; letter-spacing: -0.02em; }
+
+    .screens { margin-top: 40px; display: grid; gap: 14px; }
+    .screens .media { margin-top: 0; }
+    .screens .pair { display: grid; grid-template-columns: 1.6fr 1fr; gap: 14px; }
+    .screens .pair.rev { grid-template-columns: 1fr 1.6fr; }
+    .screens .pair .ph { height: 100%; aspect-ratio: auto; min-height: 260px; }
+    .screens .wide .ph { --r: 21 / 9; }
+
+    .figures { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .figures div { padding: 30px 22px 30px 0; }
+    .figures div + div { padding-left: 22px; border-left: 1px solid var(--line); }
+    .figures strong { display: block; font-family: var(--head); font-weight: 400; font-size: clamp(2.4rem, 4.2vw, 3.6rem); letter-spacing: -0.06em; line-height: 1; }
+    .figures span { display: block; margin-top: 12px; font-size: 14px; line-height: 1.5; color: #6b6b66; }
+    .twocol { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+    .twocol h3 { margin-bottom: 10px; }
+    .twocol .t { margin-top: 0 !important; }
+
+    /* outcomes */
+    .stats { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .stat { padding: 26px 24px; border-radius: 16px; background: var(--tint); }
+    .stat strong { display: block; font-family: var(--head); font-weight: 400; font-size: clamp(2.4rem, 4vw, 3.4rem); letter-spacing: -0.05em; line-height: 1; }
+    .stat span { display: block; margin-top: 12px; font-size: 14px; line-height: 1.5; color: #6b6b66; }
+
+    /* learnings */
+    .learn { margin-top: 34px; display: grid; gap: 12px; }
+    .learn li { list-style: none; display: grid; grid-template-columns: 36px 1fr; gap: 14px; padding: 20px 22px; border: 1px solid var(--line); border-radius: 14px; }
+    .learn i { font-style: normal; font-family: "Instrument Serif", Georgia, serif; font-size: 26px; line-height: 1; color: var(--accent); }
+    .learn b { display: block; font-family: var(--head); font-weight: 500; font-size: 16px; letter-spacing: -0.02em; }
+    .learn p { margin-top: 4px; font-size: 14.5px; line-height: 1.6; color: #6b6b66; }
+
+    /* next project */
+    .next { margin-top: 70px; padding: 44px 7.8vw 60px; background: var(--tint); }
+    .next-in { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .next small { display: block; font-size: 13px; color: var(--soft); margin-bottom: 8px; }
+    .next h2 { font-family: var(--head); font-weight: 400; font-size: clamp(1.9rem, 3.6vw, 3rem); letter-spacing: -0.05em; line-height: 1.05; }
+    .next a.go {
+      display: inline-flex; align-items: center; gap: 10px;
+      height: 48px; padding: 0 28px; border-radius: 999px;
+      background: var(--ink); color: #fff; text-decoration: none; font-size: 16px;
+      transition: opacity 0.2s;
+    }
+    .next a.go:hover { opacity: 0.85; }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- tablet / mobile ---------- */
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; gap: 0; padding-top: 0; }
+
+      /* side menu becomes a sticky scrolling strip under the top bar */
+      .toc {
+        position: sticky; top: 66px; z-index: 40;
+        margin: 0 -7.8vw 40px; padding: 10px 7.8vw;
+        background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+        overflow-x: auto; scrollbar-width: none;
+      }
+      .toc::-webkit-scrollbar { display: none; }
+      .toc p, .toc .bar { display: none; }
+      .toc ul { display: flex; gap: 4px; width: max-content; }
+      .toc a { padding: 8px 14px; border-radius: 999px; font-size: 14px; white-space: nowrap; }
+      .toc a::before { display: none; }
+      .toc a.on { background: var(--ink); color: #fff; }
+
+      section.part { scroll-margin-top: 140px; padding-bottom: 80px; }
+    }
+
+    @media (max-width: 760px) {
+      .topbar { padding: 0 5vw; }
+      .hero { padding: 100px 5vw 0; }
+      .layout { padding-left: 5vw; padding-right: 5vw; }
+      .toc { margin-left: -5vw; margin-right: -5vw; padding-left: 5vw; padding-right: 5vw; }
+      .facts { grid-template-columns: 1fr 1fr; }
+      .facts div:nth-child(3) { padding-left: 0; border-left: 0; }
+      .facts div:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .hero .media { --r: 4 / 3; }
+      .cards, .grid2, .grid3, .stats, .ba { grid-template-columns: 1fr; }
+      .sides, .zrow, .figures, .twocol { grid-template-columns: 1fr; }
+      .side + .side { border-left: 0; border-top: 1px solid var(--line); }
+      .zrow { gap: 18px; }
+      .zrow:nth-child(even) .zt { order: 0; }
+      .lanes { overflow-x: auto; }
+      .lane { min-width: 700px; }
+      .figures div, .figures div + div { padding: 22px 0; border-left: 0; }
+      .figures div + div { border-top: 1px solid var(--line); }
+      .screens .pair, .screens .pair.rev { grid-template-columns: 1fr; }
+      .screens .pair .ph { min-height: 220px; }
+      .rules li { grid-template-columns: 1fr; gap: 6px; }
+      .stage { padding: 20px; }
+      .stage .grid3 { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .stage .ph { padding: 8px; font-size: 11px; }
+      .stage .ph b { font-size: 12px; }
+      .next { padding: 36px 5vw 48px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar" id="topbar">
+    <a class="logo" href="index.html" aria-label="Samuel, home">Samuel<i>.</i></a>
+    <a class="back" href="work.html"><span aria-hidden="true">←</span> All work</a>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <div class="hero">
+    <span class="kicker">Case study · Learning app · Community project</span>
+    <h1>StudyHub<br /><em>[One line: learning, together, in one place].</em></h1>
+
+    <!-- EDIT: put the live link, app link or prototype in href (or delete this block) -->
+    <div class="stores">
+      <a class="live" href="#" target="_blank" rel="noopener">View project <span aria-hidden="true">↗</span></a>
+    </div>
+
+    <!-- EDIT: fill these four in -->
+    <dl class="facts">
+      <div><dt>Role</dt><dd>Product Designer</dd></div>
+      <div><dt>For</dt><dd>[Church name]</dd></div>
+      <div><dt>Platform</dt><dd>[Mobile / Web]</dd></div>
+      <div><dt>Tools</dt><dd>Figma, [add more]</dd></div>
+    </dl>
+
+    <figure class="media">
+      <div class="ph"><b>Hero image</b>App home screen on a phone or laptop · 2100 × 900 px</div>
+    </figure>
+  </div>
+
+  <!-- ================= BODY ================= -->
+  <div class="layout">
+
+    <aside class="toc" aria-label="On this page">
+      <p>On this page</p>
+      <ul id="toc">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#students">The Students</a></li>
+        <li><a href="#features">Core Features</a></li>
+        <li><a href="#design">Design Approach</a></li>
+        <li><a href="#screens">Key Screens</a></li>
+        <li><a href="#impact">Impact</a></li>
+      </ul>
+      <div class="bar"><span id="progress"></span></div>
+    </aside>
+
+    <main class="story">
+
+      <!-- 01 OVERVIEW -->
+      <section class="part reveal" id="overview">
+        <span class="num">01</span>
+        <h2>Overview</h2>
+        <p class="lead">StudyHub is a learning app built by my church for its students. They can watch video tutorials, access course materials and join communities, all in one place. I designed it as [role: lead designer / volunteer designer].</p>
+        <p class="t">[Two or three sentences: why the church wanted it, who the students are, and what you were responsible for. Only include claims you can stand behind.]</p>
+        <figure class="media">
+          <div class="ph"><b>Overview image</b>Three key screens together · 1600 × 1000 px</div>
+        </figure>
+      </section>
+
+      <!-- 02 THE STUDENTS -->
+      <section class="part reveal" id="students">
+        <span class="num">02</span>
+        <h2>The Students</h2>
+        <p class="lead">[One sentence on who the students are and what makes learning hard for them today: scattered materials, no single place, little contact with one another.]</p>
+
+        <ul class="rules">
+          <li><b>[Who they are]</b><span>[Age range, what they study, what devices and data they have access to.]</span></li>
+          <li><b>[What was missing]</b><span>[Where they found videos and materials before, and what went wrong.]</span></li>
+          <li><b>[What I did to learn]</b><span>[Conversations with students or leaders, a short survey, reviewing similar apps. Be honest about what you did.]</span></li>
+        </ul>
+      </section>
+
+      <!-- 03 CORE FEATURES -->
+      <section class="part reveal" id="features">
+        <span class="num">03</span>
+        <h2>Core Features</h2>
+        <p class="lead">Three things the app had to do well: teach, give students what they need to study, and keep them connected.</p>
+
+        <div class="zig">
+          <div class="zrow">
+            <div class="zt"><span class="n">A</span><h3>Video tutorials</h3><p>[How lessons are organised, how a student picks up where they stopped, and anything you did for slow connections.]</p></div>
+            <figure class="media"><div class="ph"><b>Video lessons</b>1200 × 900</div></figure>
+          </div>
+          <div class="zrow">
+            <div class="zt"><span class="n">B</span><h3>Course materials</h3><p>[How notes, PDFs and assignments are found, previewed and saved.]</p></div>
+            <figure class="media"><div class="ph"><b>Materials</b>1200 × 900</div></figure>
+          </div>
+          <div class="zrow">
+            <div class="zt"><span class="n">C</span><h3>Communities</h3><p>[How students find and join groups, ask questions and support one another.]</p></div>
+            <figure class="media"><div class="ph"><b>Communities</b>1200 × 900</div></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 DESIGN APPROACH -->
+      <section class="part reveal" id="design">
+        <span class="num">04</span>
+        <h2>Design Approach</h2>
+        <p class="lead">[One sentence on the feel you aimed for: friendly, simple, easy for anyone to pick up.]</p>
+
+        <figure class="media wide">
+          <div class="ph"><b>Style board</b>Colours, type, icons and components · 2100 × 900 px</div>
+        </figure>
+
+        <div class="twocol">
+          <div><h3>Keeping it simple</h3><p class="t">[How you kept navigation to a few clear places so first-time users never get lost.]</p></div>
+          <div><h3>Fitting the community</h3><p class="t">[How the church's identity, tone and values shaped the look, without making it feel heavy.]</p></div>
+        </div>
+      </section>
+
+      <!-- 05 KEY SCREENS -->
+      <section class="part reveal" id="screens">
+        <span class="num">05</span>
+        <h2>Key Screens</h2>
+        <p class="lead">[One sentence introducing the finished screens.]</p>
+
+        <div class="stage">
+          <div class="grid3">
+            <div class="ph" style="--r:9/19"><b>Home</b>900 × 1900</div>
+            <div class="ph" style="--r:9/19"><b>Lesson</b>900 × 1900</div>
+            <div class="ph" style="--r:9/19"><b>Community</b>900 × 1900</div>
+          </div>
+        </div>
+
+        <div class="screens">
+          <div class="pair">
+            <figure class="media"><div class="ph"><b>Course page</b>1600 × 1000</div><figcaption>[Caption: what this screen does]</figcaption></figure>
+            <figure class="media"><div class="ph"><b>Materials</b>1000 × 1000</div><figcaption>[Caption]</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 IMPACT -->
+      <section class="part reveal" id="impact">
+        <span class="num">06</span>
+        <h2>Impact</h2>
+        <p class="lead">[What changed for the students and the church because of the app.]</p>
+
+        <!-- EDIT: use only real numbers, or delete this block if you don't have any -->
+        <div class="figures">
+          <div><strong>00</strong><span>[Metric one, such as students signed up]</span></div>
+          <div><strong>00</strong><span>[Metric two, such as lessons watched]</span></div>
+          <div><strong>00</strong><span>[Metric three, such as active communities]</span></div>
+        </div>
+
+        <div class="twocol">
+          <div><h3>What I learned</h3><p class="t">[One or two lessons about designing for a community and for a wide range of users.]</p></div>
+          <div><h3>What I would do next</h3><p class="t">[What you would improve or test with more time.]</p></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= NEXT PROJECT ================= -->
+  <aside class="next">
+    <div class="next-in">
+      <div>
+        <small>Next project</small>
+        <h2>Pflux</h2>
+      </div>
+      <a class="go" href="case-pflux.html">View case study <span aria-hidden="true">→</span></a>
+    </div>
+  </aside>
+
+  <script>
+    /* top bar gets a line once you scroll */
+    const topbar = document.getElementById("topbar");
+    addEventListener("scroll", () => topbar.classList.toggle("scrolled", scrollY > 8), { passive: true });
+
+    /* side menu: highlight the section being read */
+    (function spy() {
+      const links = [...document.querySelectorAll("#toc a")];
+      const parts = links.map(a => document.querySelector(a.getAttribute("href")));
+      const bar = document.getElementById("progress");
+
+      function update() {
+        const mark = innerHeight * 0.35;
+        let current = 0;
+        parts.forEach((p, i) => { if (p.getBoundingClientRect().top <= mark) current = i; });
+        // at the very bottom, the last item wins
+        if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) current = parts.length - 1;
+        links.forEach((a, i) => a.classList.toggle("on", i === current));
+        bar.style.width = ((current + 1) / parts.length * 100) + "%";
+
+        // keep the active chip visible in the mobile strip
+        const strip = links[current].closest(".toc");
+        if (strip.scrollWidth > strip.clientWidth) {
+          strip.scrollTo({ left: links[current].offsetLeft - 20, behavior: "smooth" });
+        }
+      }
+      addEventListener("scroll", update, { passive: true });
+      addEventListener("resize", update);
+      update();
+    })();
+
+    /* fade sections in */
+    (function reveal() {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+      }, { threshold: 0.05 });
+      document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    })();
+  </script>
+<script>
+/* Back button returns to the page the visitor came from (home or All work) */
+(function () {
+  var from = "work";
+  try { from = sessionStorage.getItem("cameFrom") || ""; } catch (_) {}
+  if (!from) {
+    var r = document.referrer || "";
+    from = /work\.html/.test(r) ? "work" : (r && !/case-/.test(r) ? "home" : "work");
+  }
+  var a = document.querySelector("a.back");
+  if (a && from === "home") {
+    a.setAttribute("href", "index.html#projects");
+    a.innerHTML = '<span aria-hidden="true">\u2190</span> Home';
+  }
+  document.querySelectorAll('a[href="work.html"].go').forEach(function (g) {
+    if (from === "home") { g.setAttribute("href", "index.html#projects"); }
+  });
+})();
+</script>
+</body>
+</html>
