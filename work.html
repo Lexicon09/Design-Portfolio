@@ -448,6 +448,38 @@
       line-height: 1.08; letter-spacing: -0.045em; color: #141414;
     }
     @media (max-width: 900px) { .work { padding-top: 120px; } }
+
+    /* ---------- My design process (same section as the About page) ---------- */
+    :root { --gut: 7.8vw; }
+    .wrap { max-width: 1240px; margin: 0 auto; }
+    section.blk { padding-left: var(--gut); padding-right: var(--gut); background: #fff; }
+    h2.sec {
+      font-family: var(--head); font-weight: 400;
+      font-size: clamp(1.9rem, 3.1vw, 2.7rem);
+      line-height: 1.08; letter-spacing: -0.045em; color: #141414;
+    }
+    /* design process: heading stays put while the steps scroll past */
+    .process { padding-top: 110px; padding-bottom: 120px; }
+    .process-grid { display: grid; grid-template-columns: 1fr 1.7fr; gap: 70px; align-items: start; }
+    .process-head { position: sticky; top: 110px; }
+    .process-head p { margin-top: 20px; max-width: 360px; font-size: 16px; line-height: 1.7; color: #6b6b66; }
+    .steps { border-top: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 70px 1fr; gap: 20px; padding: 34px 0 36px; border-bottom: 1px solid var(--line); }
+    .step .n { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: 34px; line-height: 1; color: var(--accent); }
+    .step h3 { font-family: var(--head); font-weight: 500; font-size: 24px; letter-spacing: -0.04em; line-height: 1.15; }
+    .step p { margin-top: 10px; max-width: 520px; font-size: 15.5px; line-height: 1.7; color: #6b6b66; }
+    .step ul { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+    .step li { padding: 6px 13px; border-radius: 999px; border: 1px solid #d3d3cc; font-size: 12.5px; font-weight: 500; color: #55554f; }
+
+    @media (max-width: 960px) {
+      .process-grid { grid-template-columns: 1fr; gap: 34px; }
+      .process-head { position: static; }
+    }
+    @media (max-width: 760px) {
+      :root { --gut: 5vw; }
+      .process { padding-top: 80px; padding-bottom: 80px; }
+      .step { grid-template-columns: 44px 1fr; }
+    }
   </style>
 </head>
 <body class="landed">
@@ -468,7 +500,7 @@
     </nav>
 
     <div class="tools">
-      <a class="pill dark" href="#resume">Resume</a>
+      <a class="pill dark" href="Samuel Olujola_Resume.pdf" target="_blank" rel="noopener">Resume</a>
     </div>
 
     <!-- mobile only -->
@@ -481,16 +513,35 @@
     <a class="lnk" href="index.html">Home</a>
     <a class="lnk on" href="work.html">Work</a>
     <a class="lnk" href="about.html">About</a>
-    <a class="pill dark" href="#resume">Resume</a>
+    <a class="pill dark" href="Samuel Olujola_Resume..pdf" target="_blank" rel="noopener">Resume</a>
   </nav>
 
   <!-- ============ WORK ============ -->
   <section class="work" id="projects">
     <div class="work-top">
-      <h2 class="reveal">All work</h2>
+      <h2 class="reveal">Selected Projects</h2>
     </div>
 
     <div class="cases" id="cases"></div>
+  </section>
+
+
+  <!-- ============ MY DESIGN PROCESS ============ -->
+  <section class="blk process" id="process">
+    <div class="wrap process-grid">
+      <div class="process-head reveal">
+        <h2 class="sec">My design process</h2>
+        <p>The steps I follow on most projects. I adjust them to fit the size of the problem, but the thinking stays the same.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><span class="n">01</span><div><h3>Discover</h3><p>I start with the people and the problem: talking to users and stakeholders, reviewing what already exists, and agreeing what success looks like.</p><ul><li>Interviews</li><li>Competitor review</li><li>Problem statement</li></ul></div></div>
+        <div class="step reveal"><span class="n">02</span><div><h3>Define</h3><p>I turn what I learn into a clear direction: who it is for, what they need, and what the product has to do first.</p><ul><li>User flows</li><li>Priorities</li><li>Scope</li></ul></div></div>
+        <div class="step reveal"><span class="n">03</span><div><h3>Ideate</h3><p>I sketch several routes quickly before committing to one, so the best idea wins, not the first one.</p><ul><li>Sketches</li><li>Wireframes</li><li>Concepts</li></ul></div></div>
+        <div class="step reveal"><span class="n">04</span><div><h3>Design</h3><p>I build the interface in Figma with one consistent system of type, colour and components, so the product feels like a single thing.</p><ul><li>UI screens</li><li>Design system</li><li>Prototypes</li></ul></div></div>
+        <div class="step reveal"><span class="n">05</span><div><h3>Test & refine</h3><p>I put prototypes in front of real people, watch where they hesitate, and improve the design from what I see.</p><ul><li>Usability tests</li><li>Feedback rounds</li><li>Iterations</li></ul></div></div>
+        <div class="step reveal"><span class="n">06</span><div><h3>Build & hand off</h3><p>As a design engineer I can build the front end myself, or give developers clear specs and assets, so what ships matches what I designed.</p><ul><li>Front-end code</li><li>Specs</li><li>Design QA</li></ul></div></div>
+      </div>
+    </div>
   </section>
 
   <footer class="foot" id="contact">
@@ -543,7 +594,21 @@
       { title: "Ocean Pieces",  desc: "A live site you designed and built in code, in a sentence.",
         img: "IMGs/OceanPieces.png",
         href: "case-ocean.html",
-        tags: ["Website Design", "E-commerce"], kind: "phones",  g: "linear-gradient(160deg,#b9a2ff,#7a5cf0)", a: "#7a5cf0" }
+        tags: ["Website Design", "E-commerce"], kind: "phones",  g: "linear-gradient(160deg,#b9a2ff,#7a5cf0)", a: "#7a5cf0" },
+
+      /* ---- more work: replace these placeholders with your real projects ---- */
+      { title: "Defi Foundry", desc: "A short line about the problem you solved and what you designed.",
+        img: "IMGs/defi Foundry.png",
+        href: "case-defifoundry.html",
+        tags: ["Mobile App", "Fintech"], kind: "phones",  g: "linear-gradient(160deg,#ff9ab0,#ff5d7e)", a: "#ff5d7e" },
+      { title: "Pflux", desc: "A short line about the users, the constraints and the result.",
+        img: "IMGs/Pflux.png",
+        href: "case-pflux.html",
+        tags: ["Web App", "SaaS"], kind: "browser",  g: "linear-gradient(160deg,#6fe0c5,#1fb89a)", a: "#1fb89a" },
+      { title: "StudyHub", desc: "A short line about the system, the flows and what changed.",
+        img: "IMGs/StudyHub.png",
+        href: "case-studyhub.html",
+        tags: ["Mobile App", "Health"], kind: "phones",  g: "linear-gradient(160deg,#ffd86b,#f5b50a)", a: "#f5b50a" },
     ];
 
     (function buildCases() {
@@ -613,6 +678,13 @@
       }, { threshold: 0.12 });
       document.querySelectorAll(".reveal").forEach(el => io.observe(el));
     })();
-  </script>
+  
+  /* remember which page a card was opened from (used by the case-study back button) */
+  document.addEventListener("click", function (e) {
+    if (e.target.closest && e.target.closest(".case-link")) {
+      try { sessionStorage.setItem("cameFrom", "work"); } catch (_) {}
+    }
+  });
+</script>
 </body>
 </html>

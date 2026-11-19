@@ -5,9 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Olujola Samuel | Portfolio</title>
 
+  <!-- the splash plays once per visit: coming back from another page skips it (a refresh plays it again) -->
+  <script>
+    try {
+      var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+      if (sessionStorage.getItem("splashSeen") === "1" && !(nav && nav.type === "reload")) {
+        document.documentElement.classList.add("skip-splash");
+      }
+    } catch (e) {}
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
+  <!-- fonts load without blocking the page -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" /></noscript>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,6 +46,8 @@
     }
 
     body.loading { overflow: hidden; }
+    .skip-splash #loader { display: none; }
+    .skip-splash body.loading { overflow: auto; }
     body.dragging, body.dragging * { cursor: grabbing !important; user-select: none; }
 
     /* =====================================================
@@ -986,7 +1000,7 @@
     </nav>
 
     <div class="tools rise">
-      <a class="pill dark" href="#resume">Resume</a>
+      <a class="pill dark" href="Samuel Olujola_Resume..pdf" target="_blank" rel="noopener">Resume</a>
     </div>
 
     <!-- mobile only -->
@@ -999,7 +1013,7 @@
     <a class="lnk on" href="#home">Home</a>
     <a class="lnk" href="work.html">Work</a>
     <a class="lnk" href="about.html">About</a>
-    <a class="pill dark" href="#resume">Resume</a>
+    <a class="pill dark" href="Samuel Olujola_Resume..pdf" target="_blank" rel="noopener">Resume</a>
   </nav>
 
   <!-- ============ HOME ============ -->
@@ -1075,7 +1089,7 @@
     </svg>
 
     <div class="work-top">
-      <h2 class="reveal">Selected product work</h2>
+      <h2 class="reveal">Selected Projects</h2>
     </div>
 
     <div class="cases" id="cases"></div>
@@ -1138,6 +1152,32 @@
 
   <script>
     /* =====================================================
+       YOUR PROJECTS: edit this list. The Work page (work.html)
+       has the same list, so change both when you edit.
+       title, desc, tags → text on each card
+       img               → cover image (e.g. IMGs/cino.png)
+       href              → the case study page the card opens
+       ===================================================== */
+    const PROJECTS = [
+      { title: "Cino Wallet",   desc: "A short line about the problem you solved and what you designed.",
+        img: "IMGs/cino.png",
+        href: "case-cino.html",
+        tags: ["Mobile App", "Web3"], kind: "phones",     g: "linear-gradient(160deg,#4d8dff,#1f5fe0)", a: "#2f6cf0" },
+      { title: "BaseConnect",   desc: "A short line about the users, the constraints and the result.",
+        img: "IMGs/BaseConnect.png",
+        href: "case-baseconnect.html",
+        tags: ["Web App", "Dashboard"], kind: "browser",     g: "linear-gradient(160deg,#d8ff5a,#9be02a)", a: "#1b1b1b", dark: true },
+      { title: "AttendeeHRM", desc: "A short line about the system, the flows and what changed.",
+        img: "IMGs/AttendeeHRM.png",
+        href: "case-attendeehrm.html",
+        tags: ["Website Design", " Saas"], kind: "browser",       g: "linear-gradient(160deg,#ffb36b,#ff7a45)", a: "#ff7a45" },
+      { title: "Ocean Pieces",  desc: "A live site you designed and built in code, in a sentence.",
+        img: "IMGs/OceanPieces.png",
+        href: "case-ocean.html",
+        tags: ["Website Design", "E-commerce"], kind: "phones",  g: "linear-gradient(160deg,#b9a2ff,#7a5cf0)", a: "#7a5cf0" }
+    ];
+
+    /* =====================================================
        LOADER SEQUENCE
        writing ≈ 4.7s → name lifts to the top → home page animates in
        ===================================================== */
@@ -1156,6 +1196,7 @@
         setTimeout(() => {              // landed: the real name takes over
           document.body.classList.add("landed");
           loader.remove();
+          try { sessionStorage.setItem("splashSeen", "1"); } catch (e) {}
         }, 1250);
         setTimeout(() => {
           document.body.classList.remove("loading");
@@ -1164,14 +1205,35 @@
       }, WRITE_DONE);
     }
 
-    window.addEventListener("load", () => {
-      const heavy = document.fonts ? document.fonts.load('400 20px "Inter"') : Promise.resolve();
-      const ready = document.fonts ? document.fonts.ready : Promise.resolve();
-      Promise.all([heavy, ready]).then(() => {
-        runSequence();
-      });
-    });
-
+    /* start as soon as the fonts are ready, but never wait more than 2.5s
+       (a slow font or a big image must not leave you stuck on the splash screen) */
+    let sequenceStarted = false;
+    function startSequence() {
+      if (sequenceStarted) return;
+      sequenceStarted = true;
+      if (document.documentElement.classList.contains("skip-splash")) {
+        // already seen this visit: go straight to the page
+        const l = document.getElementById("loader"); if (l) l.remove();
+        document.body.classList.remove("loading");
+        document.body.classList.add("landed", "ready");
+        return;
+      }
+      runSequence();
+    }
+    (function () {
+      const fonts = document.fonts
+        ? Promise.all([
+            document.fonts.load('400 20px "Inter"'),
+            document.fonts.load('220px "Mrs Saint Delafield"'),
+            document.fonts.ready
+          ]).catch(() => {})
+        : Promise.resolve();
+      const limit = new Promise((resolve) => setTimeout(resolve, 2500));
+      Promise.race([fonts, limit]).then(startSequence);
+    })();
+  </script>
+  <!-- the rest of the page lives in its own script, so an error there can never block the splash -->
+  <script>
     const badge = document.getElementById("badge");
     const scene = document.getElementById("scene");
     const card  = document.getElementById("card");
@@ -1360,29 +1422,6 @@
     }
     requestAnimationFrame(frame);
 
-    /* =====================================================
-       WORK: the case rows are built from this list. Edit the text, and
-       add  img: "images/your-screenshot.png"  to show a real screenshot
-       instead of the placeholder phones.
-       ===================================================== */
-    const PROJECTS = [
-      { title: "Cino Wallet",   href: "case-cino-wallet.html", desc: "A short line about the problem you solved and what you designed.",
-        img: "IMGs/Cino.png",
-        href: "case-cino.html",
-        tags: ["Mobile App", "Web3"], kind: "phones",     g: "linear-gradient(160deg,#4d8dff,#1f5fe0)", a: "#2f6cf0" },
-      { title: "BaseConnect",   desc: "A short line about the users, the constraints and the result.",
-        img: "IMGs/BaseConnect.png",
-        href: "case-baseconnect.html",
-        tags: ["Web App", "Dashboard"], kind: "browser",     g: "linear-gradient(160deg,#d8ff5a,#9be02a)", a: "#1b1b1b", dark: true },
-      { title: "AttendeeHRM", desc: "A short line about the system, the flows and what changed.",
-        img: "IMGs/AttendeeHRM.png",
-        href: "case-attendeehrm.html",
-        tags: ["Website Design", " Saas"], kind: "browser",       g: "linear-gradient(160deg,#ffb36b,#ff7a45)", a: "#ff7a45" },
-      { title: "Ocean Pieces",  desc: "A live site you designed and built in code, in a sentence.",
-        img: "IMGs/OceanPieces.png",
-        href: "case-ocean.html",
-        tags: ["Website Design", "E-commerce"], kind: "phones",  g: "linear-gradient(160deg,#b9a2ff,#7a5cf0)", a: "#7a5cf0" }
-    ];
 
     (function buildCases() {
       const host = document.getElementById("cases");
@@ -1441,12 +1480,12 @@
        (The text below is only a placeholder.)
        ===================================================== */
     const TESTIMONIALS = [
-      { q: "Samuel brought our vision to life. The result was clean, modern, and impressive. Highly recommended!", name: "Client Name",  role: "Role, Company", bg: "#f4efe2" },
-      { q: "Great attention to detail and a solid understanding of user experience. Loved working with him!",            name: "Client Name",  role: "Role, Company", bg: "#d8ff5a" },
-      { q: "Our website looks more professional and engaging. Couldn't be happier with the results.",              name: "Teammate Name", role: "Role, Company", bg: "#cdbdff" },
-      { q: "He understood exactly what we needed and turned our ideas into a beautiful product.",                     name: "Client Name",  role: "Role, Company", bg: "#ffb36b" },
-      { q: "Samuel made the entire design process smooth and delivered beyond expectations.",                        name: "Teammate Name", role: "Role, Company", bg: "#ffffff" },
-      { q: "Creative, responsive, and professional. Samuel really understands good design.",               name: "Client Name",  role: "Role, Company", bg: "#a9cbff" }
+      { q: "Samuel brought our vision to life. The result was clean, modern, and impressive. Highly recommended!", name: "Xedra",  role: "Developer, CINO", bg: "#f4efe2" },
+      { q: "Great attention to detail and a solid understanding of user experience. Loved working with him!",            name: "Arkitekton",  role: "Founder, BaseConnect", bg: "#d8ff5a" },
+      { q: "Our website looks more professional and engaging. Couldn't be happier with the results.",              name: "David O.", role: "CEO, Defi Foundry", bg: "#cdbdff" },
+      { q: "He understood exactly what we needed and turned our ideas into a beautiful product.",                     name: "Hallelujah",  role: "BD, AttendeeHRM", bg: "#ffb36b" },
+      { q: "Samuel made the entire design process smooth and delivered beyond expectations.",                        name: "Demipercie", role: "CEO, OceanPieces", bg: "#ffffff" },
+      { q: "Creative, responsive, and professional. Samuel really understands good design.",               name: "Bernard",  role: "Developer, Afrimobile Technologies", bg: "#a9cbff" }
     ];
 
     (function notesBoard() {
@@ -1599,6 +1638,13 @@
       }, { threshold: 0.12 });
       document.querySelectorAll(".reveal").forEach(el => io.observe(el));
     })();
-  </script>
+  
+  /* remember which page a card was opened from (used by the case-study back button) */
+  document.addEventListener("click", function (e) {
+    if (e.target.closest && e.target.closest(".case-link")) {
+      try { sessionStorage.setItem("cameFrom", "home"); } catch (_) {}
+    }
+  });
+</script>
 </body>
 </html>

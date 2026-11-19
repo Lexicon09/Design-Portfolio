@@ -7,7 +7,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
+  <!-- fonts load without blocking the page -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" /></noscript>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -295,7 +297,7 @@
 
   <header class="topbar" id="topbar">
     <a class="logo" href="index.html" aria-label="Samuel, home">Samuel<i>.</i></a>
-    <a class="back" href="index.html#projects"><span aria-hidden="true">←</span> All work</a>
+    <a class="back" href="work.html"><span aria-hidden="true">←</span> All work</a>
   </header>
 
   <!-- ================= HERO ================= -->
@@ -529,7 +531,7 @@
         <h2>BaseConnect</h2>
       </div>
       <!-- change this link when the BaseConnect page exists -->
-      <a class="go" href="index.html#projects">View all work <span aria-hidden="true">→</span></a>
+      <a class="go" href="work.html">View all work <span aria-hidden="true">→</span></a>
     </div>
   </aside>
 
@@ -572,5 +574,24 @@
       document.querySelectorAll(".reveal").forEach(el => io.observe(el));
     })();
   </script>
+<script>
+/* Back button returns to the page the visitor came from (home or All work) */
+(function () {
+  var from = "work";
+  try { from = sessionStorage.getItem("cameFrom") || ""; } catch (_) {}
+  if (!from) {
+    var r = document.referrer || "";
+    from = /work\.html/.test(r) ? "work" : (r && !/case-/.test(r) ? "home" : "work");
+  }
+  var a = document.querySelector("a.back");
+  if (a && from === "home") {
+    a.setAttribute("href", "index.html#projects");
+    a.innerHTML = '<span aria-hidden="true">\u2190</span> Home';
+  }
+  document.querySelectorAll('a[href="work.html"].go').forEach(function (g) {
+    if (from === "home") { g.setAttribute("href", "index.html#projects"); }
+  });
+})();
+</script>
 </body>
 </html>
