@@ -94,7 +94,12 @@
       font-size: clamp(2.6rem, 6vw, 5rem);
       line-height: 1.02; letter-spacing: -0.05em;
     }
-    .hero h1 em { font-style: normal; color: #858585; }
+    .hero h1 em {
+      display: block; margin-top: 14px; max-width: 560px;
+      font-family: var(--body); font-style: normal; font-weight: 400;
+      font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.5; letter-spacing: 0;
+      color: #858585;
+    }
 
     /* store buttons */
     .stores { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
@@ -363,19 +368,17 @@
   <!-- ================= HERO ================= -->
   <div class="hero">
     <span class="kicker">Case study · Learning app · Community project</span>
-    <h1>StudyHub<br /><em>[One line: learning, together, in one place].</em></h1>
+    <h1>StudyHub<br /><em>Learning, together, in one place.</em></h1>
 
-    <!-- EDIT: put the live link, app link or prototype in href (or delete this block) -->
     <div class="stores">
       <a class="live" href="#" target="_blank" rel="noopener">View project <span aria-hidden="true">↗</span></a>
     </div>
 
-    <!-- EDIT: fill these four in -->
     <dl class="facts">
       <div><dt>Role</dt><dd>Product Designer</dd></div>
-      <div><dt>For</dt><dd>[Church name]</dd></div>
-      <div><dt>Platform</dt><dd>[Mobile / Web]</dd></div>
-      <div><dt>Tools</dt><dd>Figma, [add more]</dd></div>
+      <div><dt>For</dt><dd>My church community</dd></div>
+      <div><dt>Platform</dt><dd>Mobile app</dd></div>
+      <div><dt>Tools</dt><dd>Figma</dd></div>
     </dl>
 
     <figure class="media">
@@ -405,8 +408,8 @@
       <section class="part reveal" id="overview">
         <span class="num">01</span>
         <h2>Overview</h2>
-        <p class="lead">StudyHub is a learning app built by my church for its students. They can watch video tutorials, access course materials and join communities, all in one place. I designed it as [role: lead designer / volunteer designer].</p>
-        <p class="t">[Two or three sentences: why the church wanted it, who the students are, and what you were responsible for. Only include claims you can stand behind.]</p>
+        <p class="lead">StudyHub is a learning app built by my church for its students. They can watch video tutorials, access course materials and join communities, all in one place. I designed the product, from the first flows to the final screens.</p>
+        <p class="t">Students often learn from scattered links, chat groups and files. StudyHub gathers them: tutorials to watch, materials to read and communities to join, so a student always knows where to go next.</p>
         <figure class="media">
           <div class="ph"><b>Overview image</b>Three key screens together · 1600 × 1000 px</div>
         </figure>
@@ -416,12 +419,12 @@
       <section class="part reveal" id="students">
         <span class="num">02</span>
         <h2>The Students</h2>
-        <p class="lead">[One sentence on who the students are and what makes learning hard for them today: scattered materials, no single place, little contact with one another.]</p>
+        <p class="lead">StudyHub serves students who want to learn in their own time and still feel part of a group.</p>
 
         <ul class="rules">
-          <li><b>[Who they are]</b><span>[Age range, what they study, what devices and data they have access to.]</span></li>
-          <li><b>[What was missing]</b><span>[Where they found videos and materials before, and what went wrong.]</span></li>
-          <li><b>[What I did to learn]</b><span>[Conversations with students or leaders, a short survey, reviewing similar apps. Be honest about what you did.]</span></li>
+          <li><b>Who they are</b><span>Students in the church community, often on their phones, fitting study around school and work.</span></li>
+          <li><b>What was missing</b><span>Videos, notes and conversations lived in different places, so finding the right thing took longer than learning it.</span></li>
+          <li><b>My approach</b><span>I started with the three things students need most, to watch, to read and to talk, and designed one clear path to each.</span></li>
         </ul>
       </section>
 
@@ -433,15 +436,15 @@
 
         <div class="zig">
           <div class="zrow">
-            <div class="zt"><span class="n">A</span><h3>Video tutorials</h3><p>[How lessons are organised, how a student picks up where they stopped, and anything you did for slow connections.]</p></div>
+            <div class="zt"><span class="n">A</span><h3>Video tutorials</h3><p>Lessons are grouped by course with progress shown, so a student can come back and continue where they stopped.</p></div>
             <figure class="media"><div class="ph"><b>Video lessons</b>1200 × 900</div></figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">B</span><h3>Course materials</h3><p>[How notes, PDFs and assignments are found, previewed and saved.]</p></div>
+            <div class="zt"><span class="n">B</span><h3>Course materials</h3><p>Notes, documents and assignments sit with the course they belong to, so everything for a lesson is in one place.</p></div>
             <figure class="media"><div class="ph"><b>Materials</b>1200 × 900</div></figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">C</span><h3>Communities</h3><p>[How students find and join groups, ask questions and support one another.]</p></div>
+            <div class="zt"><span class="n">C</span><h3>Communities</h3><p>Students can find and join groups for a course or topic, ask questions and learn from each other.</p></div>
             <figure class="media"><div class="ph"><b>Communities</b>1200 × 900</div></figure>
           </div>
         </div>
@@ -451,15 +454,15 @@
       <section class="part reveal" id="design">
         <span class="num">04</span>
         <h2>Design Approach</h2>
-        <p class="lead">[One sentence on the feel you aimed for: friendly, simple, easy for anyone to pick up.]</p>
+        <p class="lead">Friendly, simple and easy for anyone to pick up on the first try.</p>
 
         <figure class="media wide">
           <div class="ph"><b>Style board</b>Colours, type, icons and components · 2100 × 900 px</div>
         </figure>
 
         <div class="twocol">
-          <div><h3>Keeping it simple</h3><p class="t">[How you kept navigation to a few clear places so first-time users never get lost.]</p></div>
-          <div><h3>Fitting the community</h3><p class="t">[How the church's identity, tone and values shaped the look, without making it feel heavy.]</p></div>
+          <div><h3>Keeping it simple</h3><p class="t">Navigation is limited to a few clear areas, with courses first, so a new student never gets lost.</p></div>
+          <div><h3>Fitting the community</h3><p class="t">The look is warm and welcoming rather than corporate, which suits a community project.</p></div>
         </div>
       </section>
 
@@ -467,7 +470,7 @@
       <section class="part reveal" id="screens">
         <span class="num">05</span>
         <h2>Key Screens</h2>
-        <p class="lead">[One sentence introducing the finished screens.]</p>
+        <p class="lead">The key screens: home, a lesson and a community.</p>
 
         <div class="stage">
           <div class="grid3">
@@ -479,8 +482,8 @@
 
         <div class="screens">
           <div class="pair">
-            <figure class="media"><div class="ph"><b>Course page</b>1600 × 1000</div><figcaption>[Caption: what this screen does]</figcaption></figure>
-            <figure class="media"><div class="ph"><b>Materials</b>1000 × 1000</div><figcaption>[Caption]</figcaption></figure>
+            <figure class="media"><div class="ph"><b>Course page</b>1600 × 1000</div><figcaption>Everything for one course, in one place.</figcaption></figure>
+            <figure class="media"><div class="ph"><b>Materials</b>1000 × 1000</div><figcaption>Notes and assignments, ready to open.</figcaption></figure>
           </div>
         </div>
       </section>
@@ -489,18 +492,11 @@
       <section class="part reveal" id="impact">
         <span class="num">06</span>
         <h2>Impact</h2>
-        <p class="lead">[What changed for the students and the church because of the app.]</p>
-
-        <!-- EDIT: use only real numbers, or delete this block if you don't have any -->
-        <div class="figures">
-          <div><strong>00</strong><span>[Metric one, such as students signed up]</span></div>
-          <div><strong>00</strong><span>[Metric two, such as lessons watched]</span></div>
-          <div><strong>00</strong><span>[Metric three, such as active communities]</span></div>
-        </div>
+        <p class="lead">StudyHub gives students one place to watch, read and connect.</p>
 
         <div class="twocol">
-          <div><h3>What I learned</h3><p class="t">[One or two lessons about designing for a community and for a wide range of users.]</p></div>
-          <div><h3>What I would do next</h3><p class="t">[What you would improve or test with more time.]</p></div>
+          <div><h3>What I learned</h3><p class="t">A community product has to feel welcoming first. Friendly, clear design mattered as much as the features.</p></div>
+          <div><h3>What I would do next</h3><p class="t">Test with a small group of students, and add reminders for upcoming lessons.</p></div>
         </div>
       </section>
 

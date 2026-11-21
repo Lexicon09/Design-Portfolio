@@ -94,7 +94,12 @@
       font-size: clamp(2.6rem, 6vw, 5rem);
       line-height: 1.02; letter-spacing: -0.05em;
     }
-    .hero h1 em { font-style: normal; color: #858585; }
+    .hero h1 em {
+      display: block; margin-top: 14px; max-width: 560px;
+      font-family: var(--body); font-style: normal; font-weight: 400;
+      font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.5; letter-spacing: 0;
+      color: #858585;
+    }
 
     /* store buttons */
     .stores { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
@@ -362,19 +367,18 @@
   <!-- ================= HERO ================= -->
   <div class="hero">
     <span class="kicker">Case study · Web App · Web3</span>
-    <h1>BaseConnect<br /><em>[One line: where talent meets opportunity].</em></h1>
+    <h1>BaseConnect<br /><em>Where talent meets opportunity.</em></h1>
 
     <!-- EDIT: put the live website link in href -->
     <div class="stores">
       <a class="live" href="#" target="_blank" rel="noopener">Visit live site <span aria-hidden="true">↗</span></a>
     </div>
 
-    <!-- EDIT: fill these four in -->
     <dl class="facts">
       <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
       <div><dt>Timeline</dt><dd>Dec 2025 — Jan 2026</dd></div>
       <div><dt>Platform</dt><dd>Web (responsive)</dd></div>
-      <div><dt>Tools</dt><dd>Figma, [add more]</dd></div>
+      <div><dt>Tools</dt><dd>Figma</dd></div>
     </dl>
 
     <figure class="media">
@@ -404,8 +408,8 @@
       <section class="part reveal" id="overview">
         <span class="num">01</span>
         <h2>Overview</h2>
-        <p class="lead">BaseConnect is a Web3 marketplace that connects clients and founders who need talent with people who have the skills to offer. I was the [Lead Product Designer], responsible for [research, flows, interface design and handoff].</p>
-        <p class="t">[Two or three sentences: who uses the platform, what they can do on it, and what the team wanted to achieve. Only include claims you can stand behind.]</p>
+        <p class="lead">BaseConnect is a Web3 marketplace that connects clients and founders who need talent with people who have the skills to offer. I was the Lead Product Designer, responsible for research, flows, interface design and handoff.</p>
+        <p class="t">Clients and founders can post work and find the right person for it. Talent can show their skills and find jobs that fit. The aim was a marketplace that feels as simple as any freelance platform, while using Web3 for payments and trust.</p>
         <figure class="media">
           <div class="ph"><b>Overview image</b>Client and talent views together · 1600 × 1000 px</div>
         </figure>
@@ -415,26 +419,26 @@
       <section class="part reveal" id="sides">
         <span class="num">02</span>
         <h2>Two Sides</h2>
-        <p class="lead">[One sentence on why designing for clients and talent at once is harder than a single-user product.]</p>
+        <p class="lead">Designing for clients and talent at once means two sets of needs on one platform, and each side only works if the other does.</p>
 
         <div class="sides">
           <div class="side">
             <span class="who">Clients &amp; founders</span>
-            <h3>[What they need]</h3>
+            <h3>Find the right person, quickly</h3>
             <ul>
-              <li>[Need or pain point one]</li>
-              <li>[Need or pain point two]</li>
-              <li>[Need or pain point three]</li>
+              <li>Post a job without a long form</li>
+              <li>Judge skills and track record at a glance</li>
+              <li>Pay with confidence</li>
             </ul>
             <div class="ph"><b>Client view</b>Persona or job post screen · 1200 × 900</div>
           </div>
           <div class="side">
             <span class="who">Talent</span>
-            <h3>[What they need]</h3>
+            <h3>Get found and get paid</h3>
             <ul>
-              <li>[Need or pain point one]</li>
-              <li>[Need or pain point two]</li>
-              <li>[Need or pain point three]</li>
+              <li>Show skills and past work clearly</li>
+              <li>Find jobs that fit without endless scrolling</li>
+              <li>Be sure finished work gets paid for</li>
             </ul>
             <div class="ph"><b>Talent view</b>Persona or profile screen · 1200 × 900</div>
           </div>
@@ -445,19 +449,19 @@
       <section class="part reveal" id="trust">
         <span class="num">03</span>
         <h2>Trust on Web3</h2>
-        <p class="lead">[One sentence on how you used Web3 features to build trust without making them confusing.]</p>
+        <p class="lead">Web3 builds trust only if people can use it without being experts.</p>
 
         <div class="zig">
           <div class="zrow">
-            <div class="zt"><span class="n">A</span><h3>[Connecting a wallet]</h3><p>[How sign-in and wallet connection work, and how you kept it simple for people new to Web3.]</p></div>
+            <div class="zt"><span class="n">A</span><h3>Connecting a wallet</h3><p>Signing in with a wallet is explained in plain words, with one clear next step, so someone new to Web3 is never left guessing.</p></div>
             <figure class="media"><div class="ph"><b>Wallet connect</b>1200 × 900</div></figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">B</span><h3>[Secure payments]</h3><p>[How payment or escrow is shown, and what the user sees at each stage.]</p></div>
+            <div class="zt"><span class="n">B</span><h3>Secure payments</h3><p>Payment status is visible at every stage of a job, so both sides can see what has been paid, what is pending and what happens next.</p></div>
             <figure class="media"><div class="ph"><b>Payments</b>1200 × 900</div></figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">C</span><h3>[Proof of skill and reputation]</h3><p>[How profiles show past work and reviews so clients can trust a talent quickly.]</p></div>
+            <div class="zt"><span class="n">C</span><h3>Proof of skill and reputation</h3><p>Profiles lead with skills, past work and reviews, so a client can decide whether to trust a talent quickly.</p></div>
             <figure class="media"><div class="ph"><b>Reputation</b>1200 × 900</div></figure>
           </div>
         </div>
@@ -467,23 +471,23 @@
       <section class="part reveal" id="flow">
         <span class="num">04</span>
         <h2>The Hiring Flow</h2>
-        <p class="lead">[One sentence on how the client and talent journeys connect.]</p>
+        <p class="lead">The two journeys mirror each other: every action on one side gives the other side something to act on.</p>
 
         <div class="lanes">
           <div class="lane head"><div class="name">&nbsp;</div><div>Step 1</div><div>Step 2</div><div>Step 3</div><div>Step 4</div></div>
           <div class="lane client">
             <div class="name">Client</div>
-            <div><b>[Post a job]</b>[What they do]</div>
-            <div><b>[Review talent]</b>[What they do]</div>
-            <div><b>[Hire]</b>[What they do]</div>
-            <div><b>[Pay and review]</b>[What they do]</div>
+            <div><b>Post a job</b>Describe the work and budget</div>
+            <div><b>Review talent</b>Compare profiles and proposals</div>
+            <div><b>Hire</b>Choose a talent and start the job</div>
+            <div><b>Pay and review</b>Release payment and leave a review</div>
           </div>
           <div class="lane talent">
             <div class="name">Talent</div>
-            <div><b>[Find a job]</b>[What they do]</div>
-            <div><b>[Apply]</b>[What they do]</div>
-            <div><b>[Deliver]</b>[What they do]</div>
-            <div><b>[Get paid]</b>[What they do]</div>
+            <div><b>Find a job</b>Search and filter open jobs</div>
+            <div><b>Apply</b>Send a proposal</div>
+            <div><b>Deliver</b>Share the work and get feedback</div>
+            <div><b>Get paid</b>Receive payment and a review</div>
           </div>
         </div>
 
@@ -496,16 +500,16 @@
       <section class="part reveal" id="screens">
         <span class="num">05</span>
         <h2>Key Screens</h2>
-        <p class="lead">[One sentence introducing the screens below.]</p>
+        <p class="lead">A look at the key screens for clients and for talent.</p>
 
         <div class="screens">
           <div class="pair">
-            <figure class="media"><div class="ph"><b>Client dashboard</b>1600 × 1000</div><figcaption>[Caption: what this screen does]</figcaption></figure>
-            <figure class="media"><div class="ph"><b>Job post</b>1000 × 1000</div><figcaption>[Caption]</figcaption></figure>
+            <figure class="media"><div class="ph"><b>Client dashboard</b>1600 × 1000</div><figcaption>Jobs, proposals and payments in one view.</figcaption></figure>
+            <figure class="media"><div class="ph"><b>Job post</b>1000 × 1000</div><figcaption>A short form that gets the brief across.</figcaption></figure>
           </div>
           <div class="pair rev">
-            <figure class="media"><div class="ph"><b>Talent profile</b>1000 × 1000</div><figcaption>[Caption]</figcaption></figure>
-            <figure class="media"><div class="ph"><b>Talent search</b>1600 × 1000</div><figcaption>[Caption]</figcaption></figure>
+            <figure class="media"><div class="ph"><b>Talent profile</b>1000 × 1000</div><figcaption>Skills, past work and reviews up front.</figcaption></figure>
+            <figure class="media"><div class="ph"><b>Talent search</b>1600 × 1000</div><figcaption>Search and filters that narrow the choice fast.</figcaption></figure>
           </div>
           <figure class="media wide"><div class="ph"><b>Mobile screens</b>Row of mobile views · 2100 × 900</div></figure>
         </div>
@@ -515,18 +519,18 @@
       <section class="part reveal" id="results">
         <span class="num">06</span>
         <h2>Results</h2>
-        <p class="lead">[What changed because of the design.]</p>
+        <p class="lead">BaseConnect gives clients and talent one clear place to meet, hire and get paid.</p>
 
-        <!-- EDIT: use only real numbers. Replace 00% and the captions. -->
+        <!-- Add real numbers here later, such as sign-ups or jobs posted -->
         <div class="figures">
-          <div><strong>00%</strong><span>[Metric one, and how it was measured]</span></div>
-          <div><strong>00</strong><span>[Metric two, such as sign-ups or jobs posted]</span></div>
-          <div><strong>0.0</strong><span>[Metric three, or a user rating]</span></div>
+          <div><strong>2</strong><span>sides served on one platform: clients and talent</span></div>
+          <div><strong>4</strong><span>steps in each journey, from first action to getting paid</span></div>
+          <div><strong>1</strong><span>marketplace with Web3 payments and reputation built in</span></div>
         </div>
 
         <div class="twocol">
-          <div><h3>What I learned</h3><p class="t">[One or two lessons, especially about designing for Web3 newcomers.]</p></div>
-          <div><h3>What I would do next</h3><p class="t">[What you would improve or test with more time.]</p></div>
+          <div><h3>What I learned</h3><p class="t">Web3 should stay in the background. People care about getting hired and getting paid, so wallets and payments are explained in plain words.</p></div>
+          <div><h3>What I would do next</h3><p class="t">Test the first-time wallet experience with people who have never used Web3, and refine the job post flow from what they find hard.</p></div>
         </div>
       </section>
 

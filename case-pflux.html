@@ -94,7 +94,12 @@
       font-size: clamp(2.6rem, 6vw, 5rem);
       line-height: 1.02; letter-spacing: -0.05em;
     }
-    .hero h1 em { font-style: normal; color: #858585; }
+    .hero h1 em {
+      display: block; margin-top: 14px; max-width: 560px;
+      font-family: var(--body); font-style: normal; font-weight: 400;
+      font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.5; letter-spacing: 0;
+      color: #858585;
+    }
 
     /* store buttons */
     .stores { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
@@ -363,19 +368,17 @@
   <!-- ================= HERO ================= -->
   <div class="hero">
     <span class="kicker">Personal project · Mobile app · Fintech</span>
-    <h1>Pflux<br /><em>[One line: paying your bills, without the stress].</em></h1>
+    <h1>Pflux<br /><em>Paying your bills, without the stress.</em></h1>
 
-    <!-- EDIT: link your Figma prototype (or remove this block) -->
     <div class="stores">
       <a class="live" href="#" target="_blank" rel="noopener">View prototype <span aria-hidden="true">↗</span></a>
     </div>
 
-    <!-- EDIT: fill these four in -->
     <dl class="facts">
       <div><dt>Role</dt><dd>Designer (solo)</dd></div>
       <div><dt>Type</dt><dd>Personal project</dd></div>
       <div><dt>Platform</dt><dd>Mobile (iOS &amp; Android)</dd></div>
-      <div><dt>Tools</dt><dd>Figma, [add more]</dd></div>
+      <div><dt>Tools</dt><dd>Figma</dd></div>
     </dl>
 
     <figure class="media">
@@ -406,7 +409,7 @@
         <span class="num">01</span>
         <h2>Overview</h2>
         <p class="lead">Pflux is a bills payment app I designed on my own, as a personal project, to practise end-to-end product design for everyday money tasks.</p>
-        <p class="t">[Two or three sentences: what the app lets people pay (airtime, data, electricity, cable TV, etc.), who it is for, and what you wanted to get better at with this project.]</p>
+        <p class="t">I designed Pflux on my own to practise building a complete mobile product, from the first idea to the final screens. It focuses on one job, paying everyday bills such as airtime, data and electricity quickly and with confidence.</p>
         <figure class="media">
           <div class="ph"><b>Overview image</b>Home screen and payment flow together · 1600 × 1000 px</div>
         </figure>
@@ -416,12 +419,12 @@
       <section class="part reveal" id="idea">
         <span class="num">02</span>
         <h2>The Idea</h2>
-        <p class="lead">[One sentence on the everyday problem: paying bills is repetitive, and most apps make it slower than it should be.]</p>
+        <p class="lead">Paying bills is a task people repeat every month, so small frictions add up fast.</p>
 
         <ul class="rules">
-          <li><b>[The problem]</b><span>[What frustrated you, or people you know, about paying bills today.]</span></li>
-          <li><b>[The goal]</b><span>[What a good bill payment should feel like: fast, clear, safe.]</span></li>
-          <li><b>[My approach]</b><span>[How you researched or tested: friends, competitor apps, your own use. Be honest about what you did.]</span></li>
+          <li><b>The problem</b><span>Many bill payment flows ask for the same details every time, and make it hard to tell whether a payment went through.</span></li>
+          <li><b>The goal</b><span>A payment should be quick, clear and safe: few steps, no guessing, and proof that it worked.</span></li>
+          <li><b>My approach</b><span>A self-led project: I defined the core journeys, sketched the flow and designed each screen in Figma.</span></li>
         </ul>
       </section>
 
@@ -429,19 +432,19 @@
       <section class="part reveal" id="flows">
         <span class="num">03</span>
         <h2>Key Flows</h2>
-        <p class="lead">[One sentence on the few journeys that matter most.]</p>
+        <p class="lead">Three journeys matter most: paying, paying again and checking back.</p>
 
         <div class="zig">
           <div class="zrow">
-            <div class="zt"><span class="n">A</span><h3>[Paying a bill]</h3><p>[Pick a service, enter details, confirm and pay. How many steps, and what you removed.]</p></div>
+            <div class="zt"><span class="n">A</span><h3>Paying a bill</h3><p>Choose a service, enter the details, review and pay. Each step asks for one thing, and the final review shows the amount and recipient before anything is charged.</p></div>
             <figure class="media"><div class="ph"><b>Pay a bill</b>1200 × 900</div></figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">B</span><h3>[Saved billers and repeat payments]</h3><p>[How returning users pay in a tap, and how recurring payments work.]</p></div>
+            <div class="zt"><span class="n">B</span><h3>Saved billers and repeat payments</h3><p>Billers you have paid before are saved, so paying again takes a tap, with the details already filled in.</p></div>
             <figure class="media"><div class="ph"><b>Saved billers</b>1200 × 900</div></figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">C</span><h3>[Receipts and history]</h3><p>[How users confirm a payment went through and find it later.]</p></div>
+            <div class="zt"><span class="n">C</span><h3>Receipts and history</h3><p>Every payment ends with a clear confirmation and a receipt, and past payments are easy to find in history.</p></div>
             <figure class="media"><div class="ph"><b>History</b>1200 × 900</div></figure>
           </div>
         </div>
@@ -451,15 +454,15 @@
       <section class="part reveal" id="interface">
         <span class="num">04</span>
         <h2>Interface</h2>
-        <p class="lead">[One sentence on the look and feel you chose and why it suits a money app.]</p>
+        <p class="lead">A clean, calm interface that lets the amount and the action stand out.</p>
 
         <figure class="media wide">
           <div class="ph"><b>Style board</b>Colours, type, icons, buttons, components · 2100 × 900 px</div>
         </figure>
 
         <div class="twocol">
-          <div><h3>Colour &amp; type</h3><p class="t">[Why you picked these, and how they build trust and stay readable.]</p></div>
-          <div><h3>Small details</h3><p class="t">[Loading states, success and error screens, confirmations: the moments that make payments feel safe.]</p></div>
+          <div><h3>Colour &amp; type</h3><p class="t">Simple type and a restrained palette keep the focus on amounts and buttons, which is what people check before they pay.</p></div>
+          <div><h3>Small details</h3><p class="t">Loading, success and error screens say exactly what happened and what to do next, which matters most when money is involved.</p></div>
         </div>
       </section>
 
@@ -467,7 +470,7 @@
       <section class="part reveal" id="screens">
         <span class="num">05</span>
         <h2>Final Screens</h2>
-        <p class="lead">[Describe the finished app in two sentences.]</p>
+        <p class="lead">Pflux takes someone from choosing a bill to a confirmed payment in a few steps. From the home screen they pick a bill, pay and get a receipt.</p>
 
         <div class="stage">
           <div class="grid3">
@@ -477,11 +480,11 @@
           </div>
         </div>
 
-        <p class="t">[Walk through the main features and what each one solves.]</p>
+        <p class="t">Saved billers make repeat payments quick, the review screen prevents mistakes before money moves, and history lets people find any payment later.</p>
 
         <figure class="media">
           <div class="ph"><b>Prototype or video</b>Screen recording of the full flow · 1600 × 1000</div>
-          <figcaption>[Optional: link the Figma prototype]</figcaption>
+          <figcaption>The full flow, from choosing a bill to the receipt.</figcaption>
         </figure>
       </section>
 
@@ -489,11 +492,11 @@
       <section class="part reveal" id="reflection">
         <span class="num">06</span>
         <h2>Reflection</h2>
-        <p class="lead">[What this project taught you, since it was self-directed.]</p>
+        <p class="lead">What I took from a project with no client and no brief.</p>
 
         <div class="twocol">
-          <div><h3>What I learned</h3><p class="t">[One or two lessons about designing for payments and trust.]</p></div>
-          <div><h3>What I would do next</h3><p class="t">[What you would test or build next: usability tests, new billers, dark mode.]</p></div>
+          <div><h3>What I learned</h3><p class="t">Designing for payments is about trust: clear amounts, honest error messages and a confirmation people can believe.</p></div>
+          <div><h3>What I would do next</h3><p class="t">Test the prototype with a few real users, then add dark mode and more billers.</p></div>
         </div>
       </section>
 

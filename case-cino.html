@@ -22,7 +22,7 @@
       --line: #e4e4e2;
       --tint: #efefea;
       --accent: #ff6a2b;
-      --brand: #2f6cf0;                 /* Cino blue: change to the project's real brand colour */
+      --brand: #d4a84b;                 /* Cino gold */
       --head: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
       --body: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
     }
@@ -94,7 +94,12 @@
       font-size: clamp(2.6rem, 6vw, 5rem);
       line-height: 1.02; letter-spacing: -0.05em;
     }
-    .hero h1 em { font-style: normal; color: #858585; }
+    .hero h1 em {
+      display: block; margin-top: 14px; max-width: 560px;
+      font-family: var(--body); font-style: normal; font-weight: 400;
+      font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.5; letter-spacing: 0;
+      color: #858585;
+    }
 
     /* store buttons */
     .stores { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
@@ -218,10 +223,10 @@
     .ba figcaption b { color: var(--ink); font-weight: 600; }
 
     /* solution: screens on a tinted stage */
-    .stage { margin-top: 40px; padding: 40px; border-radius: 18px; background: linear-gradient(160deg, #4d8dff, var(--brand)); }
+    .stage { margin-top: 40px; padding: 40px; border-radius: 18px; background: linear-gradient(160deg, #ecd08c, var(--brand)); }
     .stage .grid3 { margin-top: 0; }
-    .stage .ph { background: repeating-linear-gradient(135deg, rgba(255,255,255,0.12) 0 12px, transparent 12px 24px), rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.5); color: #fff; }
-    .stage .ph b { color: #fff; }
+    .stage .ph { background: repeating-linear-gradient(135deg, rgba(0,0,0,0.06) 0 12px, transparent 12px 24px), rgba(255,255,255,0.35); border-color: rgba(0,0,0,0.25); color: #3b3318; }
+    .stage .ph b { color: #161616; }
 
     /* outcomes */
     .stats { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -303,7 +308,7 @@
   <!-- ================= HERO ================= -->
   <div class="hero">
     <span class="kicker">Case study · Mobile App · Web3</span>
-    <h1>Cino Wallet<br /><em>[One line on what it does].</em></h1>
+    <h1>Cino Wallet<br /><em>One wallet to hold, send, lend and trade CINO.</em></h1>
 
     <!-- EDIT: replace both # with the real store links -->
     <div class="stores">
@@ -322,11 +327,11 @@
       <div><dt>Role</dt><dd>Mobile App Designer</dd></div>
       <div><dt>Timeline</dt><dd>Nov 2025 — Apr 2026</dd></div>
       <div><dt>Platform</dt><dd>iOS &amp; Android</dd></div>
-      <div><dt>Tools</dt><dd>Figma, [add more]</dd></div>
+      <div><dt>Tools</dt><dd>Figma, Mockuuups Studio</dd></div>
     </dl>
 
     <figure class="media">
-      <div class="ph"><b>Hero image</b>Wide cover of the app · 2100 × 900 px</div>
+      <div class="ph"><b>Hero image</b>Wide cover · 2100 × 900 px. Suggested: Welcome, Home, Token and Lending screens side by side</div>
     </figure>
   </div>
 
@@ -356,10 +361,10 @@
       <section class="part reveal" id="overview">
         <span class="num">01</span>
         <h2>Overview</h2>
-        <p class="lead">Cino Wallet is a mobile wallet for [who it serves]. I was the designer from [start] to [launch], responsible for [research, flows, UI, prototypes].</p>
-        <p class="t">[Two or three sentences of context: what Cino is, who the users are, and what the team set out to achieve. Keep the numbers and claims to ones you can stand behind.]</p>
+        <p class="lead">Cino Wallet is a self-custody mobile wallet on Solana for CINO holders and the wider aviation community. I was the designer from November 2025 to April 2026, responsible for user flows, UI design, the design system and prototypes.</p>
+        <p class="t">CINO is a token built around private aviation, with payments and asset management for jet operators and enthusiasts. The team needed a wallet where holders could do everything with the token in one place: store it, send it, earn on it, trade it peer to peer and stay close to the community, without having to learn crypto first.</p>
         <figure class="media">
-          <div class="ph"><b>Overview image</b>App on a phone, or the key screens together · 1600 × 1000 px</div>
+          <div class="ph"><b>Overview image</b>1600 × 1000 px. Suggested: Home, Token and Lending screens together</div>
         </figure>
       </section>
 
@@ -367,17 +372,18 @@
       <section class="part reveal" id="problem">
         <span class="num">02</span>
         <h2>The Problem</h2>
-        <p class="lead">[One sentence that names the problem in the user's words, not yours.]</p>
-        <p class="t">[Explain what was going wrong, for whom, and why it mattered to the business. Two short paragraphs at most.]</p>
+        <p class="lead">Most crypto wallets assume you already know crypto, and CINO holders needed one that doesn't.</p>
+        <p class="t">For a new holder, the first few minutes decide everything. Seed phrases, recovery options and hardware wallets are a lot to take in before anyone sees any value, and one wrong address or network on a first transfer can mean lost funds.</p>
+        <p class="t">It mattered to the project because a token only grows when people use it. A holder who has to jump between a wallet, an exchange and a lending site is easy to lose, so the wallet had to make holding, earning and trading feel like one product.</p>
 
         <div class="cards">
-          <div class="card"><span class="n">1</span><h3>[Pain point one]</h3><p>[A line on what users struggled with.]</p></div>
-          <div class="card"><span class="n">2</span><h3>[Pain point two]</h3><p>[A line on what users struggled with.]</p></div>
-          <div class="card"><span class="n">3</span><h3>[Pain point three]</h3><p>[A line on what users struggled with.]</p></div>
+          <div class="card"><span class="n">1</span><h3>Starting feels risky</h3><p>Seed phrases, import options and hardware wallets can put people off before they see any value.</p></div>
+          <div class="card"><span class="n">2</span><h3>Everything is scattered</h3><p>Holding, swapping, lending and trading meant switching between several apps.</p></div>
+          <div class="card"><span class="n">3</span><h3>Sending is stressful</h3><p>A wrong address or network can't be undone, and totals and fees weren't always clear.</p></div>
         </div>
 
         <figure class="media">
-          <div class="ph"><b>Problem image</b>Old flow, competitor screens or a user journey · 1600 × 1000 px</div>
+          <div class="ph"><b>Problem image</b>1600 × 1000 px. Suggested: the onboarding and recovery phrase screens, or your user flow map</div>
         </figure>
       </section>
 
@@ -385,18 +391,18 @@
       <section class="part reveal" id="insight">
         <span class="num">03</span>
         <h2>Design Insight</h2>
-        <p class="lead">[What you learned that changed how you approached the design.]</p>
+        <p class="lead">Trust comes before features. People only try lending or P2P once the basics feel safe.</p>
 
         <div class="pull">
-          <q>“[A real quote from a user interview, or the single insight in one sentence.]”</q>
-          <small>[Who said it, or where the insight came from]</small>
+          <q>“Every screen in a wallet should answer one question: is my money safe, and do I know what happens next?”</q>
+          <small>The principle behind every flow</small>
         </div>
 
-        <p class="t">[How you found it: interviews, usability tests, analytics, competitor review. Then what it told you.]</p>
+        <p class="t">I mapped each journey from end to end, from creating a wallet to sending, lending and trading, and looked for the moments where a new user has to make a choice they can't undo. The recovery phrase, the recipient address and the final confirmation became the places to slow down, explain and confirm. Everything else was made as quick as possible.</p>
 
         <div class="grid2">
-          <figure class="media"><div class="ph" style="--r:4/3"><b>Research image 1</b>Notes, survey results or affinity map · 1200 × 900</div></figure>
-          <figure class="media"><div class="ph" style="--r:4/3"><b>Research image 2</b>Persona or user journey · 1200 × 900</div></figure>
+          <figure class="media"><div class="ph" style="--r:4/3"><b>User flow map</b>1200 × 900. The full flow from your Figma board</div></figure>
+          <figure class="media"><div class="ph" style="--r:4/3"><b>Key moments</b>1200 × 900. Recovery phrase, address check and confirmation screens</div></figure>
         </div>
       </section>
 
@@ -404,17 +410,17 @@
       <section class="part reveal" id="direction">
         <span class="num">04</span>
         <h2>Design Direction</h2>
-        <p class="lead">[The idea that guided every screen, in one sentence.]</p>
-        <p class="t">[Describe the look and feel you aimed for and why it suits the users.]</p>
+        <p class="lead">Calm, dark and gold: a wallet that feels premium and trustworthy, never busy.</p>
+        <p class="t">The interface uses a near-black base with a warm gold accent. Dark surfaces keep balances and price charts easy to read, gold is saved for the actions that matter, and a light theme is one tap away for people who prefer it. Everything sits on one design system of buttons, cards, dialogs and icons, so every screen feels like part of the same product.</p>
 
         <div class="chips" aria-label="Design principles">
-          <span>[Principle one]</span><span>[Principle two]</span><span>[Principle three]</span><span>[Principle four]</span>
+          <span>Calm and clear</span><span>Trust at every step</span><span>One accent, used sparingly</span><span>Dark and light themes</span>
         </div>
 
         <div class="grid3">
-          <figure class="media"><div class="ph" style="--r:1/1"><b>Moodboard</b>1000 × 1000</div></figure>
-          <figure class="media"><div class="ph" style="--r:1/1"><b>Colour &amp; type</b>1000 × 1000</div></figure>
-          <figure class="media"><div class="ph" style="--r:1/1"><b>Early sketches</b>1000 × 1000</div></figure>
+          <figure class="media"><div class="ph" style="--r:1/1"><b>Colour &amp; type</b>1000 × 1000. Palette and type styles</div></figure>
+          <figure class="media"><div class="ph" style="--r:1/1"><b>Components</b>1000 × 1000. Buttons, cards and dialogs from your design system</div></figure>
+          <figure class="media"><div class="ph" style="--r:1/1"><b>Icons &amp; navigation</b>1000 × 1000. The four tab icons and states</div></figure>
         </div>
       </section>
 
@@ -422,12 +428,12 @@
       <section class="part reveal" id="constraints">
         <span class="num">05</span>
         <h2>Constraints</h2>
-        <p class="lead">[What limited the design: time, tech, regulation, team size.]</p>
+        <p class="lead">Designing money software for newcomers comes with limits that can't be traded away.</p>
 
         <ul class="rules">
-          <li><b>[Constraint one]</b><span>[How it limited the work and what you did about it.]</span></li>
-          <li><b>[Constraint two]</b><span>[How it limited the work and what you did about it.]</span></li>
-          <li><b>[Constraint three]</b><span>[How it limited the work and what you did about it.]</span></li>
+          <li><b>Transactions can't be reversed</b><span>Once a transfer is sent it's final, so the design checks the address as you type, shows a clear summary before approval and confirms the result afterwards.</span></li>
+          <li><b>One network</b><span>The wallet works on Solana only. The send and receive screens say so plainly, so nobody sends assets from another network to a Solana address.</span></li>
+          <li><b>A lot on a small screen</b><span>Holding, lending, P2P and community all had to fit on a phone. Four bottom tabs keep every main area one tap away, and secondary options live in a side menu.</span></li>
         </ul>
       </section>
 
@@ -435,36 +441,36 @@
       <section class="part reveal" id="decisions">
         <span class="num">06</span>
         <h2>Design Decisions</h2>
-        <p class="lead">[Introduce the two or three choices that mattered most.]</p>
+        <p class="lead">Three choices did the most to shape how the wallet feels.</p>
 
         <!-- decision A: before / after -->
         <article class="decision">
           <span class="tag">Decision 1</span>
-          <h3>[Name the decision]</h3>
-          <p class="t">[What options you had, what you chose, and the reason.]</p>
+          <h3>One product, two themes</h3>
+          <p class="t">The wallet opens in a dark theme and offers a light theme from the side menu. Both share the same layout, spacing and gold accent, so switching changes the mood without moving anything.</p>
           <div class="ba">
-            <figure class="media"><div class="ph" style="--r:4/5"><b>Before</b>Earlier version · 1000 × 1250</div><figcaption><b>Before:</b> [what was wrong]</figcaption></figure>
-            <figure class="media"><div class="ph" style="--r:4/5"><b>After</b>Final version · 1000 × 1250</div><figcaption><b>After:</b> [what improved]</figcaption></figure>
+            <figure class="media"><div class="ph" style="--r:4/5"><b>Dark theme</b>1000 × 1250. Home screen</div><figcaption><b>Dark:</b> the default, easy on the eyes when checking balances.</figcaption></figure>
+            <figure class="media"><div class="ph" style="--r:4/5"><b>Light theme</b>1000 × 1250. Same home screen</div><figcaption><b>Light:</b> the same screen for people who prefer a bright interface.</figcaption></figure>
           </div>
         </article>
 
         <!-- decision B: one wide image -->
         <article class="decision">
           <span class="tag">Decision 2</span>
-          <h3>[Name the decision]</h3>
-          <p class="t">[What options you had, what you chose, and the reason.]</p>
-          <figure class="media"><div class="ph"><b>Decision 2 image</b>Flow or screens that show the choice · 1600 × 1000</div></figure>
+          <h3>Sending in small, safe steps</h3>
+          <p class="t">Instead of one long form, sending is split into choosing a token, entering the address and amount, reviewing, and the result. An amount above your balance turns red with a clear message, a summary sheet confirms the recipient, amount and fee before you approve, and the success screen lets you download an invoice or view the transaction.</p>
+          <figure class="media"><div class="ph"><b>Send flow</b>1600 × 1000. A row of the send screens: token list, amount, summary, success</div></figure>
         </article>
 
         <!-- decision C: three screens -->
         <article class="decision">
           <span class="tag">Decision 3</span>
-          <h3>[Name the decision]</h3>
-          <p class="t">[What options you had, what you chose, and the reason.]</p>
+          <h3>Earn and trade without leaving the app</h3>
+          <p class="t">Lending and P2P sit beside Portfolio as their own tabs instead of being buried in menus. The lending pool opens with supply, availability and borrowed totals, then a simple deposit and withdraw panel. P2P lists sellers with their price, available amount and limits, so the next action is always one Buy button.</p>
           <div class="grid3">
-            <figure class="media"><div class="ph" style="--r:9/16"><b>Screen 1</b>900 × 1600</div></figure>
-            <figure class="media"><div class="ph" style="--r:9/16"><b>Screen 2</b>900 × 1600</div></figure>
-            <figure class="media"><div class="ph" style="--r:9/16"><b>Screen 3</b>900 × 1600</div></figure>
+            <figure class="media"><div class="ph" style="--r:9/16"><b>Lending</b>900 × 1600</div></figure>
+            <figure class="media"><div class="ph" style="--r:9/16"><b>P2P</b>900 × 1600</div></figure>
+            <figure class="media"><div class="ph" style="--r:9/16"><b>Community</b>900 × 1600</div></figure>
           </div>
         </article>
       </section>
@@ -473,21 +479,21 @@
       <section class="part reveal" id="solution">
         <span class="num">07</span>
         <h2>The Solution</h2>
-        <p class="lead">[Describe the finished product in two sentences.]</p>
+        <p class="lead">Cino Wallet brings holding, sending, earning and trading CINO into one app. New users are guided from a welcome screen to a working wallet, and returning users get a clear portfolio, one-tap actions and four tabs.</p>
 
         <div class="stage">
           <div class="grid3">
-            <div class="ph" style="--r:9/19"><b>Screen</b>Home · 900 × 1900</div>
-            <div class="ph" style="--r:9/19"><b>Screen</b>Key flow · 900 × 1900</div>
-            <div class="ph" style="--r:9/19"><b>Screen</b>Result · 900 × 1900</div>
+            <div class="ph" style="--r:9/19"><b>Home</b>900 × 1900</div>
+            <div class="ph" style="--r:9/19"><b>Token</b>900 × 1900</div>
+            <div class="ph" style="--r:9/19"><b>Lending</b>900 × 1900</div>
           </div>
         </div>
 
-        <p class="t">[Walk through the main features and what each one solves.]</p>
+        <p class="t">Onboarding lets people create a wallet with a recovery phrase or import one, connect a Ledger and secure the app with a passcode and biometrics. The Portfolio tab shows the balance and assets with Send, Receive, Swap and Buy within reach. Each token has its own page with a price chart, key stats and quick actions. Lending lets holders deposit to the CINO pool and follow their earnings, P2P connects buyers with sellers directly, and Community brings Discord, Telegram and X into the app.</p>
 
         <figure class="media">
           <div class="ph"><b>Prototype or video</b>Screen recording or full flow overview · 1600 × 1000</div>
-          <figcaption>[Optional: link the Figma prototype]</figcaption>
+          <figcaption>The full flow, from onboarding to a first transfer.</figcaption>
         </figure>
       </section>
 
@@ -495,28 +501,28 @@
       <section class="part reveal" id="outcomes">
         <span class="num">08</span>
         <h2>Outcomes</h2>
-        <p class="lead">[What changed because of the design.]</p>
+        <p class="lead">What the project delivered: one complete wallet on a single design system.</p>
 
-        <!-- EDIT: use only real numbers. Replace 00% and the caption. -->
+        <!-- Add real usage numbers here later, such as downloads or retention -->
         <div class="stats">
-          <div class="stat"><strong>00%</strong><span>[Metric one, and how it was measured]</span></div>
-          <div class="stat"><strong>00%</strong><span>[Metric two, and how it was measured]</span></div>
-          <div class="stat"><strong>0.0</strong><span>[Metric three, or a user rating]</span></div>
+          <div class="stat"><strong>4</strong><span>main tabs (Portfolio, Lending, P2P and Community), each one tap away</span></div>
+          <div class="stat"><strong>2</strong><span>themes, dark and light, built from the same components</span></div>
+          <div class="stat"><strong>1</strong><span>app for holding, sending, lending and trading CINO</span></div>
         </div>
 
-        <p class="t">[If you have no hard numbers yet, describe the qualitative result: feedback from users or the team.]</p>
+        <p class="t">Every core journey, from onboarding to lending and P2P, is designed, consistent across both themes and ready for real users.</p>
       </section>
 
       <!-- 09 LEARNINGS -->
       <section class="part reveal" id="learnings">
         <span class="num">09</span>
         <h2>Learnings</h2>
-        <p class="lead">[What this project taught you.]</p>
+        <p class="lead">Three things I'll carry into the next project.</p>
 
         <ul class="learn">
-          <li><i>1</i><div><b>[Lesson one]</b><p>[A line on what you would repeat or do differently.]</p></div></li>
-          <li><i>2</i><div><b>[Lesson two]</b><p>[A line on what you would repeat or do differently.]</p></div></li>
-          <li><i>3</i><div><b>[Lesson three]</b><p>[A line on what you would repeat or do differently.]</p></div></li>
+          <li><i>1</i><div><b>Slow down where the stakes are high</b><p>Recovery phrases and confirmations deserve extra care and plain words. Everywhere else, speed wins.</p></div></li>
+          <li><i>2</i><div><b>Build the system early</b><p>Defining buttons, cards, dialogs and icons once kept over a hundred screens consistent across two themes.</p></div></li>
+          <li><i>3</i><div><b>Make the next step obvious</b><p>Whether it's Buy on a P2P listing or Continue after a recovery phrase, every screen should have one clear next action.</p></div></li>
         </ul>
       </section>
 
@@ -530,8 +536,7 @@
         <small>Next project</small>
         <h2>BaseConnect</h2>
       </div>
-      <!-- change this link when the BaseConnect page exists -->
-      <a class="go" href="work.html">View all work <span aria-hidden="true">→</span></a>
+      <a class="go" href="case-baseconnect.html">View case study <span aria-hidden="true">→</span></a>
     </div>
   </aside>
 

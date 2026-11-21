@@ -94,7 +94,12 @@
       font-size: clamp(2.6rem, 6vw, 5rem);
       line-height: 1.02; letter-spacing: -0.05em;
     }
-    .hero h1 em { font-style: normal; color: #858585; }
+    .hero h1 em {
+      display: block; margin-top: 14px; max-width: 560px;
+      font-family: var(--body); font-style: normal; font-weight: 400;
+      font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.5; letter-spacing: 0;
+      color: #858585;
+    }
 
     /* store buttons */
     .stores { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
@@ -363,19 +368,18 @@
   <!-- ================= HERO ================= -->
   <div class="hero">
     <span class="kicker">Case study · Landing page · Web3</span>
-    <h1>DeFi Foundry<br /><em>[One line: making decentralised finance easy to understand].</em></h1>
+    <h1>DeFi Foundry<br /><em>Making decentralised finance easy to understand.</em></h1>
 
     <!-- EDIT: put the live website link in href -->
     <div class="stores">
       <a class="live" href="#" target="_blank" rel="noopener">Visit live site <span aria-hidden="true">↗</span></a>
     </div>
 
-    <!-- EDIT: fill these four in -->
     <dl class="facts">
       <div><dt>Role</dt><dd>Product Designer</dd></div>
-      <div><dt>Timeline</dt><dd>[Month — Month, Year]</dd></div>
+      <div><dt>Type</dt><dd>Web3 landing page</dd></div>
       <div><dt>Platform</dt><dd>Web (responsive)</dd></div>
-      <div><dt>Tools</dt><dd>Figma, [add more]</dd></div>
+      <div><dt>Tools</dt><dd>Figma</dd></div>
     </dl>
 
     <figure class="media">
@@ -406,7 +410,7 @@
         <span class="num">01</span>
         <h2>Overview</h2>
         <p class="lead">DeFi Foundry is a Web3 product, and I designed its landing page: the first thing visitors see, and the page that has to explain what it does and earn trust in a few seconds.</p>
-        <p class="t">[Two or three sentences: what DeFi Foundry offers, who the page is for, and what you were asked to do (research, messaging, layout, visuals, handoff). Only include claims you can stand behind.]</p>
+        <p class="t">A landing page has a few seconds to explain a new kind of product and earn trust. I designed the page to explain what DeFi Foundry does in plain words, show why it can be trusted, and give visitors one clear next step.</p>
         <figure class="media">
           <div class="ph"><b>Overview image</b>Full landing page, desktop and mobile together · 1600 × 1000 px</div>
         </figure>
@@ -416,12 +420,12 @@
       <section class="part reveal" id="challenge">
         <span class="num">02</span>
         <h2>The Challenge</h2>
-        <p class="lead">[One sentence: DeFi is full of jargon and many visitors don't yet trust it. The page had to be clear and credible at the same time.]</p>
+        <p class="lead">DeFi is full of jargon, and many visitors don't yet trust it. The page had to be clear and credible at the same time.</p>
 
         <ul class="rules">
-          <li><b>[Explaining the product]</b><span>[How you made a complex idea understandable to someone new to DeFi.]</span></li>
-          <li><b>[Building trust]</b><span>[How the page shows security, transparency and credibility.]</span></li>
-          <li><b>[Standing out]</b><span>[How you avoided the look of every other Web3 site while keeping it professional.]</span></li>
+          <li><b>Explaining the product</b><span>Plain headlines and short steps replace technical terms, so someone new to DeFi can follow what the product does.</span></li>
+          <li><b>Building trust</b><span>Security, transparency and proof sit near the top of the page instead of hiding in the footer.</span></li>
+          <li><b>Standing out</b><span>The look is polished and distinctive without falling into the usual Web3 template.</span></li>
         </ul>
       </section>
 
@@ -429,19 +433,19 @@
       <section class="part reveal" id="story">
         <span class="num">03</span>
         <h2>Page Story</h2>
-        <p class="lead">[One sentence on how the page is ordered, so a visitor goes from "what is this?" to "I want to try it".]</p>
+        <p class="lead">The page takes a visitor from “what is this?” to “I want to try it” in three steps.</p>
 
         <div class="zig">
           <div class="zrow">
-            <div class="zt"><span class="n">A</span><h3>[Hero: the promise]</h3><p>[The headline, the one action you want visitors to take, and why you chose them.]</p></div>
+            <div class="zt"><span class="n">A</span><h3>The promise</h3><p>A clear headline, one supporting line and a single main action tell visitors what DeFi Foundry offers and what to do next.</p></div>
             <figure class="media"><div class="ph"><b>Hero section</b>1200 × 900</div></figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">B</span><h3>[How it works]</h3><p>[How you broke the product down into simple steps or features.]</p></div>
+            <div class="zt"><span class="n">B</span><h3>How it works</h3><p>The product is broken into a few simple steps, each with a short title and one line of explanation.</p></div>
             <figure class="media"><div class="ph"><b>How it works</b>1200 × 900</div></figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">C</span><h3>[Proof and security]</h3><p>[Stats, partners, audits or testimonials, and how they are presented.]</p></div>
+            <div class="zt"><span class="n">C</span><h3>Proof and security</h3><p>Proof points sit together, so trust is built before the final call to action.</p></div>
             <figure class="media"><div class="ph"><b>Trust section</b>1200 × 900</div></figure>
           </div>
         </div>
@@ -451,15 +455,15 @@
       <section class="part reveal" id="visual">
         <span class="num">04</span>
         <h2>Visual Language</h2>
-        <p class="lead">[One sentence on the look and feel you chose and why it fits the brand.]</p>
+        <p class="lead">A confident, modern look that feels secure rather than speculative.</p>
 
         <figure class="media wide">
           <div class="ph"><b>Style board</b>Colours, type, buttons, icons and effects · 2100 × 900 px</div>
         </figure>
 
         <div class="twocol">
-          <div><h3>Colour &amp; type</h3><p class="t">[Why you picked these colours and typefaces, and how they stay readable on dark backgrounds.]</p></div>
-          <div><h3>Motion &amp; detail</h3><p class="t">[Any animation, glows, gradients or 3D elements, and how you kept them from slowing or distracting.]</p></div>
+          <div><h3>Colour &amp; type</h3><p class="t">Strong contrast and a clear type scale keep headlines and numbers easy to read, with colour used to guide attention to the actions.</p></div>
+          <div><h3>Motion &amp; detail</h3><p class="t">Gradients, glows and motion are used sparingly, to add depth without slowing the page or pulling attention from the message.</p></div>
         </div>
       </section>
 
@@ -467,13 +471,13 @@
       <section class="part reveal" id="final">
         <span class="num">05</span>
         <h2>Final Design</h2>
-        <p class="lead">[One sentence introducing the finished page.]</p>
+        <p class="lead">The finished landing page, from the first screen to the closing call to action.</p>
 
         <div class="screens">
-          <figure class="media wide"><div class="ph"><b>Full landing page</b>Desktop, full length · 2100 × 1200 px</div><figcaption>[Caption: what this page does]</figcaption></figure>
+          <figure class="media wide"><div class="ph"><b>Full landing page</b>Desktop, full length · 2100 × 1200 px</div><figcaption>The whole page, from first impression to final action.</figcaption></figure>
           <div class="pair">
-            <figure class="media"><div class="ph"><b>Features</b>1600 × 1000</div><figcaption>[Caption]</figcaption></figure>
-            <figure class="media"><div class="ph"><b>Call to action</b>1000 × 1000</div><figcaption>[Caption]</figcaption></figure>
+            <figure class="media"><div class="ph"><b>Features</b>1600 × 1000</div><figcaption>Features explained in short, scannable blocks.</figcaption></figure>
+            <figure class="media"><div class="ph"><b>Call to action</b>1000 × 1000</div><figcaption>One clear action to finish on.</figcaption></figure>
           </div>
           <figure class="media wide"><div class="ph"><b>Mobile screens</b>Row of mobile views · 2100 × 900</div></figure>
         </div>
@@ -483,18 +487,11 @@
       <section class="part reveal" id="results">
         <span class="num">06</span>
         <h2>Results</h2>
-        <p class="lead">[What changed because of the design.]</p>
-
-        <!-- EDIT: use only real numbers. Replace 00% and the captions. -->
-        <div class="figures">
-          <div><strong>00%</strong><span>[Metric one, and how it was measured]</span></div>
-          <div><strong>00</strong><span>[Metric two, such as sign-ups or visits]</span></div>
-          <div><strong>0.0</strong><span>[Metric three, or feedback from the team]</span></div>
-        </div>
+        <p class="lead">DeFi Foundry now has a landing page that explains the product clearly, builds trust early and gives visitors one clear action.</p>
 
         <div class="twocol">
-          <div><h3>What I learned</h3><p class="t">[One or two lessons, especially about explaining DeFi to newcomers.]</p></div>
-          <div><h3>What I would do next</h3><p class="t">[What you would improve or test with more time.]</p></div>
+          <div><h3>What I learned</h3><p class="t">Explaining DeFi is mostly about removing words. Every sentence on the page has to earn its place.</p></div>
+          <div><h3>What I would do next</h3><p class="t">Measure which headline and call to action bring the most sign-ups, and test the page with people who are new to DeFi.</p></div>
         </div>
       </section>
 

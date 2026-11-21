@@ -94,7 +94,12 @@
       font-size: clamp(2.6rem, 6vw, 5rem);
       line-height: 1.02; letter-spacing: -0.05em;
     }
-    .hero h1 em { font-style: normal; color: #858585; }
+    .hero h1 em {
+      display: block; margin-top: 14px; max-width: 560px;
+      font-family: var(--body); font-style: normal; font-weight: 400;
+      font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.5; letter-spacing: 0;
+      color: #858585;
+    }
 
     /* store buttons */
     .stores { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
@@ -353,18 +358,17 @@
   <!-- ================= HERO ================= -->
   <div class="hero">
     <span class="kicker">Case study · Website Redesign · SaaS</span>
-    <h1>AttendeeHRM<br /><em>[One line: HR software, explained clearly].</em></h1>
+    <h1>AttendeeHRM<br /><em>Making HR software easy to understand and easy to try.</em></h1>
 
     <div class="stores">
       <a class="live" href="https://attendeehrm.com/" target="_blank" rel="noopener">Visit live site <span aria-hidden="true">↗</span></a>
     </div>
 
-    <!-- EDIT: check these four -->
     <dl class="facts">
       <div><dt>Role</dt><dd>Product Designer</dd></div>
       <div><dt>Timeline</dt><dd>Sept 2025 — Oct 2025</dd></div>
       <div><dt>Platform</dt><dd>Website (responsive)</dd></div>
-      <div><dt>Tools</dt><dd>Figma, [add more]</dd></div>
+      <div><dt>Tools</dt><dd>Figma</dd></div>
     </dl>
 
     <figure class="media">
@@ -396,7 +400,7 @@
         <span class="num">01</span>
         <h2>Overview</h2>
         <p class="lead">AttendeeHRM is a cloud-based HR platform for attendance, payroll, leave, recruitment and employee self-service, built for growing businesses. I redesigned its marketing website so visitors can understand the product quickly and book a demo or start a trial.</p>
-        <p class="t">[Two or three sentences: why the redesign was needed, who visits the site, and what the team wanted the new site to achieve. Only include claims you can stand behind.]</p>
+        <p class="t">A business owner or HR manager lands on the site with one question: can this run our attendance, payroll and people processes? The redesign answers that quickly, then points to the two next steps that matter, booking a demo or starting a free trial.</p>
         <figure class="media">
           <div class="ph"><b>Overview image</b>Old and new homepage side by side · 1600 × 1000 px</div>
         </figure>
@@ -406,16 +410,16 @@
       <section class="part reveal" id="audit">
         <span class="num">02</span>
         <h2>The Audit</h2>
-        <p class="lead">[One sentence on what you found when you reviewed the existing website.]</p>
+        <p class="lead">The redesign set out to fix three things on the existing website.</p>
 
         <figure class="media">
           <div class="ph"><b>Existing site</b>Screenshot of the old homepage with problems marked 1, 2 and 3 · 1600 × 1000</div>
         </figure>
 
         <div class="rows">
-          <div class="row"><span class="n">01</span><h3>[Unclear message]</h3><p>[What the old hero said, and why a visitor could not tell what the product does.]</p></div>
-          <div class="row"><span class="n">02</span><h3>[Hard to scan]</h3><p>[How the page layout made features and pricing hard to find.]</p></div>
-          <div class="row"><span class="n">03</span><h3>[Weak calls to action]</h3><p>[How the path to booking a demo or starting a trial was unclear.]</p></div>
+          <div class="row"><span class="n">01</span><h3>A message that lands fast</h3><p>A visitor should understand the product in the first few seconds. The new hero says it plainly: attendance, payroll and HR in one place.</p></div>
+          <div class="row"><span class="n">02</span><h3>Content that is easy to scan</h3><p>Features, benefits and pricing needed clear groups, so people can find what matters to them without reading the whole page.</p></div>
+          <div class="row"><span class="n">03</span><h3>One obvious next step</h3><p>Book a demo, start a free trial or get the app: each action is clear, and repeated where a visitor is ready to act.</p></div>
         </div>
       </section>
 
@@ -423,8 +427,8 @@
       <section class="part reveal" id="structure">
         <span class="num">03</span>
         <h2>Page Structure</h2>
-        <p class="lead">[One sentence on how you decided the order of the page.]</p>
-        <p class="t">[Explain how you grouped the content around what a business owner or HR manager wants to know first. Edit the eight sections below to match your final homepage.]</p>
+        <p class="lead">The page follows the questions a business owner asks, in the order they ask them.</p>
+        <p class="t">What is it? Who trusts it? What can it do? Why switch? What does it cost? What do other customers say? What if I still have questions? Each section below answers one of these, and the page ends with a way forward.</p>
 
         <ol class="pagemap">
           <li>Hero<small>Message and main call to action</small></li>
@@ -446,17 +450,17 @@
       <section class="part reveal" id="homepage">
         <span class="num">04</span>
         <h2>Homepage</h2>
-        <p class="lead">[One sentence on the biggest change to the homepage.]</p>
+        <p class="lead">The hero now says what the product does and offers three clear next steps.</p>
 
         <div class="ba">
-          <figure class="media"><div class="ph" style="--r:4/5"><b>Before</b>Old hero · 1000 × 1250</div><figcaption><b>Before:</b> [what was wrong]</figcaption></figure>
-          <figure class="media"><div class="ph" style="--r:4/5"><b>After</b>New hero · 1000 × 1250</div><figcaption><b>After:</b> [what improved]</figcaption></figure>
+          <figure class="media"><div class="ph" style="--r:4/5"><b>Before</b>Old hero · 1000 × 1250</div><figcaption><b>Before:</b> the earlier homepage hero.</figcaption></figure>
+          <figure class="media"><div class="ph" style="--r:4/5"><b>After</b>New hero · 1000 × 1250</div><figcaption><b>After:</b> a clear headline, short supporting line, three actions and a product video.</figcaption></figure>
         </div>
 
         <ul class="callouts">
-          <li><span class="pin">A</span><h3>[Hero message]</h3><p>[How the headline and subtext explain the product.]</p></li>
-          <li><span class="pin">B</span><h3>[Feature tabs]</h3><p>[How People, Workforce and Business features are grouped.]</p></li>
-          <li><span class="pin">C</span><h3>[Calls to action]</h3><p>[How visitors are guided to book a demo or start a trial.]</p></li>
+          <li><span class="pin">A</span><h3>Hero message</h3><p>The headline, “Automate HR and Empower your Business”, is followed by one line that names payroll, attendance, recruitment and employee management in one cloud platform.</p></li>
+          <li><span class="pin">B</span><h3>Feature tabs</h3><p>Features are grouped under People, Workforce and Business, so each visitor can go straight to what they care about. Every card has three short points and a Learn more link.</p></li>
+          <li><span class="pin">C</span><h3>Calls to action</h3><p>Book a demo, Start free trial and Get the app sit together in the hero, then return in the middle of the page and at the end.</p></li>
         </ul>
 
         <figure class="media">
@@ -469,7 +473,7 @@
         <span class="num">05</span>
         <h2>Pricing</h2>
         <p class="lead">Pricing is per employee and depends on which modules a business picks, so the page had to make that easy to understand.</p>
-        <p class="t">[Explain how you showed bundles against picking modules one by one, how you handled modules that depend on others, and the yearly saving. Check the details against the live pricing before you publish.]</p>
+        <p class="t">Businesses can choose between paying as they use and a bundled plan, switch modules on or off, and watch the total for their team size update straight away. When one module needs another, the dependent ones switch on with it, and settings, payments and billing are always included. A yearly toggle shows the 15% saving.</p>
 
         <figure class="media">
           <div class="ph"><b>Pricing page</b>Plan and module selector · 1600 × 1000</div>
@@ -486,16 +490,7 @@
       <section class="part reveal" id="system">
         <span class="num">06</span>
         <h2>Design System</h2>
-        <p class="lead">[One sentence on how the new look keeps the site consistent and ready to grow.]</p>
-
-        <!-- EDIT: put your real colour names and hex codes -->
-        <div class="swatches">
-          <div class="sw"><i></i><span><b>[Primary]</b>#000000</span></div>
-          <div class="sw"><i></i><span><b>[Secondary]</b>#000000</span></div>
-          <div class="sw"><i></i><span><b>[Accent]</b>#000000</span></div>
-          <div class="sw"><i></i><span><b>[Surface]</b>#000000</span></div>
-          <div class="sw"><i></i><span><b>[Text]</b>#000000</span></div>
-        </div>
+        <p class="lead">One set of type, colour and components keeps every page looking like the same product, and makes new pages quick to add.</p>
 
         <div class="specimen">
           <figure class="media"><div class="ph"><b>Typography</b>Fonts and sizes · 1400 × 900</div></figure>
@@ -507,18 +502,18 @@
       <section class="part reveal" id="results">
         <span class="num">07</span>
         <h2>Results</h2>
-        <p class="lead">[What changed because of the redesign.]</p>
+        <p class="lead">The redesigned site gives visitors a clear path from first impression to demo or trial.</p>
 
-        <!-- EDIT: use only real numbers. Replace 00% and the captions. -->
+        <!-- Add real numbers here later, such as demo requests -->
         <div class="figures">
-          <div><strong>00%</strong><span>[Metric one, such as demo requests]</span></div>
-          <div><strong>00%</strong><span>[Metric two, such as trial sign-ups]</span></div>
-          <div><strong>0.0</strong><span>[Metric three, or feedback from the team]</span></div>
+          <div><strong>8</strong><span>homepage sections, each answering one question a buyer has</span></div>
+          <div><strong>3</strong><span>calls to action: book a demo, start a free trial, get the app</span></div>
+          <div><strong>15%</strong><span>yearly saving, shown clearly in the pricing section</span></div>
         </div>
 
         <div class="twocol">
-          <div><h3>What I learned</h3><p class="t">[One or two lessons from redesigning a SaaS website.]</p></div>
-          <div><h3>What I would do next</h3><p class="t">[What you would improve or test with more time.]</p></div>
+          <div><h3>What I learned</h3><p class="t">A pricing page is a design problem as much as a content one. Showing what changes when you add a module matters more than listing every price.</p></div>
+          <div><h3>What I would do next</h3><p class="t">Test the page with real HR managers, find out which call to action brings the most demo requests, and add a page for each module.</p></div>
         </div>
       </section>
 

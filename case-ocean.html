@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OceanPieces | Olujola Samuel</title>
+  <title>Oceanpieces | Olujola Samuel</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -94,7 +94,12 @@
       font-size: clamp(2.6rem, 6vw, 5rem);
       line-height: 1.02; letter-spacing: -0.05em;
     }
-    .hero h1 em { font-style: normal; color: #858585; }
+    .hero h1 em {
+      display: block; margin-top: 14px; max-width: 560px;
+      font-family: var(--body); font-style: normal; font-weight: 400;
+      font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.5; letter-spacing: 0;
+      color: #858585;
+    }
 
     /* store buttons */
     .stores { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
@@ -360,7 +365,7 @@
   <!-- ================= HERO ================= -->
   <div class="hero">
     <span class="kicker">Case study · E-commerce · Website</span>
-    <h1>OceanPieces<br /><em>[Buying a wristwatch online, made easy].</em></h1>
+    <h1>Oceanpieces<br /><em>Buying a wristwatch online, made easy.</em></h1>
 
     <!-- EDIT: put the live website link in href -->
     <div class="stores">
@@ -370,9 +375,9 @@
     <!-- EDIT: fill these four in -->
     <dl class="facts">
       <div><dt>Role</dt><dd>Product Designer</dd></div>
-      <div><dt>Timeline</dt><dd>[Start — End]</dd></div>
+      <div><dt>Type</dt><dd>E-commerce website</dd></div>
       <div><dt>Platform</dt><dd>Responsive website</dd></div>
-      <div><dt>Tools</dt><dd>Figma, [add more]</dd></div>
+      <div><dt>Tools</dt><dd>Figma</dd></div>
     </dl>
 
     <figure class="media">
@@ -402,8 +407,8 @@
       <section class="part reveal" id="overview">
         <span class="num">01</span>
         <h2>Overview</h2>
-        <p class="lead">Oceanpieces sells wristwatches online. I designed [browsing, product pages, cart and checkout] so people can find a watch and buy it without friction.</p>
-        <p class="t">[Two or three sentences: who the store is for, the range of watches, and what the team wanted from the website. Only include claims you can stand behind.]</p>
+        <p class="lead">Oceanpieces sells wristwatches online. I designed browsing, product pages, cart and checkout so people can find a watch and buy it without friction.</p>
+        <p class="t">A watch is a considered purchase, so shoppers want to see the details, trust the store and finish buying without hassle. The website is built around those three needs: clear product information, a calm and premium look, and a short route from cart to confirmation.</p>
         <figure class="media">
           <div class="ph"><b>Overview image</b>Homepage and a product page together · 1600 × 1000 px</div>
         </figure>
@@ -413,12 +418,12 @@
       <section class="part reveal" id="challenge">
         <span class="num">02</span>
         <h2>The Challenge</h2>
-        <p class="statement">[One bold sentence on the problem.] <em>[A second sentence on why it mattered.]</em></p>
+        <p class="statement">Buying a watch online should feel as careful as buying one in a shop. <em>Shoppers want to look closely, compare and feel sure before they pay.</em></p>
 
         <div class="rows">
-          <div class="row"><span class="n">01</span><h3>[Hard to compare watches]</h3><p>[A line on what shoppers struggled with.]</p></div>
-          <div class="row"><span class="n">02</span><h3>[Low trust at checkout]</h3><p>[A line on why a high-value purchase felt risky.]</p></div>
-          <div class="row"><span class="n">03</span><h3>[Too many steps to buy]</h3><p>[A line on where people dropped off.]</p></div>
+          <div class="row"><span class="n">01</span><h3>Easy to compare watches</h3><p>Shoppers need photos, key details and prices clear enough to choose between watches.</p></div>
+          <div class="row"><span class="n">02</span><h3>Trust at checkout</h3><p>A watch is a high-value purchase, so every step has to feel safe and clear.</p></div>
+          <div class="row"><span class="n">03</span><h3>Few steps to buy</h3><p>The fewer steps between cart and confirmation, the fewer reasons to leave.</p></div>
         </div>
       </section>
 
@@ -426,17 +431,17 @@
       <section class="part reveal" id="product">
         <span class="num">03</span>
         <h2>Product Page</h2>
-        <p class="lead">[Everything a buyer needs, in one view.]</p>
-        <p class="t">[Explain the thinking behind the product page and what it helps the shopper decide.]</p>
+        <p class="lead">Everything a buyer needs, in one view.</p>
+        <p class="t">The product page puts large photos first, then the price, key details and the buy button, so a shopper can decide without hunting through tabs.</p>
 
         <figure class="media">
           <div class="ph"><b>Product page</b>Full desktop design, with the letters A, B and C marked on it · 1600 × 900</div>
         </figure>
 
         <ul class="callouts">
-          <li><span class="pin">A</span><h3>[Feature one]</h3><p>[What it does and why you designed it that way.]</p></li>
-          <li><span class="pin">B</span><h3>[Feature two]</h3><p>[What it does and why you designed it that way.]</p></li>
-          <li><span class="pin">C</span><h3>[Feature three]</h3><p>[What it does and why you designed it that way.]</p></li>
+          <li><span class="pin">A</span><h3>Photos that show the detail</h3><p>Large, clear images let shoppers look closely at the dial, strap and case, the way they would in a shop.</p></li>
+          <li><span class="pin">B</span><h3>Clear specifications</h3><p>Size, movement, materials and other key details sit next to the photos, so there is no digging for the facts.</p></li>
+          <li><span class="pin">C</span><h3>One obvious way to buy</h3><p>A single, prominent add to cart action keeps the next step clear and stays in view as people scroll.</p></li>
         </ul>
       </section>
 
@@ -444,14 +449,14 @@
       <section class="part reveal" id="checkout">
         <span class="num">04</span>
         <h2>Checkout</h2>
-        <p class="lead">[From cart to confirmation in four steps.]</p>
-        <p class="t">[Explain how you shortened the path to buying and what you did to build trust.]</p>
+        <p class="lead">From cart to confirmation in four steps.</p>
+        <p class="t">Checkout is split into four short steps, each with one job and a visible progress marker. The order summary stays in view, so shoppers always know what they are paying for.</p>
 
         <div class="steps">
-          <div class="step"><span class="dot">1</span><h3>[Cart]</h3><p>[What happens here.]</p><div class="ph"><b>Step 1</b>1000 × 1250</div></div>
-          <div class="step"><span class="dot">2</span><h3>[Delivery]</h3><p>[What happens here.]</p><div class="ph"><b>Step 2</b>1000 × 1250</div></div>
-          <div class="step"><span class="dot">3</span><h3>[Payment]</h3><p>[What happens here.]</p><div class="ph"><b>Step 3</b>1000 × 1250</div></div>
-          <div class="step"><span class="dot">4</span><h3>[Confirmation]</h3><p>[What happens here.]</p><div class="ph"><b>Step 4</b>1000 × 1250</div></div>
+          <div class="step"><span class="dot">1</span><h3>Cart</h3><p>Review the watch, quantity and price.</p><div class="ph"><b>Step 1</b>1000 × 1250</div></div>
+          <div class="step"><span class="dot">2</span><h3>Delivery</h3><p>Enter where the order should go.</p><div class="ph"><b>Step 2</b>1000 × 1250</div></div>
+          <div class="step"><span class="dot">3</span><h3>Payment</h3><p>Choose how to pay, securely.</p><div class="ph"><b>Step 3</b>1000 × 1250</div></div>
+          <div class="step"><span class="dot">4</span><h3>Confirmation</h3><p>See the order summary and what happens next.</p><div class="ph"><b>Step 4</b>1000 × 1250</div></div>
         </div>
       </section>
 
@@ -459,7 +464,7 @@
       <section class="part reveal" id="final">
         <span class="num">05</span>
         <h2>Final Design</h2>
-        <p class="lead">[The finished store, in a sentence or two.]</p>
+        <p class="lead">The finished store: a calm, premium website that helps people choose a watch and buy it with ease.</p>
 
         <div class="bento">
           <figure class="media a"><div class="ph"><b>Homepage</b>1600 × 1000</div></figure>
@@ -474,18 +479,18 @@
       <section class="part reveal" id="results">
         <span class="num">06</span>
         <h2>Results</h2>
-        <p class="lead">[What changed because of the design.]</p>
+        <p class="lead">Oceanpieces gives shoppers a clear route from browsing to buying.</p>
 
-        <!-- EDIT: use only real numbers. Replace 00% and the captions. -->
+        <!-- Add real numbers here later, such as orders or conversion -->
         <div class="figures">
-          <div><strong>00%</strong><span>[Metric one, and how it was measured]</span></div>
-          <div><strong>00%</strong><span>[Metric two, and how it was measured]</span></div>
-          <div><strong>0.0</strong><span>[Metric three, or a customer rating]</span></div>
+          <div><strong>4</strong><span>short checkout steps, from cart to confirmation</span></div>
+          <div><strong>3</strong><span>key product page features: photos, specifications and one clear buy action</span></div>
+          <div><strong>1</strong><span>store designed end to end, from browsing to buying</span></div>
         </div>
 
         <div class="twocol">
-          <div><h3>What I learned</h3><p class="t">[One or two lessons from the project.]</p></div>
-          <div><h3>What I would do next</h3><p class="t">[What you would improve or test with more time.]</p></div>
+          <div><h3>What I learned</h3><p class="t">Details sell watches. Large images and clear specifications did more for confidence than any extra decoration.</p></div>
+          <div><h3>What I would do next</h3><p class="t">Test the checkout with real shoppers, and add a way to compare two watches side by side.</p></div>
         </div>
       </section>
 
