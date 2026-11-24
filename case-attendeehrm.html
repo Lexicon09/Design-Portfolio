@@ -370,10 +370,6 @@
       <div><dt>Platform</dt><dd>Website (responsive)</dd></div>
       <div><dt>Tools</dt><dd>Figma</dd></div>
     </dl>
-
-    <figure class="media">
-      <div class="ph"><b>Hero image</b>Redesigned homepage on a laptop · 2100 × 900 px</div>
-    </figure>
   </div>
 
   <!-- ================= BODY ================= -->
@@ -383,11 +379,12 @@
       <p>On this page</p>
       <ul id="toc">
         <li><a href="#overview">Overview</a></li>
-        <li><a href="#audit">The Audit</a></li>
+        <li><a href="#problem">The Problem</a></li>
+        <li><a href="#solution">The Solution</a></li>
         <li><a href="#structure">Page Structure</a></li>
         <li><a href="#homepage">Homepage</a></li>
         <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#system">Design System</a></li>
+        <li><a href="#features">Features</a></li>
         <li><a href="#results">Results</a></li>
       </ul>
       <div class="bar"><span id="progress"></span></div>
@@ -402,18 +399,36 @@
         <p class="lead">AttendeeHRM is a cloud-based HR platform for attendance, payroll, leave, recruitment and employee self-service, built for growing businesses. I redesigned its marketing website so visitors can understand the product quickly and book a demo or start a trial.</p>
         <p class="t">A business owner or HR manager lands on the site with one question: can this run our attendance, payroll and people processes? The redesign answers that quickly, then points to the two next steps that matter, booking a demo or starting a free trial.</p>
         <figure class="media">
-          <div class="ph"><b>Overview image</b>Old and new homepage side by side · 1600 × 1000 px</div>
+          <img src="IMGs/overview-attendee.webp" alt="overview" style="--r:4/5 border-radius 24px" />        
         </figure>
       </section>
 
-      <!-- 02 THE AUDIT -->
-      <section class="part reveal" id="audit">
+      <!-- 02 THE PROBLEM -->
+      <section class="part reveal" id="problem">
         <span class="num">02</span>
-        <h2>The Audit</h2>
-        <p class="lead">The redesign set out to fix three things on the existing website.</p>
+        <h2>The Problem</h2>
+        <p class="lead">The old website made visitors work to understand what AttendeeHRM does and what to do next.</p>
+        <p class="t">HR software is a big decision, and buyers compare several options before they ask for a demo. If a site doesn't explain the product fast, they leave for one that does.</p>
+
+        <div class="cards">
+          <div class="card"><span class="n">1</span><h3>The message was unclear</h3><p>Visitors couldn't tell within a few seconds what the product does or who it is for.</p></div>
+          <div class="card"><span class="n">2</span><h3>Content was hard to scan</h3><p>Features, benefits and pricing weren't grouped, so people had to read a lot to find what mattered to them.</p></div>
+          <div class="card"><span class="n">3</span><h3>The next step was hidden</h3><p>Booking a demo or starting a trial wasn't obvious, so interested visitors had no clear way forward.</p></div>
+        </div>
 
         <figure class="media">
-          <div class="ph"><b>Existing site</b>Screenshot of the old homepage with problems marked 1, 2 and 3 · 1600 × 1000</div>
+          <img src="IMGs/existing-attendee.webp" alt="existing" style="--r:4/5 border-radius 24px" />        
+        </figure>
+      </section>
+
+      <!-- 03 THE SOLUTION -->
+      <section class="part reveal" id="solution">
+        <span class="num">03</span>
+        <h2>The Solution</h2>
+        <p class="lead">The redesign answers each problem with one clear change.</p>
+
+        <figure class="media">
+          <img src="IMGs/solution-attendee.webp" alt="solution" style="--r:4/5 border-radius 24px" />        
         </figure>
 
         <div class="rows">
@@ -423,9 +438,9 @@
         </div>
       </section>
 
-      <!-- 03 PAGE STRUCTURE -->
+      <!-- 04 PAGE STRUCTURE -->
       <section class="part reveal" id="structure">
-        <span class="num">03</span>
+        <span class="num">04</span>
         <h2>Page Structure</h2>
         <p class="lead">The page follows the questions a business owner asks, in the order they ask them.</p>
         <p class="t">What is it? Who trusts it? What can it do? Why switch? What does it cost? What do other customers say? What if I still have questions? Each section below answers one of these, and the page ends with a way forward.</p>
@@ -440,21 +455,17 @@
           <li>FAQs<small>Answers before the demo</small></li>
           <li>Final call to action<small>Book a demo or start a trial</small></li>
         </ol>
-
-        <figure class="media">
-          <div class="ph"><b>Sitemap or wireframes</b>Low-fidelity layouts · 1600 × 900 px</div>
-        </figure>
       </section>
 
-      <!-- 04 HOMEPAGE -->
+      <!-- 05 HOMEPAGE -->
       <section class="part reveal" id="homepage">
-        <span class="num">04</span>
+        <span class="num">05</span>
         <h2>Homepage</h2>
         <p class="lead">The hero now says what the product does and offers three clear next steps.</p>
 
         <div class="ba">
-          <figure class="media"><div class="ph" style="--r:4/5"><b>Before</b>Old hero · 1000 × 1250</div><figcaption><b>Before:</b> the earlier homepage hero.</figcaption></figure>
-          <figure class="media"><div class="ph" style="--r:4/5"><b>After</b>New hero · 1000 × 1250</div><figcaption><b>After:</b> a clear headline, short supporting line, three actions and a product video.</figcaption></figure>
+          <figure class="media"><img src="IMGs/before-attendee.webp" alt="before" style="--r:4/5 border-radius 24px" />        <figcaption><b>Before:</b> the earlier homepage hero.</figcaption></figure>
+          <figure class="media"><img src="IMGs/after-attendee.webp" alt="after" style="--r:4/5 border-radius 24px" />        <figcaption><b>After:</b> a clear headline, short supporting line, three actions and a product image.</figcaption></figure>
         </div>
 
         <ul class="callouts">
@@ -462,45 +473,43 @@
           <li><span class="pin">B</span><h3>Feature tabs</h3><p>Features are grouped under People, Workforce and Business, so each visitor can go straight to what they care about. Every card has three short points and a Learn more link.</p></li>
           <li><span class="pin">C</span><h3>Calls to action</h3><p>Book a demo, Start free trial and Get the app sit together in the hero, then return in the middle of the page and at the end.</p></li>
         </ul>
-
-        <figure class="media">
-          <div class="ph"><b>Full homepage</b>Complete redesigned page · 1600 × 2400</div>
-        </figure>
       </section>
 
-      <!-- 05 PRICING -->
+      <!-- 06 PRICING -->
       <section class="part reveal" id="pricing">
-        <span class="num">05</span>
+        <span class="num">06</span>
         <h2>Pricing</h2>
         <p class="lead">Pricing is per employee and depends on which modules a business picks, so the page had to make that easy to understand.</p>
         <p class="t">Businesses can choose between paying as they use and a bundled plan, switch modules on or off, and watch the total for their team size update straight away. When one module needs another, the dependent ones switch on with it, and settings, payments and billing are always included. A yearly toggle shows the 15% saving.</p>
 
         <figure class="media">
-          <div class="ph"><b>Pricing page</b>Plan and module selector · 1600 × 1000</div>
+          <img src="IMGs/pricing-attendee.webp" alt="pricing" style="--r:4/5 border-radius 24px" />        
         </figure>
 
-        <div class="modules">
-          <figure class="media"><div class="ph"><b>Module cards</b>1200 × 900</div></figure>
-          <figure class="media"><div class="ph"><b>Price calculator</b>1200 × 900</div></figure>
-          <figure class="media"><div class="ph"><b>Monthly / yearly</b>1200 × 900</div></figure>
-        </div>
       </section>
 
-      <!-- 06 DESIGN SYSTEM -->
-      <section class="part reveal" id="system">
-        <span class="num">06</span>
-        <h2>Design System</h2>
-        <p class="lead">One set of type, colour and components keeps every page looking like the same product, and makes new pages quick to add.</p>
-
-        <div class="specimen">
-          <figure class="media"><div class="ph"><b>Typography</b>Fonts and sizes · 1400 × 900</div></figure>
-          <figure class="media"><div class="ph"><b>Components</b>Buttons, cards, forms · 1000 × 900</div></figure>
-        </div>
-      </section>
-
-      <!-- 07 RESULTS -->
-      <section class="part reveal" id="results">
+      <!-- 07 FEATURES -->
+      <section class="part reveal" id="features">
         <span class="num">07</span>
+        <h2>Features</h2>
+        <p class="lead">Features are grouped under People, Workforce and Business, so each visitor can go straight to what matters to them.</p>
+
+        <figure class="media">
+          <img src="IMGs/feature1-attendee.webp" alt="features" style="--r:4/5 border-radius 24px" />        
+        </figure>
+
+        <figure class="media">
+          <img src="IMGs/feature2-attendee.webp" alt="features" style="--r:4/5 border-radius 24px" />        
+        </figure>
+
+        <figure class="media">
+          <img src="IMGs/feature3-attendee.webp" alt="features" style="--r:4/5 border-radius 24px" />        
+        </figure>
+      </section>
+
+      <!-- 08 RESULTS -->
+      <section class="part reveal" id="results">
+        <span class="num">08</span>
         <h2>Results</h2>
         <p class="lead">The redesigned site gives visitors a clear path from first impression to demo or trial.</p>
 
@@ -509,11 +518,6 @@
           <div><strong>8</strong><span>homepage sections, each answering one question a buyer has</span></div>
           <div><strong>3</strong><span>calls to action: book a demo, start a free trial, get the app</span></div>
           <div><strong>15%</strong><span>yearly saving, shown clearly in the pricing section</span></div>
-        </div>
-
-        <div class="twocol">
-          <div><h3>What I learned</h3><p class="t">A pricing page is a design problem as much as a content one. Showing what changes when you add a module matters more than listing every price.</p></div>
-          <div><h3>What I would do next</h3><p class="t">Test the page with real HR managers, find out which call to action brings the most demo requests, and add a page for each module.</p></div>
         </div>
       </section>
 
