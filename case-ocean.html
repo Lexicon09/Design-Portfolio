@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- fonts load without blocking the page -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" /></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&display=swap" /></noscript>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,15 +34,12 @@
     .topbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 50;
       height: 66px; padding: 0 7.8vw;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: flex-end;
       background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s;
     }
     .topbar.scrolled { border-color: var(--line); }
-
-    .logo { font-family: "Mrs Saint Delafield", cursive; font-size: 40px; line-height: 1; color: var(--ink); text-decoration: none; }
-    .logo i { font-style: normal; color: var(--accent); }
 
     .back {
       display: inline-flex; align-items: center; gap: 8px;
@@ -125,8 +122,6 @@
     .facts div + div { padding-left: 20px; border-left: 1px solid var(--line); }
     .facts dt { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); }
     .facts dd { margin-top: 6px; font-size: 15px; font-weight: 500; }
-
-    .hero .media { margin-top: 40px; --r: 21 / 9; }
 
     /* ---------- page grid: sticky side nav + story ---------- */
     .layout {
@@ -333,7 +328,6 @@
       .facts { grid-template-columns: 1fr 1fr; }
       .facts div:nth-child(3) { padding-left: 0; border-left: 0; }
       .facts div:nth-child(n+3) { border-top: 1px solid var(--line); }
-      .hero .media { --r: 4 / 3; }
       .cards, .grid2, .grid3, .stats, .ba { grid-template-columns: 1fr; }
       .row { grid-template-columns: 40px 1fr; }
       .row p { grid-column: 2; }
@@ -358,7 +352,6 @@
 <body>
 
   <header class="topbar" id="topbar">
-    <a class="logo" href="index.html" aria-label="Samuel, home">Samuel<i>.</i></a>
     <a class="back" href="work.html"><span aria-hidden="true">←</span> All work</a>
   </header>
 
@@ -369,7 +362,7 @@
 
     <!-- EDIT: put the live website link in href -->
     <div class="stores">
-      <a class="live" href="#" target="_blank" rel="noopener">Visit live site <span aria-hidden="true">↗</span></a>
+      <a class="live" href="https://www.oceanpieces.com.ng/" target="_blank" rel="noopener">Visit live site <span aria-hidden="true">↗</span></a>
     </div>
 
     <!-- EDIT: fill these four in -->
@@ -379,10 +372,6 @@
       <div><dt>Platform</dt><dd>Responsive website</dd></div>
       <div><dt>Tools</dt><dd>Figma</dd></div>
     </dl>
-
-    <figure class="media">
-      <div class="ph"><b>Hero image</b>Homepage on a laptop and phone · 2100 × 900 px</div>
-    </figure>
   </div>
 
   <!-- ================= BODY ================= -->
@@ -405,13 +394,13 @@
 
       <!-- 01 OVERVIEW -->
       <section class="part reveal" id="overview">
+        <figure class="media" style="margin-top:0; margin-bottom:40px;">
+          <div class="ph"><b>Overview image</b>Homepage and a product page together · 1600 × 1000 px</div>
+        </figure>
         <span class="num">01</span>
         <h2>Overview</h2>
         <p class="lead">Oceanpieces sells wristwatches online. I designed browsing, product pages, cart and checkout so people can find a watch and buy it without friction.</p>
         <p class="t">A watch is a considered purchase, so shoppers want to see the details, trust the store and finish buying without hassle. The website is built around those three needs: clear product information, a calm and premium look, and a short route from cart to confirmation.</p>
-        <figure class="media">
-          <div class="ph"><b>Overview image</b>Homepage and a product page together · 1600 × 1000 px</div>
-        </figure>
       </section>
 
       <!-- 02 THE CHALLENGE -->
@@ -435,7 +424,7 @@
         <p class="t">The product page puts large photos first, then the price, key details and the buy button, so a shopper can decide without hunting through tabs.</p>
 
         <figure class="media">
-          <div class="ph"><b>Product page</b>Full desktop design, with the letters A, B and C marked on it · 1600 × 900</div>
+          <img src="IMGs/productpage-ocean.webp" alt="final" style="--r:4/5 border-radius 24px" />        
         </figure>
 
         <ul class="callouts">
@@ -449,15 +438,11 @@
       <section class="part reveal" id="checkout">
         <span class="num">04</span>
         <h2>Checkout</h2>
-        <p class="lead">From cart to confirmation in four steps.</p>
-        <p class="t">Checkout is split into four short steps, each with one job and a visible progress marker. The order summary stays in view, so shoppers always know what they are paying for.</p>
+        <p class="t">The checkout page provides a clear breakdown of the order, including product details, subtotal, shipping fees, and total cost. Customers can select their preferred delivery location, view bank transfer details, and submit payment receipts to complete their purchase.</p>
 
-        <div class="steps">
-          <div class="step"><span class="dot">1</span><h3>Cart</h3><p>Review the watch, quantity and price.</p><div class="ph"><b>Step 1</b>1000 × 1250</div></div>
-          <div class="step"><span class="dot">2</span><h3>Delivery</h3><p>Enter where the order should go.</p><div class="ph"><b>Step 2</b>1000 × 1250</div></div>
-          <div class="step"><span class="dot">3</span><h3>Payment</h3><p>Choose how to pay, securely.</p><div class="ph"><b>Step 3</b>1000 × 1250</div></div>
-          <div class="step"><span class="dot">4</span><h3>Confirmation</h3><p>See the order summary and what happens next.</p><div class="ph"><b>Step 4</b>1000 × 1250</div></div>
-        </div>
+        <figure class="media">
+          <img src="IMGs/checkout-ocean.webp" alt="final" style="--r:4/5 border-radius 24px" />        
+        </figure>
       </section>
 
       <!-- 05 FINAL DESIGN -->
@@ -466,13 +451,9 @@
         <h2>Final Design</h2>
         <p class="lead">The finished store: a calm, premium website that helps people choose a watch and buy it with ease.</p>
 
-        <div class="bento">
-          <figure class="media a"><div class="ph"><b>Homepage</b>1600 × 1000</div></figure>
-          <figure class="media b"><div class="ph"><b>Mobile</b>Collection · 900 × 1600</div></figure>
-          <figure class="media c"><div class="ph"><b>Mobile</b>Product · 900 × 1600</div></figure>
-          <figure class="media d"><div class="ph"><b>Collection page</b>Filters and sorting · 1400 × 800</div></figure>
-          <figure class="media e"><div class="ph"><b>Cart</b>Cart and order summary · 1400 × 800</div></figure>
-        </div>
+        <figure class="media">
+          <img src="IMGs/full page-ocean.webp" alt="final" style="--r:4/5 border-radius 24px" />        
+        </figure>
       </section>
 
       <!-- 06 RESULTS -->
