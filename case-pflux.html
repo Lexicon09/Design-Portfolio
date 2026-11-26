@@ -22,7 +22,7 @@
       --line: #e4e4e2;
       --tint: #efefea;
       --accent: #ff6a2b;
-      --brand: #2f6cf0;                 /* Cino blue: change to the project's real brand colour */
+      --brand: #e8711f;                 /* Pflux orange */
       --head: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
       --body: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
     }
@@ -50,6 +50,7 @@
       border: 1px solid var(--line); background: #fff;
       color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 500;
       transition: background 0.2s, color 0.2s;
+      margin-left: auto;
     }
     .back:hover { background: var(--ink); color: #fff; }
 
@@ -61,7 +62,7 @@
       display: block; width: 100%;
       border-radius: 14px;
       aspect-ratio: var(--r, 16 / 10);
-      object-fit: cover;
+      object-fit: contain;
     }
     .ph {
       position: relative;
@@ -179,6 +180,7 @@
     .part p.t { margin-top: 18px; max-width: 680px; font-size: 16px; line-height: 1.7; color: #55575b; }
 
     .part .media { margin-top: 40px; }
+    #overview .media { margin-top: 0; margin-bottom: 56px; }   /* image sits above the 01 text */
 
     /* ---------- reusable blocks ---------- */
     .cards { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -223,8 +225,16 @@
     .ba figcaption b { color: var(--ink); font-weight: 600; }
 
     /* solution: screens on a tinted stage */
-    .stage { margin-top: 40px; padding: 40px; border-radius: 18px; background: linear-gradient(160deg, #4d8dff, var(--brand)); }
+    .stage { margin-top: 40px; padding: 40px; border-radius: 18px; background: linear-gradient(160deg, #f6a867, var(--brand)); }
     .stage .grid3 { margin-top: 0; }
+    .grid4, .grid5 { display: grid; }
+    .stage .grid4 { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .stage .grid5 { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .stage .grid5 .ph { padding: 10px; font-size: 11px; }
+    .stage .grid5 .ph b { font-size: 12px; }
+    .part h3.sub { margin-top: 48px; font-size: 17px; }
+    .part h3.sub + .stage { margin-top: 16px; }
+    .part h3.sub + .grid3 { margin-top: 16px; }
     .stage .ph { background: repeating-linear-gradient(135deg, rgba(255,255,255,0.12) 0 12px, transparent 12px 24px), rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.5); color: #fff; }
     .stage .ph b { color: #fff; }
 
@@ -250,6 +260,8 @@
     .zt p { margin-top: 10px; font-size: 15px; line-height: 1.65; color: #6b6b66; }
     .zrow .media { margin-top: 0 !important; }
     .zrow .ph { --r: 4 / 3; }
+    .zrow .media img { aspect-ratio: auto; height: auto; }
+    .shotzig .zrow .ph { --r: 9 / 10; }   /* same card shape as the Cino Design Decisions cards */
 
     .lanes { margin-top: 40px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
     .lane { display: grid; grid-template-columns: 96px repeat(4, 1fr); }
@@ -349,8 +361,14 @@
       .screens .pair, .screens .pair.rev { grid-template-columns: 1fr; }
       .screens .pair .ph { min-height: 220px; }
       .rules li { grid-template-columns: 1fr; gap: 6px; }
+      .grid3.shots { grid-template-columns: repeat(2, 1fr); gap: 10px; }   /* screens stay 2 across on phones */
       .stage { padding: 20px; }
       .stage .grid3 { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .stage .grid4 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      /* five phones: three on the first row, two centred below */
+      .stage .grid5 { grid-template-columns: repeat(6, 1fr); gap: 8px; }
+      .stage .grid5 > * { grid-column: span 2; }
+      .stage .grid5 > :nth-child(4) { grid-column: 2 / span 2; }
       .stage .ph { padding: 8px; font-size: 11px; }
       .stage .ph b { font-size: 12px; }
       .next { padding: 36px 5vw 48px; }
@@ -361,7 +379,6 @@
 <body>
 
   <header class="topbar" id="topbar">
-    <a class="logo" href="index.html" aria-label="Samuel, home">Samuel<i>.</i></a>
     <a class="back" href="work.html"><span aria-hidden="true">←</span> All work</a>
   </header>
 
@@ -370,20 +387,12 @@
     <span class="kicker">Personal project · Mobile app · Fintech</span>
     <h1>Pflux<br /><em>Paying your bills, without the stress.</em></h1>
 
-    <div class="stores">
-      <a class="live" href="#" target="_blank" rel="noopener">View prototype <span aria-hidden="true">↗</span></a>
-    </div>
-
     <dl class="facts">
       <div><dt>Role</dt><dd>Designer (solo)</dd></div>
       <div><dt>Type</dt><dd>Personal project</dd></div>
       <div><dt>Platform</dt><dd>Mobile (iOS &amp; Android)</dd></div>
       <div><dt>Tools</dt><dd>Figma</dd></div>
     </dl>
-
-    <figure class="media">
-      <div class="ph"><b>Hero image</b>App screens on a phone mockup · 2100 × 900 px</div>
-    </figure>
   </div>
 
   <!-- ================= BODY ================= -->
@@ -395,7 +404,6 @@
         <li><a href="#overview">Overview</a></li>
         <li><a href="#idea">The Idea</a></li>
         <li><a href="#flows">Key Flows</a></li>
-        <li><a href="#interface">Interface</a></li>
         <li><a href="#screens">Final Screens</a></li>
         <li><a href="#reflection">Reflection</a></li>
       </ul>
@@ -406,13 +414,13 @@
 
       <!-- 01 OVERVIEW -->
       <section class="part reveal" id="overview">
-        <span class="num">01</span>
-        <h2>Overview</h2>
-        <p class="lead">Pflux is a bills payment app I designed on my own, as a personal project, to practise end-to-end product design for everyday money tasks.</p>
-        <p class="t">I designed Pflux on my own to practise building a complete mobile product, from the first idea to the final screens. It focuses on one job, paying everyday bills such as airtime, data and electricity quickly and with confidence.</p>
         <figure class="media">
           <div class="ph"><b>Overview image</b>Home screen and payment flow together · 1600 × 1000 px</div>
         </figure>
+        <span class="num">01</span>
+        <h2>Overview</h2>
+        <p class="lead">Pflux is a bills payment app I designed on my own, as a personal project, to practise end-to-end product design for everyday money tasks.</p>
+        <p class="t">I designed Pflux on my own to practise building a complete mobile product, from the first idea to the final screens. It is a wallet-based app for paying everyday bills such as airtime, internet, TV and electricity, quickly and with confidence.</p>
       </section>
 
       <!-- 02 THE IDEA -->
@@ -432,65 +440,51 @@
       <section class="part reveal" id="flows">
         <span class="num">03</span>
         <h2>Key Flows</h2>
-        <p class="lead">Three journeys matter most: paying, paying again and checking back.</p>
+        <p class="lead">Three journeys matter most: paying, signing up and checking back.</p>
 
         <div class="zig">
           <div class="zrow">
-            <div class="zt"><span class="n">A</span><h3>Paying a bill</h3><p>Choose a service, enter the details, review and pay. Each step asks for one thing, and the final review shows the amount and recipient before anything is charged.</p></div>
-            <figure class="media"><div class="ph"><b>Pay a bill</b>1200 × 900</div></figure>
+            <div class="zt"><span class="n">A</span><h3>Homepage</h3><p>Explore your Pflux dashboard to access essential services, manage your wallet, make payments, and track transactions, all from one convenient place.</p></div>
+            <figure class="media"><img src="IMGs/paying a bill-pflux.webp" alt="pay a bill" /></figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">B</span><h3>Saved billers and repeat payments</h3><p>Billers you have paid before are saved, so paying again takes a tap, with the details already filled in.</p></div>
-            <figure class="media"><div class="ph"><b>Saved billers</b>1200 × 900</div></figure>
+            <div class="zt"><span class="n">B</span><h3>Creating an account</h3><p>Creating an account on Pflux is quick and easy. Simply enter your full name, email address, phone number, and create a secure password. Confirm your password to complete registration and access your Pflux account.</p></div>
+            <figure class="media"><img src="IMGs/creating an account-pflux.webp" alt="create an account" /></figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">C</span><h3>Receipts and history</h3><p>Every payment ends with a clear confirmation and a receipt, and past payments are easy to find in history.</p></div>
-            <figure class="media"><div class="ph"><b>History</b>1200 × 900</div></figure>
+            <div class="zt"><span class="n">C</span><h3>Paying a bill</h3><p>Choose a service, pick a provider, enter the amount, then confirm and enter a payment PIN. Each step asks for one thing, and the confirmation sheet shows the product, amount and number before anything is charged.</p></div>
+            <figure class="media"><img src="IMGs/bill payment-pflux.webp" alt="bill" /></figure>
           </div>
         </div>
       </section>
 
-      <!-- 04 INTERFACE -->
-      <section class="part reveal" id="interface">
-        <span class="num">04</span>
-        <h2>Interface</h2>
-        <p class="lead">A clean, calm interface that lets the amount and the action stand out.</p>
-
-        <figure class="media wide">
-          <div class="ph"><b>Style board</b>Colours, type, icons, buttons, components · 2100 × 900 px</div>
-        </figure>
-
-        <div class="twocol">
-          <div><h3>Colour &amp; type</h3><p class="t">Simple type and a restrained palette keep the focus on amounts and buttons, which is what people check before they pay.</p></div>
-          <div><h3>Small details</h3><p class="t">Loading, success and error screens say exactly what happened and what to do next, which matters most when money is involved.</p></div>
-        </div>
-      </section>
-
-      <!-- 05 FINAL SCREENS -->
+      <!-- 04 FINAL SCREENS -->
       <section class="part reveal" id="screens">
-        <span class="num">05</span>
+        <span class="num">04</span>
         <h2>Final Screens</h2>
-        <p class="lead">Pflux takes someone from choosing a bill to a confirmed payment in a few steps. From the home screen they pick a bill, pay and get a receipt.</p>
+        <p class="lead">Pflux takes someone from sign-up to a confirmed payment in a few steps. They fund their wallet, pick a service, confirm and pay with a PIN.</p>
 
-        <div class="stage">
-          <div class="grid3">
-            <div class="ph" style="--r:9/19"><b>Home</b>900 × 1900</div>
-            <div class="ph" style="--r:9/19"><b>Pay bill</b>900 × 1900</div>
-            <div class="ph" style="--r:9/19"><b>Success</b>900 × 1900</div>
-          </div>
+        <div class="ba">
+          <figure class="media"><img src="IMGs/final1-pflux.webp" alt="final" style="--r:4/5 border-radius 24px" /></figure>
+          <figure class="media"><img src="IMGs/final2-pflux.webp" alt="final" style="--r:4/5 border-radius 24px" /></figure>
         </div>
-
-        <p class="t">Saved billers make repeat payments quick, the review screen prevents mistakes before money moves, and history lets people find any payment later.</p>
-
-        <figure class="media">
-          <div class="ph"><b>Prototype or video</b>Screen recording of the full flow · 1600 × 1000</div>
-          <figcaption>The full flow, from choosing a bill to the receipt.</figcaption>
-        </figure>
+        <div class="ba">
+          <figure class="media"><img src="IMGs/creating an account-pflux.webp" alt="final" style="--r:4/5 border-radius 24px" /></figure>
+          <figure class="media"><img src="IMGs/paying a bill-pflux.webp" alt="final" style="--r:4/5 border-radius 24px" /></figure>
+        </div>
+        <div class="ba">
+          <figure class="media"><img src="IMGs/final3-pflux.webp" alt="final" style="--r:4/5 border-radius 24px" /></figure>
+          <figure class="media"><img src="IMGs/final4-pflux.webp" alt="final" style="--r:4/5 border-radius 24px" /></figure>
+        </div>
+        <div class="ba">
+          <figure class="media"><img src="IMGs/final5-pflux.webp" alt="final" style="--r:4/5 border-radius 24px" /></figure>
+           <figure class="media"><img src="IMGs/final6-pflux.webp" alt="final" style="--r:4/5 border-radius 24px" /></figure>
+        </div>
       </section>
 
-      <!-- 06 REFLECTION -->
+      <!-- 05 REFLECTION -->
       <section class="part reveal" id="reflection">
-        <span class="num">06</span>
+        <span class="num">05</span>
         <h2>Reflection</h2>
         <p class="lead">What I took from a project with no client and no brief.</p>
 
