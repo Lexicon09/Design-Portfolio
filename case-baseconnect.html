@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- fonts load without blocking the page -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" /></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&display=swap" /></noscript>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,15 +34,12 @@
     .topbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 50;
       height: 66px; padding: 0 7.8vw;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: flex-end;
       background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s;
     }
     .topbar.scrolled { border-color: var(--line); }
-
-    .logo { font-family: "Mrs Saint Delafield", cursive; font-size: 40px; line-height: 1; color: var(--ink); text-decoration: none; }
-    .logo i { font-style: normal; color: var(--accent); }
 
     .back {
       display: inline-flex; align-items: center; gap: 8px;
@@ -125,8 +122,6 @@
     .facts div + div { padding-left: 20px; border-left: 1px solid var(--line); }
     .facts dt { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); }
     .facts dd { margin-top: 6px; font-size: 15px; font-weight: 500; }
-
-    .hero .media { margin-top: 40px; --r: 21 / 9; }
 
     /* ---------- page grid: sticky side nav + story ---------- */
     .layout {
@@ -232,24 +227,37 @@
     .live { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 28px; border-radius: 999px; background: var(--ink); color: #fff; text-decoration: none; font-size: 16px; transition: transform 0.25s, opacity 0.25s; }
     .live:hover { transform: translateY(-2px); opacity: 0.9; }
 
-    .sides { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-    .side { padding: 28px 26px 30px; }
-    .side + .side { border-left: 1px solid var(--line); background: #fafaf7; }
+    .sides { margin-top: 40px; display: grid; grid-template-columns: 1fr; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .side { padding: 32px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 36px; align-items: center; }
+    .side__text { min-width: 0; }
+    .side + .side { border-top: 1px solid var(--line); background: #fafaf7; }
     .side .who { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); }
     .side h3 { margin-top: 12px; font-size: 22px; letter-spacing: -0.04em; }
     .side ul { margin-top: 16px; display: grid; gap: 11px; }
     .side li { list-style: none; position: relative; padding-left: 22px; font-size: 15px; line-height: 1.55; color: #6b6b66; }
     .side li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
-    .side .ph { margin-top: 22px; --r: 4 / 3; }
+    .side .ph { margin-top: 0; --r: 16 / 10; }
 
-    .zig { margin-top: 40px; display: grid; gap: 50px; }
-    .zrow { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
-    .zrow:nth-child(even) .zt { order: 2; }
+    /* image slot: drop a file into the images folder with the name used in the HTML and it fills the box.
+       If the file is missing, the placeholder stays visible. */
+    .ph img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      aspect-ratio: auto;
+      object-fit: cover;            /* fills the box; use "contain" to show the whole image with no cropping */
+      object-position: top center;  /* keeps the top of a screenshot in view */
+      border-radius: 0;
+    }
+    .ph.filled { padding: 0; border: 0; overflow: hidden; background: none; }
+
+    .zig { margin-top: 40px; display: grid; gap: 70px; }
+    .zrow { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    .zt { max-width: 680px; }
     .zt .n { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: 22px; color: var(--accent); }
     .zt h3 { margin-top: 6px; font-size: 22px; letter-spacing: -0.04em; }
     .zt p { margin-top: 10px; font-size: 15px; line-height: 1.65; color: #6b6b66; }
     .zrow .media { margin-top: 0 !important; }
-    .zrow .ph { --r: 4 / 3; }
+    .zrow .ph { --r: 16 / 10; }
 
     .lanes { margin-top: 40px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
     .lane { display: grid; grid-template-columns: 96px repeat(4, 1fr); }
@@ -261,12 +269,8 @@
     .lane.head > div { padding: 11px 14px; background: #fafaf7; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); }
     .lane b { display: block; color: var(--ink); font-family: var(--head); font-weight: 500; font-size: 15px; margin-bottom: 4px; letter-spacing: -0.02em; }
 
-    .screens { margin-top: 40px; display: grid; gap: 14px; }
+    .screens { margin-top: 40px; display: flex; flex-direction: column; gap: 40px; }
     .screens .media { margin-top: 0; }
-    .screens .pair { display: grid; grid-template-columns: 1.6fr 1fr; gap: 14px; }
-    .screens .pair.rev { grid-template-columns: 1fr 1.6fr; }
-    .screens .pair .ph { height: 100%; aspect-ratio: auto; min-height: 260px; }
-    .screens .wide .ph { --r: 21 / 9; }
 
     .figures { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .figures div { padding: 30px 22px 30px 0; }
@@ -336,18 +340,15 @@
       .facts { grid-template-columns: 1fr 1fr; }
       .facts div:nth-child(3) { padding-left: 0; border-left: 0; }
       .facts div:nth-child(n+3) { border-top: 1px solid var(--line); }
-      .hero .media { --r: 4 / 3; }
       .cards, .grid2, .grid3, .stats, .ba { grid-template-columns: 1fr; }
-      .sides, .zrow, .figures, .twocol { grid-template-columns: 1fr; }
-      .side + .side { border-left: 0; border-top: 1px solid var(--line); }
-      .zrow { gap: 18px; }
-      .zrow:nth-child(even) .zt { order: 0; }
+      .sides, .figures, .twocol { grid-template-columns: 1fr; }
+      .side { grid-template-columns: 1fr; gap: 22px; padding: 24px 20px; }
+      .zig { gap: 50px; }
+      .screens { gap: 28px; }
       .lanes { overflow-x: auto; }
       .lane { min-width: 700px; }
       .figures div, .figures div + div { padding: 22px 0; border-left: 0; }
       .figures div + div { border-top: 1px solid var(--line); }
-      .screens .pair, .screens .pair.rev { grid-template-columns: 1fr; }
-      .screens .pair .ph { min-height: 220px; }
       .rules li { grid-template-columns: 1fr; gap: 6px; }
       .stage { padding: 20px; }
       .stage .grid3 { grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -360,7 +361,6 @@
 <body>
 
   <header class="topbar" id="topbar">
-    <a class="logo" href="index.html" aria-label="Samuel, home">Samuel<i>.</i></a>
     <a class="back" href="work.html"><span aria-hidden="true">←</span> All work</a>
   </header>
 
@@ -380,10 +380,6 @@
       <div><dt>Platform</dt><dd>Web (responsive)</dd></div>
       <div><dt>Tools</dt><dd>Figma</dd></div>
     </dl>
-
-    <figure class="media">
-      <div class="ph"><b>Hero image</b>Marketplace homepage or dashboard on a laptop · 2100 × 900 px</div>
-    </figure>
   </div>
 
   <!-- ================= BODY ================= -->
@@ -406,13 +402,13 @@
 
       <!-- 01 OVERVIEW -->
       <section class="part reveal" id="overview">
+        <figure class="media" style="margin-top:0; margin-bottom:40px;">
+          <div class="ph"><b>Overview image</b>Client and talent views together · 1600 × 1000 px</div>
+        </figure>
         <span class="num">01</span>
         <h2>Overview</h2>
         <p class="lead">BaseConnect is a Web3 marketplace that connects clients and founders who need talent with people who have the skills to offer. I was the Lead Product Designer, responsible for research, flows, interface design and handoff.</p>
         <p class="t">Clients and founders can post work and find the right person for it. Talent can show their skills and find jobs that fit. The aim was a marketplace that feels as simple as any freelance platform, while using Web3 for payments and trust.</p>
-        <figure class="media">
-          <div class="ph"><b>Overview image</b>Client and talent views together · 1600 × 1000 px</div>
-        </figure>
       </section>
 
       <!-- 02 TWO SIDES -->
@@ -423,24 +419,36 @@
 
         <div class="sides">
           <div class="side">
-            <span class="who">Clients &amp; founders</span>
+            <div class="side__text">
+              <span class="who">Clients &amp; founders</span>
             <h3>Find the right person, quickly</h3>
             <ul>
               <li>Post a job without a long form</li>
               <li>Judge skills and track record at a glance</li>
               <li>Pay with confidence</li>
             </ul>
-            <div class="ph"><b>Client view</b>Persona or job post screen · 1200 × 900</div>
+            </div>
+            <!-- To add your image: save it as images/client-view.webp (or change the name below) -->
+            <div class="ph">
+              <img src="IMGs/client-base.webp" alt="Client view of BaseConnect" loading="lazy" decoding="async" onload="this.parentNode.classList.add('filled')" onerror="this.remove()">
+              <b>Client view</b>Persona or job post screen · 1200 × 900
+            </div>
           </div>
           <div class="side">
-            <span class="who">Talent</span>
+            <div class="side__text">
+              <span class="who">Talent</span>
             <h3>Get found and get paid</h3>
             <ul>
               <li>Show skills and past work clearly</li>
               <li>Find jobs that fit without endless scrolling</li>
               <li>Be sure finished work gets paid for</li>
             </ul>
-            <div class="ph"><b>Talent view</b>Persona or profile screen · 1200 × 900</div>
+            </div>
+            <!-- To add your image: save it as images/talent-view.webp (or change the name below) -->
+            <div class="ph">
+              <img src="images/talent-view.webp" alt="Talent view of BaseConnect" loading="lazy" decoding="async" onload="this.parentNode.classList.add('filled')" onerror="this.remove()">
+              <b>Talent view</b>Persona or profile screen · 1200 × 900
+            </div>
           </div>
         </div>
       </section>
@@ -490,10 +498,6 @@
             <div><b>Get paid</b>Receive payment and a review</div>
           </div>
         </div>
-
-        <figure class="media">
-          <div class="ph"><b>Flow diagram</b>Full user flow or sitemap · 1600 × 900 px</div>
-        </figure>
       </section>
 
       <!-- 05 KEY SCREENS -->
@@ -503,15 +507,12 @@
         <p class="lead">A look at the key screens for clients and for talent.</p>
 
         <div class="screens">
-          <div class="pair">
-            <figure class="media"><div class="ph"><b>Client dashboard</b>1600 × 1000</div><figcaption>Jobs, proposals and payments in one view.</figcaption></figure>
-            <figure class="media"><div class="ph"><b>Job post</b>1000 × 1000</div><figcaption>A short form that gets the brief across.</figcaption></figure>
-          </div>
-          <div class="pair rev">
-            <figure class="media"><div class="ph"><b>Talent profile</b>1000 × 1000</div><figcaption>Skills, past work and reviews up front.</figcaption></figure>
-            <figure class="media"><div class="ph"><b>Talent search</b>1600 × 1000</div><figcaption>Search and filters that narrow the choice fast.</figcaption></figure>
-          </div>
-          <figure class="media wide"><div class="ph"><b>Mobile screens</b>Row of mobile views · 2100 × 900</div></figure>
+          <figure class="media"><div class="ph"><b>Client dashboard</b>1600 × 1000</div><figcaption>Jobs, proposals and payments in one view.</figcaption></figure>
+          <figure class="media"><div class="ph"><b>Job post</b>1600 × 1000</div><figcaption>A short form that gets the brief across.</figcaption></figure>
+          <figure class="media"><div class="ph"><b>Talent profile</b>1600 × 1000</div><figcaption>Skills, past work and reviews up front.</figcaption></figure>
+          <figure class="media"><div class="ph"><b>Talent search</b>1600 × 1000</div><figcaption>Search and filters that narrow the choice fast.</figcaption></figure>
+          <figure class="media"><div class="ph"><b>Payments</b>1600 × 1000</div><figcaption>Payment status visible at every stage of a job.</figcaption></figure>
+          <figure class="media"><div class="ph"><b>Mobile screens</b>1600 × 1000</div><figcaption>The key screens on a phone.</figcaption></figure>
         </div>
       </section>
 
@@ -542,9 +543,9 @@
     <div class="next-in">
       <div>
         <small>Next project</small>
-        <h2>Oceanpieces</h2>
+        <h2>AttendeeHRM</h2>
       </div>
-      <a class="go" href="case-ocean.html">View case study <span aria-hidden="true">→</span></a>
+      <a class="go" href="case-attendeehrm.html">View case study <span aria-hidden="true">→</span></a>
     </div>
   </aside>
 

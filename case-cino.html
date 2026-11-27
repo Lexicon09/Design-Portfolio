@@ -64,6 +64,17 @@
       aspect-ratio: var(--r, 16 / 10);
       object-fit: contain;
     }
+
+    /* video: fills its frame; --zoom crops any black bars baked into the clip
+       (raise it if bars still show, set it to 1 once the clip is exported clean) */
+    .media.clip { overflow: hidden; border-radius: 14px; }
+    .media video {
+      display: block; width: 100%;
+      aspect-ratio: var(--r, 16 / 10);
+      object-fit: cover;
+      background: var(--tint);
+      scale: var(--zoom, 1.08);
+    }
     .ph {
       position: relative;
       display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
@@ -340,8 +351,9 @@
 
       <!-- 01 OVERVIEW -->
       <section class="part reveal" id="overview">
-        <figure class="media">
-          <div class="ph"><b>Overview image</b>1600 × 1000 px. Suggested: Home, Token and Lending screens together</div>
+        <!-- video in place of the old placeholder. Change --r to reshape the frame (e.g. 16 / 10 for wider). -->
+        <figure class="media clip" style="--r: 1.28 / 1;">
+          <video src="IMGs/cinovideo.mp4" poster="IMGs/Cino.png" muted loop playsinline preload="metadata" aria-label="Cino Wallet app walkthrough"></video>
         </figure>
         <span class="num">01</span>
         <h2>Overview</h2>
@@ -522,6 +534,19 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
       }, { threshold: 0.05 });
       document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    })();
+
+    /* videos play only while visible on screen */
+    (function lazyVideos() {
+      const vids = document.querySelectorAll(".media video");
+      if (!vids.length) return;
+      const vio = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.play().catch(() => {});
+          else e.target.pause();
+        });
+      }, { threshold: 0.25 });
+      vids.forEach(v => vio.observe(v));
     })();
   </script>
 <script>

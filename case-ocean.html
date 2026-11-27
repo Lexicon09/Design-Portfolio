@@ -60,6 +60,21 @@
       aspect-ratio: var(--r, 16 / 10);
       object-fit: cover;
     }
+
+    /* video: shows the whole clip at its own shape (no crop, no zoom) */
+    .media.clip {
+      overflow: hidden; border-radius: 14px;
+      max-width: var(--w, 100%);              /* frame width: lower it to make the container smaller */
+      aspect-ratio: var(--r, 3 / 2);          /* frame shape: set to the clip's real ratio */
+    }
+    .media video {
+      display: block; width: 100%; height: 100%;
+      object-fit: cover;                      /* fills the frame edge to edge */
+      object-position: center top;            /* keeps the top of the clip in view */
+      transform-origin: center top;           /* zoom grows downward, so the top is never cut */
+      scale: var(--zoom, 1.16);               /* zooms in to cut off the black border baked into the clip */
+      background: var(--tint);
+    }
     .ph {
       position: relative;
       display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
@@ -394,8 +409,9 @@
 
       <!-- 01 OVERVIEW -->
       <section class="part reveal" id="overview">
-        <figure class="media" style="margin-top:0; margin-bottom:40px;">
-          <div class="ph"><b>Overview image</b>Homepage and a product page together · 1600 × 1000 px</div>
+        <!-- Same clip as the Oceanpieces card on the Work page. It shows in full at its own shape (no crop). -->
+        <figure class="media clip" style="margin-top:0; margin-bottom:40px; --w: 760px; --r: 3 / 2; --zoom: 1.04;">
+          <video src="IMGs/oceanvideo.mp4#t=0.1" muted loop playsinline preload="metadata" aria-label="Oceanpieces website walkthrough"></video>
         </figure>
         <span class="num">01</span>
         <h2>Overview</h2>
@@ -483,9 +499,9 @@
     <div class="next-in">
       <div>
         <small>Next project</small>
-        <h2>Cino Wallet</h2>
+        <h2>Defi Foundry</h2>
       </div>
-      <a class="go" href="case-cino.html">View case study <span aria-hidden="true">→</span></a>
+      <a class="go" href="case-defifoundry.html">View case study <span aria-hidden="true">→</span></a>
     </div>
   </aside>
 
@@ -526,6 +542,19 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
       }, { threshold: 0.05 });
       document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    })();
+
+    /* videos play only while visible on screen */
+    (function lazyVideos() {
+      const vids = document.querySelectorAll(".media video");
+      if (!vids.length) return;
+      const vio = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.play().catch(() => {});
+          else e.target.pause();
+        });
+      }, { threshold: 0.25 });
+      vids.forEach(v => vio.observe(v));
     })();
   </script>
 <script>

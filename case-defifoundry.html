@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- fonts load without blocking the page -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&family=Mrs+Saint+Delafield&display=swap" /></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Instrument+Serif:ital@1&display=swap" /></noscript>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,15 +34,12 @@
     .topbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 50;
       height: 66px; padding: 0 7.8vw;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: flex-end;
       background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s;
     }
     .topbar.scrolled { border-color: var(--line); }
-
-    .logo { font-family: "Mrs Saint Delafield", cursive; font-size: 40px; line-height: 1; color: var(--ink); text-decoration: none; }
-    .logo i { font-style: normal; color: var(--accent); }
 
     .back {
       display: inline-flex; align-items: center; gap: 8px;
@@ -63,6 +60,8 @@
       aspect-ratio: var(--r, 16 / 10);
       object-fit: cover;
     }
+    /* real screenshots keep their own shape, so nothing gets cropped */
+    .part .media img { aspect-ratio: auto; height: auto; }
     .ph {
       position: relative;
       display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
@@ -125,8 +124,6 @@
     .facts div + div { padding-left: 20px; border-left: 1px solid var(--line); }
     .facts dt { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); }
     .facts dd { margin-top: 6px; font-size: 15px; font-weight: 500; }
-
-    .hero .media { margin-top: 40px; --r: 21 / 9; }
 
     /* ---------- page grid: sticky side nav + story ---------- */
     .layout {
@@ -242,14 +239,15 @@
     .side li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
     .side .ph { margin-top: 22px; --r: 4 / 3; }
 
-    .zig { margin-top: 40px; display: grid; gap: 50px; }
-    .zrow { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
-    .zrow:nth-child(even) .zt { order: 2; }
+    /* page story: text first, image underneath, one letter after another */
+    .zig { margin-top: 40px; display: grid; gap: 70px; }
+    .zrow { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    .zt { max-width: 680px; }
     .zt .n { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: 22px; color: var(--accent); }
     .zt h3 { margin-top: 6px; font-size: 22px; letter-spacing: -0.04em; }
     .zt p { margin-top: 10px; font-size: 15px; line-height: 1.65; color: #6b6b66; }
     .zrow .media { margin-top: 0 !important; }
-    .zrow .ph { --r: 4 / 3; }
+    .zrow .ph { --r: 1500 / 1200; }
 
     .lanes { margin-top: 40px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
     .lane { display: grid; grid-template-columns: 96px repeat(4, 1fr); }
@@ -336,12 +334,10 @@
       .facts { grid-template-columns: 1fr 1fr; }
       .facts div:nth-child(3) { padding-left: 0; border-left: 0; }
       .facts div:nth-child(n+3) { border-top: 1px solid var(--line); }
-      .hero .media { --r: 4 / 3; }
       .cards, .grid2, .grid3, .stats, .ba { grid-template-columns: 1fr; }
-      .sides, .zrow, .figures, .twocol { grid-template-columns: 1fr; }
+      .sides, .figures, .twocol { grid-template-columns: 1fr; }
       .side + .side { border-left: 0; border-top: 1px solid var(--line); }
-      .zrow { gap: 18px; }
-      .zrow:nth-child(even) .zt { order: 0; }
+      .zig { gap: 50px; }
       .lanes { overflow-x: auto; }
       .lane { min-width: 700px; }
       .figures div, .figures div + div { padding: 22px 0; border-left: 0; }
@@ -361,7 +357,6 @@
 <body>
 
   <header class="topbar" id="topbar">
-    <a class="logo" href="index.html" aria-label="Samuel, home">Samuel<i>.</i></a>
     <a class="back" href="work.html"><span aria-hidden="true">←</span> All work</a>
   </header>
 
@@ -381,10 +376,6 @@
       <div><dt>Platform</dt><dd>Web (responsive)</dd></div>
       <div><dt>Tools</dt><dd>Figma</dd></div>
     </dl>
-
-    <figure class="media">
-      <div class="ph"><b>Hero image</b>Landing page hero on a laptop · 2100 × 900 px</div>
-    </figure>
   </div>
 
   <!-- ================= BODY ================= -->
@@ -396,7 +387,6 @@
         <li><a href="#overview">Overview</a></li>
         <li><a href="#challenge">The Challenge</a></li>
         <li><a href="#story">Page Story</a></li>
-        <li><a href="#visual">Visual Language</a></li>
         <li><a href="#final">Final Design</a></li>
         <li><a href="#results">Results</a></li>
       </ul>
@@ -407,13 +397,13 @@
 
       <!-- 01 OVERVIEW -->
       <section class="part reveal" id="overview">
+        <figure class="media" style="margin-top:0; margin-bottom:40px;">
+          <div class="ph"><b>Overview image</b>Full landing page, desktop and mobile together · 1600 × 1000 px</div>
+        </figure>
         <span class="num">01</span>
         <h2>Overview</h2>
         <p class="lead">DeFi Foundry is a Web3 product, and I designed its landing page: the first thing visitors see, and the page that has to explain what it does and earn trust in a few seconds.</p>
         <p class="t">A landing page has a few seconds to explain a new kind of product and earn trust. I designed the page to explain what DeFi Foundry does in plain words, show why it can be trusted, and give visitors one clear next step.</p>
-        <figure class="media">
-          <div class="ph"><b>Overview image</b>Full landing page, desktop and mobile together · 1600 × 1000 px</div>
-        </figure>
       </section>
 
       <!-- 02 THE CHALLENGE -->
@@ -437,55 +427,40 @@
 
         <div class="zig">
           <div class="zrow">
-            <div class="zt"><span class="n">A</span><h3>The promise</h3><p>A clear headline, one supporting line and a single main action tell visitors what DeFi Foundry offers and what to do next.</p></div>
-            <figure class="media"><div class="ph"><b>Hero section</b>1200 × 900</div></figure>
+            <div class="zt"><span class="n">A</span><h3>The promise</h3><p>A clear headline and one main action tell visitors what DeFi Foundry does and what to do next.</p></div>
+            <figure class="media">
+              <img src="IMGs/hero-defi.webp" alt="DeFi Foundry hero section with headline and main action" loading="lazy" decoding="async" />
+            </figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">B</span><h3>How it works</h3><p>The product is broken into a few simple steps, each with a short title and one line of explanation.</p></div>
-            <figure class="media"><div class="ph"><b>How it works</b>1200 × 900</div></figure>
+            <div class="zt"><span class="n">B</span><h3>Services</h3><p>Four services: Fundraising &amp; Advisory, Creative and Branding, OTC Services and Market Making. Each sits on its own card with a short description.</p></div>
+            <figure class="media">
+              <img src="IMGs/services-defi.webp" alt="Learn Our Services section with cards for Fundraising and Advisory, Creative and Branding, OTC Services and Market Making" loading="lazy" decoding="async" />
+            </figure>
           </div>
           <div class="zrow">
-            <div class="zt"><span class="n">C</span><h3>Proof and security</h3><p>Proof points sit together, so trust is built before the final call to action.</p></div>
-            <figure class="media"><div class="ph"><b>Trust section</b>1200 × 900</div></figure>
+            <div class="zt"><span class="n">C</span><h3>Why DeFi Foundry</h3><p>A short intro and four reason cards explain why founders should choose DeFi Foundry. A Get Started button sits beside them.</p></div>
+            <figure class="media">
+              <img src="IMGs/why-defi.webp" alt="Why Defi Foundry section with four reason cards and a Get Started button" loading="lazy" decoding="async" />
+            </figure>
           </div>
         </div>
       </section>
 
-      <!-- 04 VISUAL LANGUAGE -->
-      <section class="part reveal" id="visual">
-        <span class="num">04</span>
-        <h2>Visual Language</h2>
-        <p class="lead">A confident, modern look that feels secure rather than speculative.</p>
-
-        <figure class="media wide">
-          <div class="ph"><b>Style board</b>Colours, type, buttons, icons and effects · 2100 × 900 px</div>
-        </figure>
-
-        <div class="twocol">
-          <div><h3>Colour &amp; type</h3><p class="t">Strong contrast and a clear type scale keep headlines and numbers easy to read, with colour used to guide attention to the actions.</p></div>
-          <div><h3>Motion &amp; detail</h3><p class="t">Gradients, glows and motion are used sparingly, to add depth without slowing the page or pulling attention from the message.</p></div>
-        </div>
-      </section>
-
-      <!-- 05 FINAL DESIGN -->
+      <!-- 04 FINAL DESIGN -->
       <section class="part reveal" id="final">
-        <span class="num">05</span>
+        <span class="num">04</span>
         <h2>Final Design</h2>
         <p class="lead">The finished landing page, from the first screen to the closing call to action.</p>
 
-        <div class="screens">
-          <figure class="media wide"><div class="ph"><b>Full landing page</b>Desktop, full length · 2100 × 1200 px</div><figcaption>The whole page, from first impression to final action.</figcaption></figure>
-          <div class="pair">
-            <figure class="media"><div class="ph"><b>Features</b>1600 × 1000</div><figcaption>Features explained in short, scannable blocks.</figcaption></figure>
-            <figure class="media"><div class="ph"><b>Call to action</b>1000 × 1000</div><figcaption>One clear action to finish on.</figcaption></figure>
-          </div>
-          <figure class="media wide"><div class="ph"><b>Mobile screens</b>Row of mobile views · 2100 × 900</div></figure>
-        </div>
+        <figure class="media">
+          <img src="IMGs/fullpage-defi.webp" alt="The full DeFi Foundry landing page" loading="lazy" decoding="async" />
+        </figure>
       </section>
 
-      <!-- 06 RESULTS -->
+      <!-- 05 RESULTS -->
       <section class="part reveal" id="results">
-        <span class="num">06</span>
+        <span class="num">05</span>
         <h2>Results</h2>
         <p class="lead">DeFi Foundry now has a landing page that explains the product clearly, builds trust early and gives visitors one clear action.</p>
 
@@ -503,9 +478,9 @@
     <div class="next-in">
       <div>
         <small>Next project</small>
-        <h2>BaseConnect</h2>
+        <h2>Pflux</h2>
       </div>
-      <a class="go" href="case-baseconnect.html">View case study <span aria-hidden="true">→</span></a>
+      <a class="go" href="case-pflux.html">View case study <span aria-hidden="true">→</span></a>
     </div>
   </aside>
 
