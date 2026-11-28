@@ -61,19 +61,12 @@
       object-fit: cover;
     }
 
-    /* video: shows the whole clip at its own shape (no crop, no zoom) */
-    .media.clip {
-      overflow: hidden; border-radius: 14px;
-      max-width: var(--w, 100%);              /* frame width: lower it to make the container smaller */
-      aspect-ratio: var(--r, 3 / 2);          /* frame shape: set to the clip's real ratio */
-    }
-    .media video {
-      display: block; width: 100%; height: 100%;
-      object-fit: cover;                      /* fills the frame edge to edge */
-      object-position: center top;            /* keeps the top of the clip in view */
-      transform-origin: center top;           /* zoom grows downward, so the top is never cut */
-      scale: var(--zoom, 1.16);               /* zooms in to cut off the black border baked into the clip */
-      background: var(--tint);
+    /* overview video: the frame is exactly as tall as the clip, so the whole video shows and nothing is cropped */
+    .case-video {
+      display: block; width: 100%; height: auto;
+      object-fit: contain;                    /* never crops: if the frame ever differs from the clip, the clip is shown whole */
+      margin: 0 0 40px; border-radius: 14px;
+      background: transparent;
     }
     .ph {
       position: relative;
@@ -409,10 +402,8 @@
 
       <!-- 01 OVERVIEW -->
       <section class="part reveal" id="overview">
-        <!-- Same clip as the Oceanpieces card on the Work page. It shows in full at its own shape (no crop). -->
-        <figure class="media clip" style="margin-top:0; margin-bottom:40px; --w: 760px; --r: 3 / 2; --zoom: 1.04;">
-          <video src="IMGs/oceanvideo.mp4#t=0.1" muted loop playsinline preload="metadata" aria-label="Oceanpieces website walkthrough"></video>
-        </figure>
+        <!-- Overview video: IMGs/Ocean Video 2.mp4 (spaces written as %20) -->
+        <video class="case-video" src="IMGs/oceanvideo2.mp4" muted loop playsinline preload="metadata" aria-label="Oceanpieces website walkthrough"></video>
         <span class="num">01</span>
         <h2>Overview</h2>
         <p class="lead">Oceanpieces sells wristwatches online. I designed browsing, product pages, cart and checkout so people can find a watch and buy it without friction.</p>
@@ -544,9 +535,10 @@
       document.querySelectorAll(".reveal").forEach(el => io.observe(el));
     })();
 
-    /* videos play only while visible on screen */
+
+    /* video plays only while visible on screen */
     (function lazyVideos() {
-      const vids = document.querySelectorAll(".media video");
+      const vids = document.querySelectorAll("video");
       if (!vids.length) return;
       const vio = new IntersectionObserver((entries) => {
         entries.forEach(e => {
