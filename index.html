@@ -544,8 +544,10 @@
     .case:hover .shot { box-shadow: 0 36px 60px -30px rgba(0, 0, 0, 0.4); }
     .case .shot .phones, .case .shot .browser { transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
     .case:hover .shot .phones, .case:hover .shot .browser { transform: translateY(-8px) scale(1.02); }
-    .case .shot > img { transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
-    .case:hover .shot > img { transform: scale(1.04); }
+    .case .shot > img,
+    .case .shot > video { transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .case:hover .shot > img,
+    .case:hover .shot > video { transform: scale(1.04); }
 
     .shot {
       position: relative;
@@ -558,6 +560,14 @@
     }
 
     .shot > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* video fills the whole tile; --zoom crops any black bars baked into the clip (raise it if bars still show) */
+    .shot > video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      scale: var(--zoom, 1.08);
+    }
 
     /* round arrow that appears on hover */
     .case .go {
@@ -1155,12 +1165,13 @@
        YOUR PROJECTS: edit this list. The Work page (work.html)
        has the same list, so change both when you edit.
        title, desc, tags → text on each card
-       img               → cover image (e.g. IMGs/cino.png)
+       video             → optional looping clip (e.g. IMGs/cinovideo.mp4); wins over img
+       img               → cover image (also used as the video poster)
        href              → the case study page the card opens
        ===================================================== */
     const PROJECTS = [
       { title: "Cino Wallet",   desc: "A short line about the problem you solved and what you designed.",
-        img: "IMGs/Cino.png",
+        video: "IMGs/cinovideo.mp4",
         href: "case-cino.html",
         tags: ["Mobile App", "Web3"], kind: "phones",     g: "linear-gradient(160deg,#4d8dff,#1f5fe0)", a: "#2f6cf0" },
       { title: "BaseConnect",   desc: "A short line about the users, the constraints and the result.",
@@ -1172,7 +1183,7 @@
         href: "case-attendeehrm.html",
         tags: ["Website Design", " Saas"], kind: "browser",       g: "linear-gradient(160deg,#ffb36b,#ff7a45)", a: "#ff7a45" },
       { title: "OceanPieces",  desc: "A live site you designed and built in code, in a sentence.",
-        img: "IMGs/OceanPieces.png",
+        video: "IMGs/Oceanvideo.mp4",
         href: "case-ocean.html",
         tags: ["Website Design", "E-commerce"], kind: "phones",  g: "linear-gradient(160deg,#b9a2ff,#7a5cf0)", a: "#7a5cf0" }
     ];
@@ -1429,7 +1440,9 @@
       const browser = `<div class="browser"><div class="bar"><span></span><span></span><span></span></div>
         <div class="pg"><b></b><i></i><i></i><div class="blocks"><u></u><u></u><u></u></div></div></div>`;
       host.innerHTML = PROJECTS.map((p, i) => {
-        const media = p.img
+        const media = p.video
+          ? `<video src="${p.video}" ${p.img ? `poster="${p.img}"` : ""} muted loop playsinline preload="metadata" aria-label="${p.title}"></video>`
+          : p.img
           ? `<img src="${p.img}" alt="${p.title}" />`
           : p.kind === "browser" ? browser
           : `<div class="phones">${phone("")}${phone("main")}${phone("")}</div>`;
@@ -1448,6 +1461,19 @@
           <a class="case-link" href="${p.href || '#'}" aria-label="View ${p.title} case study"></a>
         </article>`;
       }).join("");
+    })();
+
+    /* videos play only while visible on screen (saves battery and bandwidth) */
+    (function lazyVideos() {
+      const vids = document.querySelectorAll(".shot video");
+      if (!vids.length) return;
+      const vio = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.play().catch(() => {});
+          else e.target.pause();
+        });
+      }, { threshold: 0.25 });
+      vids.forEach(v => vio.observe(v));
     })();
 
 
